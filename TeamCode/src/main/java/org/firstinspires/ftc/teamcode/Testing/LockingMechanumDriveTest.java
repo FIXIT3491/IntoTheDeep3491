@@ -5,10 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 @TeleOp
 public class LockingMechanumDriveTest extends LinearOpMode {
-
+private VoltageSensor myVoltageSensor;
 
     //Servos Declarations
 
@@ -47,6 +48,18 @@ public class LockingMechanumDriveTest extends LinearOpMode {
         LMBRServo = hardwareMap.get(Servo.class, "LMBRS");
         LMBLServo = hardwareMap.get(Servo.class, "LMBLS");
 
+        myVoltageSensor = hardwareMap.get(VoltageSensor.class, "Control Hub");
+
+        //Direction Motors
+        DriveFL.setDirection(DcMotor.Direction.REVERSE);
+        DriveBL.setDirection(DcMotor.Direction.REVERSE);
+        DriveFR.setDirection(DcMotor.Direction.FORWARD);
+        DriveBR.setDirection(DcMotor.Direction.FORWARD);
+
+        //Direction Servo
+        LMFLServo.setDirection(Servo.Direction.REVERSE);
+        LMBRServo.setDirection(Servo.Direction.REVERSE);
+
         waitForStart();
         while (opModeIsActive()) {
 
@@ -63,7 +76,7 @@ public class LockingMechanumDriveTest extends LinearOpMode {
                 }
             } else if (gamepad1.b) {
                 LMActive = false;
-               if (!currentGamepad1.b && previousGamepad1.b) {
+               if (currentGamepad1.b && !previousGamepad1.b) {
                     unlockMecanum();
                 }
             }
@@ -96,6 +109,17 @@ public class LockingMechanumDriveTest extends LinearOpMode {
                 BLPower /= max;
                 BRPower /= max;
             }
+
+            //Drive Logic
+
+            DriveFL.setPower(FLPower);
+            DriveFR.setPower(FRPower);
+            DriveBL.setPower(BLPower);
+            DriveBR.setPower(BRPower);
+
+            double voltage = myVoltageSensor.getVoltage();
+            telemetry.addData("Battery Voltage", "%.2f volts", voltage);
+            telemetry.update();
         }
     }
     public void lockMecanum(){
