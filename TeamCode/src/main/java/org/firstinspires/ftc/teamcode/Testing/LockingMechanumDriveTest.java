@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 @TeleOp
 public class LockingMechanumDriveTest extends LinearOpMode {
@@ -23,9 +24,13 @@ public class LockingMechanumDriveTest extends LinearOpMode {
     public DcMotor DriveBR;
     public DcMotor DriveBL;
 
+    Gamepad currentGamepad1 = new Gamepad();
+    Gamepad previousGamepad1 = new Gamepad();
+
     //Boolean Expressions
 
     boolean LMActive;
+
 
 
     @Override
@@ -44,17 +49,23 @@ public class LockingMechanumDriveTest extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
+
+            //logic for toggling gamepad
+            previousGamepad1.copy(currentGamepad1);
+            currentGamepad1.copy(gamepad1);
+
+
             //Checking for a or b
             if (gamepad1.a) {
                 LMActive = true;
+                if (currentGamepad1.a && !previousGamepad1.a) {
+                    lockMecanum();
+                }
             } else if (gamepad1.b) {
                 LMActive = false;
-            }
-
-            if (LMActive) {
-                lockMecanum();
-            } else if (!LMActive) {
-                unlockMecanum();
+               if (!currentGamepad1.b && previousGamepad1.b) {
+                    unlockMecanum();
+                }
             }
 
 
