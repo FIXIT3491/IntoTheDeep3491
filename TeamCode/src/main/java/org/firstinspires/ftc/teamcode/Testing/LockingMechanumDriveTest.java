@@ -5,7 +5,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
 public class LockingMechanumDriveTest extends LinearOpMode {
@@ -13,10 +15,10 @@ private VoltageSensor myVoltageSensor;
 
     //Servos Declarations
 
-    public Servo LMFRServo;
-    public Servo LMFLServo;
-    public Servo LMBRServo;
-    public Servo LMBLServo;
+    public ServoImplEx LMFRServo;
+    public ServoImplEx  LMFLServo;
+    public ServoImplEx  LMBRServo;
+    public ServoImplEx  LMBLServo;
 
     //Motor Declarations
 
@@ -30,8 +32,12 @@ private VoltageSensor myVoltageSensor;
 
     //Boolean Expressions
 
-    boolean LMActive;
+    boolean LMActive = false;
 
+    public ElapsedTime time = new ElapsedTime();
+    public ElapsedTime time2 = new ElapsedTime();
+    public ElapsedTime time3 = new ElapsedTime();
+    public ElapsedTime time4 = new ElapsedTime();
 
 
     @Override
@@ -43,10 +49,10 @@ private VoltageSensor myVoltageSensor;
         DriveFR = hardwareMap.get(DcMotor.class, "FRD");
         DriveBR = hardwareMap.get(DcMotor.class, "BRD");
 
-        LMFRServo = hardwareMap.get(Servo.class, "LMFRS");
-        LMFLServo = hardwareMap.get(Servo.class, "LMFLS");
-        LMBRServo = hardwareMap.get(Servo.class, "LMBRS");
-        LMBLServo = hardwareMap.get(Servo.class, "LMBLS");
+        LMFRServo = hardwareMap.get(ServoImplEx.class, "LMFRS");
+        LMFLServo = hardwareMap.get(ServoImplEx.class, "LMFLS");
+        LMBRServo = hardwareMap.get(ServoImplEx.class, "LMBRS");
+        LMBLServo = hardwareMap.get(ServoImplEx.class, "LMBLS");
 
         myVoltageSensor = hardwareMap.get(VoltageSensor.class, "Control Hub");
 
@@ -55,6 +61,12 @@ private VoltageSensor myVoltageSensor;
         DriveBL.setDirection(DcMotor.Direction.REVERSE);
         DriveFR.setDirection(DcMotor.Direction.FORWARD);
         DriveBR.setDirection(DcMotor.Direction.FORWARD);
+
+        //brake on zero
+        DriveFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         //Direction Servo
         LMFLServo.setDirection(Servo.Direction.REVERSE);
@@ -70,7 +82,7 @@ private VoltageSensor myVoltageSensor;
 
             //Checking for a or b
             if (gamepad1.a) {
-                LMActive = true;
+
                 if (currentGamepad1.a && !previousGamepad1.a) {
                     lockMecanum();
                 }
@@ -123,15 +135,47 @@ private VoltageSensor myVoltageSensor;
         }
     }
     public void lockMecanum(){
-        LMFRServo.setPosition(0.28);
-        LMFLServo.setPosition(0.28);
-        LMBRServo.setPosition(0.28);
-        LMBLServo.setPosition(0.28);
+        if (!LMActive) {
+            LMFRServo.setPosition(0.3);
+            LMFLServo.setPosition(0.3);
+            LMBRServo.setPosition(0.3);
+            LMBLServo.setPosition(0.4);
+
+            LMFRServo.setPosition(0.19);
+            LMFLServo.setPosition(0.19);
+            LMBRServo.setPosition(0.19);
+            LMBLServo.setPosition(0.25);
+            time.reset();
+
+
+            while (time.milliseconds() < 1000){
+            }
+
+
+            LMFRServo.setPwmDisable();
+            LMFLServo.setPwmDisable();
+            LMBRServo.setPwmDisable();
+            LMBLServo.setPwmDisable();
+
+        }
     }
     public void unlockMecanum(){
+        LMFRServo.setPwmEnable();
+        LMFLServo.setPwmEnable();
+        LMBRServo.setPwmEnable();
+        LMBLServo.setPwmEnable();
+
         LMFRServo.setPosition(0);
         LMFLServo.setPosition(0);
         LMBRServo.setPosition(0);
         LMBLServo.setPosition(0);
+        time3.reset();
+        if (time3.milliseconds() > 1000) {
+            LMFRServo.setPwmDisable();
+            LMFLServo.setPwmDisable();
+            LMBRServo.setPwmDisable();
+            LMBLServo.setPwmDisable();
+            LMActive = true;
+        }
     }
 }
