@@ -17,10 +17,10 @@ public class ColorSubsystem {
 
     // Intake method
     public int DetectColor() {
-
-        colorSensor.blue();
-        colorSensor.green();
-        colorSensor.red();
+        // detect color apply to value put to string?
+        //colorSensor.blue();
+        //colorSensor.green();
+        //colorSensor.red();
 
 
     return color;
