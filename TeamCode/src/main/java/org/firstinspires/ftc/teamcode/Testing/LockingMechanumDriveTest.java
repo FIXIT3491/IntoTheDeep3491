@@ -15,7 +15,7 @@ private VoltageSensor myVoltageSensor;
 
     //Servos Declarations
 
-    public ServoImplEx LMFRServo;
+    public ServoImplEx  LMFRServo;
     public ServoImplEx  LMFLServo;
     public ServoImplEx  LMBRServo;
     public ServoImplEx  LMBLServo;
@@ -133,7 +133,11 @@ private VoltageSensor myVoltageSensor;
             telemetry.addData("Battery Voltage", "%.2f volts", voltage);
             telemetry.update();
         }
+        unlockMecanum();
+        time.reset();
+        while (time.milliseconds() < 500){}
     }
+
     public void lockMecanum(){
         if (!LMActive) {
             LMFRServo.setPosition(0.3);
@@ -152,11 +156,6 @@ private VoltageSensor myVoltageSensor;
             }
 
 
-            LMFRServo.setPwmDisable();
-            LMFLServo.setPwmDisable();
-            LMBRServo.setPwmDisable();
-            LMBLServo.setPwmDisable();
-
         }
     }
     public void unlockMecanum(){
@@ -171,10 +170,7 @@ private VoltageSensor myVoltageSensor;
         LMBLServo.setPosition(0);
         time3.reset();
         if (time3.milliseconds() > 1000) {
-            LMFRServo.setPwmDisable();
-            LMFLServo.setPwmDisable();
-            LMBRServo.setPwmDisable();
-            LMBLServo.setPwmDisable();
+
             LMActive = true;
         }
     }
