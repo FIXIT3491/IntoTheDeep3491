@@ -8,14 +8,14 @@ import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
 @Autonomous
 public class ServoTesting extends LinearOpMode {
 
-    private RobotContainer robot;
 
     @Override
     public void runOpMode() {
-        robot = new RobotContainer(hardwareMap, telemetry);
+        RobotContainer.initialize(hardwareMap, telemetry);
+
 
         waitForStart();
-
+        RobotContainer.lmecSubsystem.LockMechanum();
 
     }
 }
