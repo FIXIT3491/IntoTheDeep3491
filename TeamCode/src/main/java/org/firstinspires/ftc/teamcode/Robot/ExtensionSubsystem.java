@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Robot;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -18,6 +19,10 @@ public class ExtensionSubsystem{
         extensionMotor = hardwareMap.get(DcMotorEx.class, "extension");
         liftMotor1 = hardwareMap.get(DcMotorEx.class, "Lift1");
         liftMotor2 = hardwareMap.get(DcMotorEx.class, "Lift2");
+
+        liftMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        liftMotor2.setDirection(DcMotor.Direction.REVERSE);
 
     }
 
@@ -37,32 +42,16 @@ public class ExtensionSubsystem{
 
     public void chamberLow() {
         moveLift(1000);
-        //sleep
-        moveLift(900);
-        //outtake specimen
-        moveLift(1000);
-        //sleep
-        moveLift(0);
     }
     public void chamberHigh() {
         moveLift(2000);
-        //sleep
-        moveLift(1900);
-        //outtake specimen
-        moveLift(2000);
-        //sleep
-        moveLift(0);
+
     }
     public void bucketLow() {
         moveLift(1250);
-        //sleep
-        //outtake sample
-        moveLift(0);
+
     }
     public void bucketHigh() {
         moveLift(2500);
-        //sleep
-        //outtake sample
-        moveLift(0);
     }
 }
