@@ -37,16 +37,32 @@ public class ExtensionSubsystem{
 
     public void chamberLow() {
         moveLift(1000);
+        //sleep
+        moveLift(900);
+        //outtake specimen
+        moveLift(1000);
+        //sleep
+        moveLift(0);
     }
     public void chamberHigh() {
         moveLift(2000);
+        //sleep
+        moveLift(1900);
+        //outtake specimen
+        moveLift(2000);
+        //sleep
+        moveLift(0);
     }
     public void bucketLow() {
         moveLift(1250);
-        moveExtension(500);
+        //sleep
+        //outtake sample
+        moveLift(0);
     }
     public void bucketHigh() {
         moveLift(2500);
-        moveExtension(500);
+        //sleep
+        //outtake sample
+        moveLift(0);
     }
 }
