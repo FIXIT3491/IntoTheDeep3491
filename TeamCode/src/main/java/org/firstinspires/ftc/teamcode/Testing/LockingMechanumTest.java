@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous
+@Autonomous(name="LockingMechanumTest", group = "Autonomous")
 
 public class LockingMechanumTest extends LinearOpMode {
 

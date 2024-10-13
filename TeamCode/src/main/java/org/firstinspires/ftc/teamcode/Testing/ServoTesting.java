@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
 
-@Autonomous
+@Autonomous(name="ServoTesting", group = "Autonomous")
 public class ServoTesting extends LinearOpMode {
 
 

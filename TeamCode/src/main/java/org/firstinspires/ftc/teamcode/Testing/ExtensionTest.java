@@ -11,21 +11,23 @@ import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
 
 public class ExtensionTest extends LinearOpMode {
 
-    private DcMotor extensionMotor;
+//    private DcMotor extensionMotor;
     private DcMotor liftMotor1;
     private DcMotor liftMotor2;
 
     @Override
     public void runOpMode() {
 
-        extensionMotor = hardwareMap.get(DcMotor.class, "extension");
+//        extensionMotor = hardwareMap.get(DcMotor.class, "extension");
         liftMotor1 = hardwareMap.get(DcMotor.class, "Lift1");
         liftMotor2 = hardwareMap.get(DcMotor.class, "Lift2");
 
         waitForStart();
 
-        liftMotor1.setPower(0.3);
-        liftMotor2.setPower(-0.3);
+        liftMotor1.setPower(1);
+        liftMotor2.setPower(-1);
+        sleep(1000);
+
 
     }
 }

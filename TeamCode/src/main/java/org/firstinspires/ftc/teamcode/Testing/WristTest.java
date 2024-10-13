@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-@Autonomous
+@Autonomous(name="WristTest", group = "Autonomous")
 public class WristTest extends LinearOpMode{
     private CRServo intakeMotor;
     private Servo wristServoOne;

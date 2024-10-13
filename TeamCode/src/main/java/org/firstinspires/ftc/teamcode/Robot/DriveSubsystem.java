@@ -15,10 +15,10 @@ public class DriveSubsystem {
 
 
     public DriveSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
-        DriveFL = hardwareMap.get(DcMotorEx.class, "frontL");
-        DriveFR = hardwareMap.get(DcMotorEx.class, "frontR");
-        DriveBL = hardwareMap.get(DcMotorEx.class, "backL");
-        DriveBR = hardwareMap.get(DcMotorEx.class, "backR");
+        DriveFL = hardwareMap.get(DcMotorEx.class, "FLD");
+        DriveBL = hardwareMap.get(DcMotorEx.class, "BLD");
+        DriveFR = hardwareMap.get(DcMotorEx.class, "FRD");
+        DriveBR = hardwareMap.get(DcMotorEx.class, "BRD");
 
         //Direction Motors
         DriveFL.setDirection(DcMotor.Direction.REVERSE);

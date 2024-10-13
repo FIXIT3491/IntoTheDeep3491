@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp
+@TeleOp(name="LockingMechanumDriveTest", group = "Tele-Op")
 public class LockingMechanumDriveTest extends LinearOpMode {
 private VoltageSensor myVoltageSensor;
 
