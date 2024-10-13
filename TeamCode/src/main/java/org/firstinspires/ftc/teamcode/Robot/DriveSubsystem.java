@@ -37,7 +37,10 @@ public class DriveSubsystem {
 
     // Drive method
     public void go(double leftPower, double rightPower) {
-        telemetry.addData("tacooooooo", 1);
+        DriveBR.setPower(10000);
+        DriveBR.setPower(10000);
+        DriveBR.setPower(10000);
+        DriveBR.setPower(10000);
     }
 
     // Other driving-related methods can go here
