@@ -16,10 +16,11 @@ public class IntakeSubsystem {
 
     public IntakeSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         intakeMotor = hardwareMap.get(CRServo.class, "Spinnny");
-        wristServoOne = hardwareMap.get(Servo.class, "WSO");
-        wristServoTwo = hardwareMap.get(Servo.class, "WST");
+        wristServoOne = hardwareMap.get(Servo.class, "WSR");
+        wristServoTwo = hardwareMap.get(Servo.class, "WSL");
 
-        wristServoTwo.setDirection(Servo.Direction.REVERSE);
+//        wristServoTwo.setDirection(Servo.Direction.REVERSE);
+        wristServoOne.setDirection(Servo.Direction.REVERSE);
     }
 
     // Intake method
@@ -32,13 +33,17 @@ public class IntakeSubsystem {
     }
 
     public void wristUp(){
-        wristServoOne.setPosition(180);
-        wristServoTwo.setPosition(180);
+        wristServoOne.setPosition(0.2);
+        wristServoTwo.setPosition(0.2);
     }
 
     public void wristDown(){
         wristServoOne.setPosition(0);
         wristServoTwo.setPosition(0);
+    }
+    public void wristMove(double distance){
+        wristServoOne.setPosition(distance);
+        wristServoTwo.setPosition(distance);
     }
 
 }

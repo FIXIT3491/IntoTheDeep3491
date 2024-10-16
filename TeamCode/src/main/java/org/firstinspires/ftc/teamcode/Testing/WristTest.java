@@ -25,5 +25,9 @@ public class WristTest extends LinearOpMode{
         waitForStart();
         wristServoTwo.setPosition(0);
         wristServoOne.setPosition(0);
+        intakeMotor.setPower(1);
+        sleep(4000);
+        intakeMotor.setPower(0);
+        sleep(4000);
     }
 }

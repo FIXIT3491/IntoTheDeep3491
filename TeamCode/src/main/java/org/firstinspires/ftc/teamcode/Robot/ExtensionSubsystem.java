@@ -17,17 +17,22 @@ public class ExtensionSubsystem{
     public ExtensionSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
 
         extensionMotor = hardwareMap.get(DcMotorEx.class, "extension");
-        liftMotor1 = hardwareMap.get(DcMotorEx.class, "Lift1");
-        liftMotor2 = hardwareMap.get(DcMotorEx.class, "Lift2");
+        liftMotor1 = hardwareMap.get(DcMotorEx.class, "liftRight");
+        liftMotor2 = hardwareMap.get(DcMotorEx.class, "liftLeft");
 
         liftMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotor2.setDirection(DcMotor.Direction.REVERSE);
+//        liftMotor1.setDirection(DcMotorSimple.Direction.REVERSE);
+        extensionMotor.setDirection(DcMotor.Direction.REVERSE);
+        extensionMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
 
     public void moveExtension(int pos){
-        extensionMotor.setTargetPosition(1);
+        extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         extensionMotor.setPower(0.4);
     }

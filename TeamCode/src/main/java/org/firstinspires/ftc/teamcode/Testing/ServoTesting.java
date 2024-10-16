@@ -13,9 +13,19 @@ public class ServoTesting extends LinearOpMode {
     public void runOpMode() {
         RobotContainer.initialize(hardwareMap, telemetry);
 
-
+        RobotContainer.intakeSubsystem.wristDown();
         waitForStart();
-        RobotContainer.lmecSubsystem.LockMechanum();
+        while (opModeIsActive()) {
+            RobotContainer.intakeSubsystem.wristMove(0.1);
+            sleep(1000);
+            RobotContainer.intakeSubsystem.wristMove(0.2);
+
+
+            telemetry.addData("color detected", RobotContainer.colorSubsystem.DetectColor());
+            telemetry.update();
+
+
+        }
 
     }
 }
