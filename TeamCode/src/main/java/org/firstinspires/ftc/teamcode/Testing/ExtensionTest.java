@@ -24,8 +24,8 @@ public class ExtensionTest extends LinearOpMode {
         waitForStart();
 
 
-            RobotContainer.extensionSubsystem.moveLift(1);
-            sleep(3000);
+            RobotContainer.extensionSubsystem.moveLift(200);
+            sleep(1500);
             RobotContainer.extensionSubsystem.moveLift(0);
 
 

@@ -15,6 +15,9 @@ public class ServoTesting extends LinearOpMode {
 
         RobotContainer.intakeSubsystem.wristDown();
         waitForStart();
+
+        RobotContainer.intakeSubsystem.wristUp();
+        sleep(2000);
 //        while (opModeIsActive()) {
 //            RobotContainer.intakeSubsystem.wristMove(0.1);
 //            sleep(1000);
