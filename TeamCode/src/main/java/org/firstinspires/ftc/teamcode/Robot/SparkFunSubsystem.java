@@ -15,6 +15,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class SparkFunSubsystem {
     // Create an instance of the sensor
     SparkFunOTOSConfig myOtos;
+    SparkFunOTOSConfig.Pose2D pos;
 
     public SparkFunSubsystem(HardwareMap hardwareMap, Telemetry telemetry){
         myOtos = hardwareMap.get(SparkFunOTOSConfig.class, "sensor_otos");
@@ -106,5 +107,12 @@ public class SparkFunSubsystem {
 
     }
 
+    public SparkFunOTOSConfig.Pose2D myPosition() {
+        pos = myOtos.getPosition();
+        SparkFunOTOSConfig.Pose2D myPos = new SparkFunOTOSConfig.Pose2D(pos.y, pos.x, -pos.h);
+        return(myPos);
+    }
 
     }
+
+

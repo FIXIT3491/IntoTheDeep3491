@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class ColorSubsystem {
     private ColorRangeSensor colorSensor;
@@ -14,6 +15,7 @@ public class ColorSubsystem {
     int valueB;
     int valueG;
     int valueR;
+    double distance;
 
 
     public ColorSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -27,6 +29,13 @@ public class ColorSubsystem {
         colour = nameColor(valueR, valueG, valueB);
 
         return colour;
+    }
+
+    public double DetectDistance() {
+        // detect color apply to value put to string
+        distance = colorSensor.getDistance(DistanceUnit.MM);
+
+        return distance;
     }
 
     public String nameColor(int r, int g, int b) {

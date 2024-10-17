@@ -17,7 +17,7 @@ public class OTOSTest extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
 
-            telemetry.addData("OTOS POS", RobotContainer.sparkFunSubsystem.pos());
+            telemetry.addData("OTOS POS", RobotContainer.sparkFunSubsystem.myPosition());
             telemetry.update();
 
         }
