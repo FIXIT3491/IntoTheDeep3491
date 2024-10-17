@@ -1,14 +1,31 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
+import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
+
 public class PickupMethod {
 
-    //public void SpikeMark {
-//        wristDown();
-//        while (color == !red && blue && yellow){
-//        color = detect color
-//        spinIntake(1);
-//        }
-//        spinIntake(0);
-//        wristUp(); //doesn't work yet
-   // }
+    String color = "None";
+    double distance = 0;
+
+    public void SpikeMarkAuto (){
+
+        RobotContainer.intakeSubsystem.wristDown();
+        while (distance > 7 ){
+            distance = RobotContainer.colorSubsystem.DetectDistance();
+            RobotContainer.intakeSubsystem.spinIntake(0.75);
+        }
+
+        color = RobotContainer.colorSubsystem.DetectColor();
+
+        if (color == "red" && color == "blue" && color == "yellow"){
+        RobotContainer.intakeSubsystem.stopIntake();
+        RobotContainer.intakeSubsystem.wristUp();
+        }
+        else {
+            color = RobotContainer.colorSubsystem.DetectColor();
+            distance = RobotContainer.colorSubsystem.DetectDistance();
+
+        }
+
+    }
 }
