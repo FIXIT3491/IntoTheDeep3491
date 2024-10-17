@@ -12,6 +12,7 @@ public class RobotContainer {
     public static ExtensionSubsystem extensionSubsystem;
     public static LMECSubsystem lmecSubsystem;
     public static ColorSubsystem colorSubsystem;
+    public static SparkFunSubsystem sparkFunSubsystem;
 
     public static void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         driveSubsystem = new DriveSubsystem(hardwareMap, telemetry);
@@ -19,6 +20,7 @@ public class RobotContainer {
         extensionSubsystem = new ExtensionSubsystem(hardwareMap, telemetry);
         lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
+        sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
     }
 
 
