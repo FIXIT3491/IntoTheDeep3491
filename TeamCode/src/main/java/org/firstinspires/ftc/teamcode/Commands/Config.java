@@ -1,8 +1,4 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-
-public class DriveMethod {
-
-
-
+public class Config {
 }

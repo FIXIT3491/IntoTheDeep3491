@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Robot;
+package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.CRServoImpl;
@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class IntakeSubsystem {
+public class IntakeSubsystem{
     private CRServo intakeMotor;
     private Servo wristServoOne;
     private Servo wristServoTwo;

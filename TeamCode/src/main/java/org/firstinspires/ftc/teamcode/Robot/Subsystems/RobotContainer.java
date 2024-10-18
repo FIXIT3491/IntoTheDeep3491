@@ -1,10 +1,11 @@
-package org.firstinspires.ftc.teamcode.Robot;
+package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class RobotContainer {
+public class RobotContainer{
+
 
     // Instances of your subsystems (child classes)
     public static DriveSubsystem driveSubsystem;
@@ -13,6 +14,9 @@ public class RobotContainer {
     public static LMECSubsystem lmecSubsystem;
     public static ColorSubsystem colorSubsystem;
     public static SparkFunSubsystem sparkFunSubsystem;
+    private static RobotContainer robotContainer;
+
+
 
     public static void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         driveSubsystem = new DriveSubsystem(hardwareMap, telemetry);

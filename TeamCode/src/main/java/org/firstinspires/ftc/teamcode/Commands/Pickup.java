@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
-public class PickupMethod {
+public class Pickup {
 
     String color = "None";
     double distance = 0;

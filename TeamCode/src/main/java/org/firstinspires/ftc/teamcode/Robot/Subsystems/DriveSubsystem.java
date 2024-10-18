@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Robot;
+package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,10 +8,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class DriveSubsystem {
+public class DriveSubsystem{
     // Add motors, sensors, etc. here
     private DcMotorEx DriveFL, DriveFR, DriveBL, DriveBR;
     private Telemetry telemetry;
+
 
 
     public DriveSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -32,6 +33,33 @@ public class DriveSubsystem {
         DriveFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         DriveBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+    }
+
+    public void moveRobotSparkfun(double x, double y, double yaw) {
+
+        // Calculate wheel powers.
+        double leftFrontPower    =  x +y +yaw;
+        double rightFrontPower   =  x -y -yaw;
+        double leftBackPower     =  x -y +yaw;
+        double rightBackPower    =  x +y -yaw;
+
+        // Normalize wheel powers to be less than 1.0
+        double max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
+        max = Math.max(max, Math.abs(leftBackPower));
+        max = Math.max(max, Math.abs(rightBackPower));
+
+        if (max > 1.0) {
+            leftFrontPower /= max;
+            rightFrontPower /= max;
+            leftBackPower /= max;
+            rightBackPower /= max;
+        }
+
+        // Send powers to the wheels.
+        DriveFL.setPower(leftFrontPower);
+        DriveFR.setPower(rightFrontPower);
+        DriveBL.setPower(leftBackPower);
+        DriveBR.setPower(rightBackPower);
     }
 
 

@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands;
-import org.firstinspires.ftc.teamcode.Robot.RobotContainer;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
-public class ScoringMethod {
+public class Scoring {
 
     public void scoreBucket(int x) {
       if (x == 1){

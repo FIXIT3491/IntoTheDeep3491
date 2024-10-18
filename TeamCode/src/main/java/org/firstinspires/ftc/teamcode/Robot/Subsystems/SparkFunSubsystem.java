@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Robot;
+package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class SparkFunSubsystem {
     // Create an instance of the sensor
-    SparkFunOTOSConfig myOtos;
+    public SparkFunOTOSConfig myOtos;
     SparkFunOTOSConfig.Pose2D pos;
 
     public SparkFunSubsystem(HardwareMap hardwareMap, Telemetry telemetry){

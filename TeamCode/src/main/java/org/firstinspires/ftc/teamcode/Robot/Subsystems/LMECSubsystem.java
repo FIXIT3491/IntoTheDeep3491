@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Robot;
+package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class LMECSubsystem {
+public class LMECSubsystem{
     //Declarations
     public ServoImplEx  LMFRServo;
     public ServoImplEx  LMFLServo;
@@ -30,7 +30,7 @@ public class LMECSubsystem {
     }
 
     // Intake method
-    public void LockMechanum() {
+    public void lockMechanum() {
         LMFRServo.setPosition(0.3);
         LMFLServo.setPosition(0.3);
         LMBRServo.setPosition(0.3);
