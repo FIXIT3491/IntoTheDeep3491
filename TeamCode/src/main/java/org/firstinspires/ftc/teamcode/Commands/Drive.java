@@ -4,6 +4,8 @@ package org.firstinspires.ftc.teamcode.Commands;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 import org.firstinspires.ftc.teamcode.Robot.SparkFunOTOSConfig;
 
@@ -76,6 +78,28 @@ public class Drive {
         opMode_ref.telemetry.addData("current Y coordinate", currentPos.y);
         opMode_ref.telemetry.addData("current Heading angle", currentPos.h);
         opMode_ref.telemetry.update();
+    }
+    public void imuTurn(double heading) {
+
+        final double IMU_TURN_GAIN =  0.040  ;   //  Turn Control "Gain".  eg: Ramp up to 25% power at a 25 degree error. (0.25 / 25.0)
+        final double IMU_MAX_AUTO_TURN = 0.4;   //  Clip the turn speed to this max value (adjust for your robot)
+
+        YawPitchRollAngles orientation;
+        double turn, headingError;
+
+        orientation = RobotContainer.driveSubsystem.imu.getRobotYawPitchRollAngles();
+        headingError    = heading - orientation.getYaw(AngleUnit.DEGREES);
+
+        while(Math.abs(headingError) > 5/* && opModeIsActive()*/) {  // just guessing that heading error of 3 is close enough
+
+            orientation = RobotContainer.driveSubsystem.imu.getRobotYawPitchRollAngles();
+            headingError    = heading - orientation.getYaw(AngleUnit.DEGREES);
+            turn   = Range.clip(headingError * IMU_TURN_GAIN, -IMU_MAX_AUTO_TURN, IMU_MAX_AUTO_TURN);
+            RobotContainer.driveSubsystem.moveRobot(0, 0, turn);
+            opMode_ref.sleep(10);
+
+        }
+        RobotContainer.driveSubsystem.moveRobot(0, 0, 0);  // stop motors when turn done
     }
 
 

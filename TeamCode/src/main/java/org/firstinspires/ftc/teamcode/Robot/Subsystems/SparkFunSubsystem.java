@@ -85,17 +85,6 @@ public class SparkFunSubsystem {
 //         the OTOS location to match and it will continue to track from there.
         SparkFunOTOSConfig.Pose2D currentPosition = new SparkFunOTOSConfig.Pose2D(0, 0, 0);
         myOtos.setPosition(currentPosition);
-
-        // Get the hardware and firmware version
-        SparkFunOTOSConfig.Version hwVersion = new SparkFunOTOSConfig.Version();
-        SparkFunOTOSConfig.Version fwVersion = new SparkFunOTOSConfig.Version();
-        myOtos.getVersionInfo(hwVersion, fwVersion);
-
-//        telemetry.addLine("OTOS configured! Press start to get position data!");
-//        telemetry.addLine();
-//        telemetry.addLine(String.format("OTOS Hardware Version: v%d.%d", hwVersion.major, hwVersion.minor));
-//        telemetry.addLine(String.format("OTOS Firmware Version: v%d.%d", fwVersion.major, fwVersion.minor));
-//        telemetry.update();
     }
 
 
