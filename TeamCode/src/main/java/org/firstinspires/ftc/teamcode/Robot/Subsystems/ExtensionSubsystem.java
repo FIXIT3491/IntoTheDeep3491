@@ -36,27 +36,36 @@ public class ExtensionSubsystem{
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         extensionMotor.setPower(0.4);
     }
-    public void moveLift(int pos){
+    public void moveLiftOut(int pos){
         liftMotor1.setTargetPosition(pos);
         liftMotor1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        liftMotor1.setPower(0.4);
+        liftMotor1.setPower(1);
         liftMotor2.setTargetPosition(pos);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        liftMotor2.setPower(0.4);
+        liftMotor2.setPower(1);
+    }
+    public void moveLiftIn(int pos){
+        liftMotor1.setTargetPosition(pos);
+        liftMotor1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        liftMotor1.setPower(0.2);
+        liftMotor2.setTargetPosition(pos);
+        liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        liftMotor2.setPower(0.2);
+        //**must add checking system to make sure moveLiftOut > moveLiftIn**
     }
 
     public void chamberLow() {
-        moveLift(1000);
+        moveLiftOut(1000);
     }
     public void chamberHigh() {
-        moveLift(2000);
+        moveLiftOut(2000);
 
     }
     public void bucketLow() {
-        moveLift(1250);
+        moveLiftOut(1250);
 
     }
     public void bucketHigh() {
-        moveLift(2500);
+        moveLiftOut(2500);
     }
 }
