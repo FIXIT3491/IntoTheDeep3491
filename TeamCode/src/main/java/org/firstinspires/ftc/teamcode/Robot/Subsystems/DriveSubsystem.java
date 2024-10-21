@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -19,9 +20,6 @@ public class DriveSubsystem{
     // Add motors, sensors, etc. here
     private DcMotorEx DriveFL, DriveFR, DriveBL, DriveBR;
     private Telemetry telemetry;
-
-    public IMU imu;
-
 
 
 
@@ -35,18 +33,6 @@ public class DriveSubsystem{
         DriveFR = hardwareMap.get(DcMotorEx.class, "FRD");
         DriveBR = hardwareMap.get(DcMotorEx.class, "BRD");
         //imu hardware maps
-        imu = hardwareMap.get(IMU.class, "imu");
-
-
-        //imu config
-        RevHubOrientationOnRobot.LogoFacingDirection logoDirection = RevHubOrientationOnRobot.LogoFacingDirection.RIGHT;
-        RevHubOrientationOnRobot.UsbFacingDirection  usbDirection  = RevHubOrientationOnRobot.UsbFacingDirection.UP;
-        RevHubOrientationOnRobot orientationOnRobot = new RevHubOrientationOnRobot(logoDirection, usbDirection);
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample OpMode
-
-        imu.resetYaw();
-        imu.initialize(new IMU.Parameters(orientationOnRobot));
 
         //Direction Motors
         DriveFL.setDirection(DcMotor.Direction.REVERSE);
@@ -91,10 +77,10 @@ public class DriveSubsystem{
 
     public void moveRobot(double x, double y, double yaw) {
         // Calculate wheel powers.
-        double leftFrontPower    =  x -y -yaw;
-        double rightFrontPower   =  x +y +yaw;
-        double leftBackPower     =  x +y -yaw;
-        double rightBackPower    =  x -y +yaw;
+        double leftFrontPower = x - y - yaw;
+        double rightFrontPower = x + y + yaw;
+        double leftBackPower = x + y - yaw;
+        double rightBackPower = x - y + yaw;
 
         // Normalize wheel powers to be less than 1.0
         double max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
@@ -114,6 +100,17 @@ public class DriveSubsystem{
         DriveBL.setPower(leftBackPower);
         DriveBR.setPower(rightBackPower);
     }
+    public void setMotorPower(double maxSpeed, double LFP, double RFP, double LBP, double RBP){
+
+        DriveFL.setPower( Range.clip(LFP,-maxSpeed,maxSpeed));
+        DriveFR.setPower( Range.clip(RFP,-maxSpeed,maxSpeed));
+        DriveBL.setPower( Range.clip(LBP,-maxSpeed,maxSpeed));
+        DriveBR.setPower( Range.clip(RBP,-maxSpeed,maxSpeed));
+
+    }
+
+
+
 
 
 

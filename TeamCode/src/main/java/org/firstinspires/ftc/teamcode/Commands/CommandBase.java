@@ -20,6 +20,7 @@ public class CommandBase {
     public static Drive drive;
     public static Pickup pickup;
     public static Scoring scoring;
+    public static TeleOp teleOp;
 
 
 
@@ -30,6 +31,7 @@ public class CommandBase {
         drive = new Drive(op, telemetry);
         pickup = new Pickup(telemetry);
         scoring = new Scoring(telemetry);
+        teleOp = new TeleOp(telemetry);
         RobotContainer.initialize(hardwareMap, telemetry);
 
 

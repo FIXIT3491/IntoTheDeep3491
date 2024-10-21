@@ -91,12 +91,12 @@ public class Drive {
         YawPitchRollAngles orientation;
         double turn, headingError;
 
-        orientation = RobotContainer.driveSubsystem.imu.getRobotYawPitchRollAngles();
+        orientation = RobotContainer.imuSubsystem.getYawPitchRoll();
         headingError    = heading - orientation.getYaw(AngleUnit.DEGREES);
 
         while(Math.abs(headingError) > 5/* && opModeIsActive()*/) {  // just guessing that heading error of 3 is close enough
 
-            orientation = RobotContainer.driveSubsystem.imu.getRobotYawPitchRollAngles();
+            orientation = RobotContainer.imuSubsystem.getYawPitchRoll();
             headingError    = heading - orientation.getYaw(AngleUnit.DEGREES);
             turn   = Range.clip(headingError * IMU_TURN_GAIN, -IMU_MAX_AUTO_TURN, IMU_MAX_AUTO_TURN);
             RobotContainer.driveSubsystem.moveRobot(0, 0, turn);

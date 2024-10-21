@@ -15,6 +15,7 @@ public class RobotContainer{
     public static ColorSubsystem colorSubsystem;
     public static SparkFunSubsystem sparkFunSubsystem;
     private static RobotContainer robotContainer;
+    public static IMUSubsystem imuSubsystem;
 
 
 
@@ -25,6 +26,7 @@ public class RobotContainer{
         lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
         sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
+        imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
         sparkFunSubsystem.configureOtos();
 
     }
