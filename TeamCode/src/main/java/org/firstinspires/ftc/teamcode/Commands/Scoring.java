@@ -1,7 +1,11 @@
 package org.firstinspires.ftc.teamcode.Commands;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 public class Scoring {
+
+    public Scoring(Telemetry telemetry) {
+    }
 
     public void scoreBucket(int x) {
       if (x == 1){

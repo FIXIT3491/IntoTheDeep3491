@@ -98,7 +98,7 @@ public class SparkFunSubsystem {
 
     public SparkFunOTOSConfig.Pose2D myPosition() {
         pos = myOtos.getPosition();
-        SparkFunOTOSConfig.Pose2D myPos = new SparkFunOTOSConfig.Pose2D(pos.y, pos.x, -pos.h);
+        SparkFunOTOSConfig.Pose2D myPos = new SparkFunOTOSConfig.Pose2D(pos.y, pos.x, pos.h);
         return(myPos);
     }
 

@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Commands;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
@@ -13,15 +14,18 @@ import org.firstinspires.ftc.teamcode.Robot.SparkFunOTOSConfig;
 
 public class Drive {
 
-    private LinearOpMode opMode_ref = null;
+    private LinearOpMode op;
     private SparkFunOTOSConfig.Pose2D pos;
 
 
-    public Drive(LinearOpMode op){
-        opMode_ref  = op;
+    public Drive(LinearOpMode op, Telemetry telemetry){
+
+        this.op = op;
     }
 
+    public Drive(Telemetry telemetry) {
 
+    }
 
 
     public void otosDrive(double targetX, double targetY, double targetHeading, SparkFunOTOSConfig myOtos ) {
@@ -43,25 +47,25 @@ public class Drive {
         yawError = targetHeading-currentPos.h;
 
 
-        while(opMode_ref.opModeIsActive() && ((Math.abs(xError) > 0.87) || (Math.abs(yError) > 0.75)
+        while(op.opModeIsActive() && ((Math.abs(xError) > 0.87) || (Math.abs(yError) > 0.75)
                 || (Math.abs(yawError) > 4)) ) {
             // Use the speed and turn "gains" to calculate how we want the robot to move.
             drive  = Range.clip(xError * SPARKFUN_SPEED_GAIN, -SPARKFUN_MAX_AUTO_SPEED, SPARKFUN_MAX_AUTO_SPEED);
             strafe = Range.clip(yError * SPARKFUN_STRAFE_GAIN, -SPARKFUN_MAX_AUTO_STRAFE, SPARKFUN_MAX_AUTO_STRAFE);
             turn   = Range.clip(yawError * SPARKFUN_TURN_GAIN, -SPARKFUN_MAX_AUTO_TURN, SPARKFUN_MAX_AUTO_TURN) ;
 
-            opMode_ref.telemetry.addData("Auto","Drive %5.2f, Strafe %5.2f, Turn %5.2f ", drive, strafe, turn);
+            op.telemetry.addData("Auto","Drive %5.2f, Strafe %5.2f, Turn %5.2f ", drive, strafe, turn);
             // current x,y swapped due to 90 degree rotation
-            opMode_ref.telemetry.addData("current X coordinate", currentPos.x);
-            opMode_ref.telemetry.addData("current Y coordinate", currentPos.y);
-            opMode_ref.telemetry.addData("current Heading angle", currentPos.h);
-            opMode_ref.telemetry.addData("target X coordinate", targetX);
-            opMode_ref.telemetry.addData("target Y coordinate", targetY);
-            opMode_ref.telemetry.addData("target Heading angle", targetHeading);
-            opMode_ref.telemetry.addData("xError", xError);
-            opMode_ref.telemetry.addData("yError", yError);
-            opMode_ref.telemetry.addData("yawError", yawError);
-            opMode_ref.telemetry.update();
+            op.telemetry.addData("current X coordinate", currentPos.x);
+            op.telemetry.addData("current Y coordinate", currentPos.y);
+            op.telemetry.addData("current Heading angle", currentPos.h);
+            op.telemetry.addData("target X coordinate", targetX);
+            op.telemetry.addData("target Y coordinate", targetY);
+            op.telemetry.addData("target Heading angle", targetHeading);
+            op.telemetry.addData("xError", xError);
+            op.telemetry.addData("yError", yError);
+            op.telemetry.addData("yawError", yawError);
+            op.telemetry.update();
 
             // Apply desired axes motions to the drivetrain.
             RobotContainer.driveSubsystem.moveRobotSparkfun(drive, strafe, turn);
@@ -74,10 +78,10 @@ public class Drive {
         }
         RobotContainer.driveSubsystem.moveRobotSparkfun(0,0,0);
         currentPos = RobotContainer.sparkFunSubsystem.myPosition();
-        opMode_ref.telemetry.addData("current X coordinate", currentPos.x);
-        opMode_ref.telemetry.addData("current Y coordinate", currentPos.y);
-        opMode_ref.telemetry.addData("current Heading angle", currentPos.h);
-        opMode_ref.telemetry.update();
+        op.telemetry.addData("current X coordinate", currentPos.x);
+        op.telemetry.addData("current Y coordinate", currentPos.y);
+        op.telemetry.addData("current Heading angle", currentPos.h);
+        op.telemetry.update();
     }
     public void imuTurn(double heading) {
 
@@ -96,7 +100,7 @@ public class Drive {
             headingError    = heading - orientation.getYaw(AngleUnit.DEGREES);
             turn   = Range.clip(headingError * IMU_TURN_GAIN, -IMU_MAX_AUTO_TURN, IMU_MAX_AUTO_TURN);
             RobotContainer.driveSubsystem.moveRobot(0, 0, turn);
-            opMode_ref.sleep(10);
+            op.sleep(10);
 
         }
         RobotContainer.driveSubsystem.moveRobot(0, 0, 0);  // stop motors when turn done
