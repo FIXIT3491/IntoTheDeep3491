@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Commands.CommandBase;
 
 @TeleOp(name="TeleopTest", group="Linear OpMode")
 public class TeleopTest extends LinearOpMode {
+    boolean locked;
 
     @Override
     public void runOpMode()  {
@@ -17,8 +18,10 @@ public class TeleopTest extends LinearOpMode {
 
 
 
-            CommandBase.teleOp.fieldCentricDrive(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x, gamepad1.left_trigger, gamepad1.right_trigger, telemetry);
-
+            CommandBase.teleOp.fieldCentricDrive(gamepad1, gamepad2, telemetry);
+            CommandBase.teleOp.lmecCommands(gamepad2);
+            CommandBase.teleOp.extensionCommands(gamepad2);
+            CommandBase.teleOp.wrist(gamepad2);
 
         }
     }

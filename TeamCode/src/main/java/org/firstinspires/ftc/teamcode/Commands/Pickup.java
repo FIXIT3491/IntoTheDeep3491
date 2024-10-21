@@ -28,6 +28,7 @@ public class Pickup {
             RobotContainer.intakeSubsystem.stopIntake();
 
         } else {
+            correctSample = false;
             sampleInClaw = false;
             RobotContainer.intakeSubsystem.wristDown();
             RobotContainer.intakeSubsystem.spinIntake(0.75);

@@ -33,13 +33,14 @@ public class IntakeSubsystem{
     }
 
     public void wristUp(){
-        wristServoOne.setPosition(0.6);
-        wristServoTwo.setPosition(0.6);
+        wristMove(0.6);
+    }
+    public void wristChamber(){
+        wristMove(0.5);
     }
 
     public void wristDown(){
-        wristServoOne.setPosition(0.33);
-        wristServoTwo.setPosition(0.33);
+        wristMove(0.33);
     }
     public void wristMove(double distance){
         wristServoOne.setPosition(distance);

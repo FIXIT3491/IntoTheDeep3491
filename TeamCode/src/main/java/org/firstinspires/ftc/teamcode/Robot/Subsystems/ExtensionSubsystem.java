@@ -63,17 +63,14 @@ public class ExtensionSubsystem{
     public void zero(){
         lowerLift(0);
     }
-
     public void chamberLow() {
         raiseLift(1000);
     }
     public void chamberHigh() {
         raiseLift(2000);
-
     }
     public void bucketLow() {
         raiseLift(1250);
-
     }
     public void bucketHigh() {
         raiseLift(2500);
