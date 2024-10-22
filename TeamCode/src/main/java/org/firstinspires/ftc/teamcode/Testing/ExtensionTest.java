@@ -64,6 +64,5 @@ public class ExtensionTest extends LinearOpMode {
 */
         RobotContainer.extensionSubsystem.moveExtension(400);
         sleep(1000);
-
     }
 }

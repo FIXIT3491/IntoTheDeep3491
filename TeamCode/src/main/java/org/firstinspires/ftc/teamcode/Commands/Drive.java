@@ -68,9 +68,10 @@ public class Drive {
             currentPos = RobotContainer.sparkFunSubsystem.myPosition();
             xError = targetX-currentPos.x;
             yError = targetY-currentPos.y;
-            yawError = targetHeading-currentPos.h;
+//            yawError = targetHeading-currentPos.h;
         }
         RobotContainer.driveSubsystem.moveRobotSparkfun(0,0,0);
+
         currentPos = RobotContainer.sparkFunSubsystem.myPosition();
         op.telemetry.addData("current X coordinate", currentPos.x);
         op.telemetry.addData("current Y coordinate", currentPos.y);

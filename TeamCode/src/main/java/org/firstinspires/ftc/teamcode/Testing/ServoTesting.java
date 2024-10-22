@@ -21,11 +21,18 @@ public class ServoTesting extends LinearOpMode {
         waitForStart();
 
 
-        boolean taco = CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-        while (!taco){
-            taco = CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-        }
 
+        RobotContainer.intakeSubsystem.wristMove(0.03);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.2);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.3);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.4);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.5);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.6);
         sleep(2000);
 
 

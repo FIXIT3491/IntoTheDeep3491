@@ -106,7 +106,12 @@ public class DriveSubsystem{
         DriveFR.setPower( Range.clip(RFP,-maxSpeed,maxSpeed));
         DriveBL.setPower( Range.clip(LBP,-maxSpeed,maxSpeed));
         DriveBR.setPower( Range.clip(RBP,-maxSpeed,maxSpeed));
-
+    }
+    public void getTelemetry(Telemetry telemetry){
+        telemetry.addData("back right power",DriveBR.getPower());
+        telemetry.addData("back left power",DriveBL.getPower());
+        telemetry.addData("front right power",DriveFR.getPower());
+        telemetry.addData("front left power",DriveFL.getPower());
     }
 
 

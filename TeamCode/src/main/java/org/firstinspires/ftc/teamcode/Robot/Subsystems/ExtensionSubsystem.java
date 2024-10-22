@@ -28,11 +28,10 @@ public class ExtensionSubsystem{
         liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void getPos(Telemetry telemetry){
+    public void getTelemetry(Telemetry telemetry){
         telemetry.addData("lift motor left", liftMotorLeft.getCurrentPosition());
         telemetry.addData("lift motor right", liftMotorRight.getCurrentPosition());
         telemetry.addData("extension", extensionMotor.getCurrentPosition());
-        telemetry.update();
     }
     public void encoderReset(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -43,7 +42,7 @@ public class ExtensionSubsystem{
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extensionMotor.setPower(0.2);
+        extensionMotor.setPower(0.3);
     }
     public void moveLift(int pos, double power){
         liftMotorRight.setTargetPosition(pos);

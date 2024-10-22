@@ -16,6 +16,7 @@ public class Pickup {
     ElapsedTime pickupTimeout = new ElapsedTime();
 
     public Pickup(Telemetry telemetry) {
+
     }
 
     public boolean SpikeMarkAuto (String team, Telemetry telemetry) {
@@ -23,7 +24,7 @@ public class Pickup {
         //detect if sample is in claw otherwise keep spinning and leave wrist down
 
         distance = RobotContainer.colorSubsystem.DetectDistance();
-        if (distance < 100) {
+        if (distance < 60) {
             sampleInClaw = true;
             RobotContainer.intakeSubsystem.stopIntake();
 
@@ -31,29 +32,34 @@ public class Pickup {
             correctSample = false;
             sampleInClaw = false;
             RobotContainer.intakeSubsystem.wristDown();
-            RobotContainer.intakeSubsystem.spinIntake(0.75);
+            RobotContainer.intakeSubsystem.spinIntake(1);
         }
 
         if (sampleInClaw) {
             color = RobotContainer.colorSubsystem.DetectColor();
             if (color == "red" || color == "blue" || color == "yellow") {
                 correctSample = true;
-                RobotContainer.intakeSubsystem.stopIntake();
+                RobotContainer.intakeSubsystem.spinIntake(0.2);
                 RobotContainer.intakeSubsystem.wristUp();
+
                 return true;
             } else {
                 color = RobotContainer.colorSubsystem.DetectColor();
                 distance = RobotContainer.colorSubsystem.DetectDistance();
             }
         }
-        telemetry.addData("sample in claw", sampleInClaw);
-        telemetry.addData("correct sample", correctSample);
-        telemetry.addData("distance", RobotContainer.colorSubsystem.DetectDistance());
-        telemetry.addData("color", RobotContainer.colorSubsystem.DetectColor());
-        telemetry.update();
+
 
         //works in theory
 
         return false;
+    }
+    public void getTelemetry(Telemetry telemetry){
+
+        telemetry.addData("sample in claw", sampleInClaw);
+        telemetry.addData("correct sample", correctSample);
+        telemetry.addData("distance", RobotContainer.colorSubsystem.DetectDistance());
+        telemetry.addData("color", RobotContainer.colorSubsystem.DetectColor());
+
     }
 }

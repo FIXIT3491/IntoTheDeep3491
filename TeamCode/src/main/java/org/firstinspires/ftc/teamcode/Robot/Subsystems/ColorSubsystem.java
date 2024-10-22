@@ -26,6 +26,9 @@ public class ColorSubsystem {
     // Intake method
     public String DetectColor() {
         // detect color apply to value put to string
+        valueB = colorSensor.blue();
+        valueG = colorSensor.green();
+        valueR = colorSensor.red();
         colour = nameColor(valueR, valueG, valueB);
 
         return colour;
@@ -46,7 +49,7 @@ public class ColorSubsystem {
         } else if (r > 10 && r < 50 && g > 90 && g < 150 && b > 140 && b < 200) {
             colorValue = "yellow";
             return colorValue;
-        } else if (r > 125 && r < 250 && g > 25 && g < 100 && b > 25 && b < 100) {
+        } else if (r > 220 && r < 270 && g > 80 && g < 120 && b > 40 && b < 100) {
             colorValue = "red";
             return colorValue;
         } else {

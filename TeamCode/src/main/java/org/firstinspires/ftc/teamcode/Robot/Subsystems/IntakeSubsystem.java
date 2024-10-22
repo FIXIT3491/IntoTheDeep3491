@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.CRServoImpl;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -11,16 +8,16 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class IntakeSubsystem{
     private CRServo intakeMotor;
-    private Servo wristServoOne;
-    private Servo wristServoTwo;
+    private Servo wristServoRight;
+    private Servo wristServoLeft;
 
     public IntakeSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         intakeMotor = hardwareMap.get(CRServo.class, "Spinnny");
-        wristServoOne = hardwareMap.get(Servo.class, "WSR");
-        wristServoTwo = hardwareMap.get(Servo.class, "WSL");
+        wristServoRight = hardwareMap.get(Servo.class, "WSR");
+        wristServoLeft = hardwareMap.get(Servo.class, "WSL");
 
 //        wristServoTwo.setDirection(Servo.Direction.REVERSE);
-        wristServoOne.setDirection(Servo.Direction.REVERSE);
+        wristServoRight.setDirection(Servo.Direction.REVERSE);
     }
 
     // Intake method
@@ -31,20 +28,28 @@ public class IntakeSubsystem{
     public void stopIntake() {
         intakeMotor.setPower(0);
     }
+    public void wristBucket(){
+        wristMove(0.2);
+    }
 
     public void wristUp(){
         wristMove(0.6);
     }
     public void wristChamber(){
-        wristMove(0.5);
+        wristMove(0.2);
     }
 
     public void wristDown(){
-        wristMove(0.33);
+        wristMove(0.03);
+    }
+    public void getTelemetry(Telemetry telemetry){
+        telemetry.addData("WristServoRight", wristServoRight.getPosition());
+        telemetry.addData("WristServoLeft", wristServoLeft.getPosition());
+        telemetry.addData("Intake motor", intakeMotor.getPower());
     }
     public void wristMove(double distance){
-        wristServoOne.setPosition(distance);
-        wristServoTwo.setPosition(distance);
+        wristServoRight.setPosition(distance);
+        wristServoLeft.setPosition(distance);
     }
 
 }

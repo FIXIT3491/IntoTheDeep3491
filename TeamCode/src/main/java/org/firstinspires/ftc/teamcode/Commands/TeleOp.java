@@ -15,18 +15,23 @@ public class TeleOp {
     public TeleOp(Telemetry telemetry) {
 
     }
-    public void intake(Gamepad gamepad2, Telemetry telemetry){
-        if (gamepad2.right_trigger > 0){
+    public void intake(Gamepad gamepad1,Gamepad gamepad2, Telemetry telemetry){
+        if (gamepad2.right_trigger > 0 || gamepad1.right_trigger > 0){
             CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
+        }else if (gamepad2.left_trigger > 0){
+            RobotContainer.intakeSubsystem.wristBucket();
         }
+        else
+            RobotContainer.intakeSubsystem.stopIntake();
     }
     public void wrist (Gamepad gamepad2){
         if (gamepad2.right_trigger > 0){
             //do nothing cause pickup method will set instead
         }else if (gamepad2.left_trigger > 0) {
-            RobotContainer.intakeSubsystem.wristChamber();
+            RobotContainer.intakeSubsystem.wristBucket();
         } else {
             RobotContainer.intakeSubsystem.wristUp();
+
         }
     }
     public void extensionCommands(Gamepad gamepad2) {
@@ -42,8 +47,11 @@ public class TeleOp {
         if (gamepad2.y) {
             RobotContainer.extensionSubsystem.bucketHigh();
         }
-        pos = pos + (int) (gamepad2.right_stick_y * 12);
-        Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
+        if (gamepad2.right_stick_button){
+            RobotContainer.extensionSubsystem.zero();
+        }
+        pos = pos + (int) (-gamepad2.right_stick_y * 20);
+        pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 
         RobotContainer.extensionSubsystem.moveExtension(pos);
     }
@@ -51,14 +59,10 @@ public class TeleOp {
     public void lmecCommands(Gamepad gamepad1) {
         if (gamepad1.a) {
             RobotContainer.lmecSubsystem.lockMechanum();
-
         }
         else if (gamepad1.b){
             RobotContainer.lmecSubsystem.unlockMechanum();
-
         }
-
-
     }
 
     public void fieldCentricDrive(Gamepad gamepad1, Gamepad gamepad2,  Telemetry telemetry){
@@ -86,16 +90,17 @@ public class TeleOp {
             RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
         }
 
-        telemetry.addData("Front leftMotor", "#4.2f", frontLeftPower);
-        telemetry.addData("Back leftMotor", "#4.2f", backLeftPower);
-        telemetry.addData("Front rightMotor", "#4.2f", frontRightPower);
-        telemetry.addData("Back rightMotor", "#4.2f", backRightPower);
+//        telemetry.addData("Front leftMotor", "#4.2f", frontLeftPower);
+//        telemetry.addData("Back leftMotor", "#4.2f", backLeftPower);
+//        telemetry.addData("Front rightMotor", "#4.2f", frontRightPower);
+//        telemetry.addData("Back rightMotor", "#4.2f", backRightPower);
 
 //        telemetry.addData("Launcher Position", ch.launcher.getPosition());
 //        telemetry.addData("arm position", ch.shoulder.getCurrentPosition());
 //        telemetry.addData("right pincer", ch.rightPincer.getPosition());
 //        telemetry.addData("left pincer", ch.leftPincer.getPosition());
 //        telemetry.addData("left pincer", pickupTime.milliseconds());
-        telemetry.update();
+//        telemetry.update();
     }
+
 }
