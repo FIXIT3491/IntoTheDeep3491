@@ -20,6 +20,7 @@ public class TeleOp {
             CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
         }else if (gamepad2.left_trigger > 0){
             RobotContainer.intakeSubsystem.wristBucket();
+            RobotContainer.intakeSubsystem.spinIntake(-0.5);
         }
         else
             RobotContainer.intakeSubsystem.stopIntake();
