@@ -29,7 +29,7 @@ public class IntakeSubsystem{
         intakeMotor.setPower(0);
     }
     public void wristBucket(){
-        wristMove(0.2);
+        wristMove(0.25);
     }
 
     public void wristUp(){
@@ -40,7 +40,7 @@ public class IntakeSubsystem{
     }
 
     public void wristDown(){
-        wristMove(0.03);
+        wristMove(0.02);
     }
     public void getTelemetry(Telemetry telemetry){
         telemetry.addData("WristServoRight", wristServoRight.getPosition());

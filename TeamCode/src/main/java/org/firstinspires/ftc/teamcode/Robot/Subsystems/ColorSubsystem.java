@@ -40,7 +40,6 @@ public class ColorSubsystem {
 
         return distance;
     }
-
     public String nameColor(int r, int g, int b) {
         colorValue = "None";
         if (r > 50 && r < 80 && g > 100 && g < 150 && b > 150 && b < 190) {

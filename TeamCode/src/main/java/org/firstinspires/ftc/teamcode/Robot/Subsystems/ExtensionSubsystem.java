@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Constants;
 
 
 public class ExtensionSubsystem{
@@ -42,7 +43,7 @@ public class ExtensionSubsystem{
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extensionMotor.setPower(0.3);
+        extensionMotor.setPower(0.4);
     }
     public void moveLift(int pos, double power){
         liftMotorRight.setTargetPosition(pos);
@@ -69,9 +70,9 @@ public class ExtensionSubsystem{
         raiseLift(2000);
     }
     public void bucketLow() {
-        raiseLift(1250);
+        raiseLift(Constants.LIFT_BUCKET_1);
     }
     public void bucketHigh() {
-        raiseLift(2500);
+        raiseLift(Constants.LIFT_BUCKET_2);
     }
 }

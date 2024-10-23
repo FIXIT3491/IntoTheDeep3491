@@ -62,7 +62,7 @@ public class Drive {
             op.telemetry.update();
 
             // Apply desired axes motions to the drivetrain.
-            RobotContainer.driveSubsystem.moveRobotSparkfun(drive, strafe, turn);
+            RobotContainer.driveSubsystem.moveRobotSparkfun(drive, strafe, 0);
 
             // then recalc error
             currentPos = RobotContainer.sparkFunSubsystem.myPosition();

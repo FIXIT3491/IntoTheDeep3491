@@ -30,7 +30,7 @@ public class CommandBase {
         config = new Config(telemetry);
         drive = new Drive(op, telemetry);
         pickup = new Pickup(telemetry);
-        scoring = new Scoring(telemetry);
+        scoring = new Scoring(telemetry, op);
         teleOp = new TeleOp(telemetry);
         RobotContainer.initialize(hardwareMap, telemetry);
 

@@ -36,10 +36,45 @@ public class Pickup {
         }
 
         if (sampleInClaw) {
+//            color = RobotContainer.colorSubsystem.DetectColor();
+//            if (color == "red" || color == "blue" || color == "yellow") {
+                correctSample = true;
+//                RobotContainer.intakeSubsystem.spinIntake(0.1);
+                RobotContainer.intakeSubsystem.wristUp();
+
+                return true;
+//            } else {
+//                color = RobotContainer.colorSubsystem.DetectColor();
+//                distance = RobotContainer.colorSubsystem.DetectDistance();
+//            }
+        }
+
+
+        //works in theory
+
+        return false;
+    }
+    public boolean SpikeMarkTeleOp (String team, Telemetry telemetry) {
+
+        //detect if sample is in claw otherwise keep spinning and leave wrist down
+
+        distance = RobotContainer.colorSubsystem.DetectDistance();
+        if (distance < 60) {
+            sampleInClaw = true;
+            RobotContainer.intakeSubsystem.stopIntake();
+
+        } else {
+            correctSample = false;
+            sampleInClaw = false;
+            RobotContainer.intakeSubsystem.wristDown();
+            RobotContainer.intakeSubsystem.spinIntake(1);
+        }
+
+        if (sampleInClaw) {
             color = RobotContainer.colorSubsystem.DetectColor();
             if (color == "red" || color == "blue" || color == "yellow") {
                 correctSample = true;
-                RobotContainer.intakeSubsystem.spinIntake(0.2);
+//                RobotContainer.intakeSubsystem.spinIntake(0.1);
                 RobotContainer.intakeSubsystem.wristUp();
 
                 return true;

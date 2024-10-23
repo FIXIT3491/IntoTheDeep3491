@@ -20,10 +20,20 @@ public class TeleOp {
             CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
         }else if (gamepad2.left_trigger > 0){
             RobotContainer.intakeSubsystem.wristBucket();
-            RobotContainer.intakeSubsystem.spinIntake(-0.5);
         }
         else
             RobotContainer.intakeSubsystem.stopIntake();
+
+        if (gamepad2.right_trigger > 0){
+
+        }
+        else if (gamepad2.left_bumper)
+        RobotContainer.intakeSubsystem.spinIntake(-0.2);
+        else {
+            RobotContainer.intakeSubsystem.stopIntake();
+        }
+
+
     }
     public void wrist (Gamepad gamepad2){
         if (gamepad2.right_trigger > 0){
@@ -51,7 +61,7 @@ public class TeleOp {
         if (gamepad2.right_stick_button){
             RobotContainer.extensionSubsystem.zero();
         }
-        pos = pos + (int) (-gamepad2.right_stick_y * 20);
+        pos = pos + (int) (-gamepad2.right_stick_y * 30);
         pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 
         RobotContainer.extensionSubsystem.moveExtension(pos);
