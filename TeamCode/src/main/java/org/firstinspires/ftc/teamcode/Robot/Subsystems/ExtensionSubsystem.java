@@ -22,7 +22,7 @@ public class ExtensionSubsystem{
 
         liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        liftMotorRight.setDirection(DcMotor.Direction.REVERSE);
+        liftMotorLeft.setDirection(DcMotor.Direction.REVERSE);
 //        liftMotor1.setDirection(DcMotorSimple.Direction.REVERSE);
         extensionMotor.setDirection(DcMotor.Direction.REVERSE);
         extensionMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
