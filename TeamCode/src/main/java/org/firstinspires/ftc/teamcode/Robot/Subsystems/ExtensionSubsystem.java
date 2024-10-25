@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
+import com.qualcomm.robotcore.hardware.TouchSensorMultiplexer;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
@@ -12,6 +14,7 @@ public class ExtensionSubsystem{
     private DcMotorEx extensionMotor;
     private DcMotorEx liftMotorRight;
     private DcMotorEx liftMotorLeft;
+    private TouchSensor touchSensor;
 
 
     public ExtensionSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -19,6 +22,7 @@ public class ExtensionSubsystem{
         extensionMotor = hardwareMap.get(DcMotorEx.class, "extension");
         liftMotorRight = hardwareMap.get(DcMotorEx.class, "liftRight");
         liftMotorLeft = hardwareMap.get(DcMotorEx.class, "liftLeft");
+        touchSensor = hardwareMap.get(TouchSensor.class, "touchSensor");
 
         liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -37,7 +41,13 @@ public class ExtensionSubsystem{
     public void encoderReset(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public void liftZero(){
+        liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public boolean getTouchSensor(){
+        return touchSensor.isPressed();
     }
 
     public void moveExtension(int pos){
@@ -53,11 +63,12 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotorLeft.setPower(power);
     }
+
     public void raiseLift(int pos){
         moveLift(pos, 1);
     }
     public void lowerLift(int pos){
-        moveLift(pos, 0.5 );
+        moveLift(pos, 0.7 );
         //**must add checking system to make sure moveLiftOut > moveLiftIn**
     }
     public void zero(){

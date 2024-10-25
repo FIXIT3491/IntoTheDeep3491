@@ -25,7 +25,6 @@ public class TeleOp {
             RobotContainer.intakeSubsystem.stopIntake();
 
         if (gamepad2.right_trigger > 0){
-
         }
         else if (gamepad2.left_bumper)
         RobotContainer.intakeSubsystem.spinIntake(-0.2);
@@ -36,6 +35,7 @@ public class TeleOp {
 
     }
     public void wrist (Gamepad gamepad2){
+
         if (gamepad2.right_trigger > 0){
             //do nothing cause pickup method will set instead
         }else if (gamepad2.left_trigger > 0) {
@@ -46,19 +46,16 @@ public class TeleOp {
         }
     }
     public void extensionCommands(Gamepad gamepad2) {
-        if (gamepad2.a) {
-            RobotContainer.extensionSubsystem.chamberLow();
-        }
-        if (gamepad2.b) {
-            RobotContainer.extensionSubsystem.bucketLow();
+        if (RobotContainer.extensionSubsystem.getTouchSensor()){
+            RobotContainer.extensionSubsystem.encoderReset();
         }
         if (gamepad2.x) {
-            RobotContainer.extensionSubsystem.chamberHigh();
+            RobotContainer.extensionSubsystem.bucketLow();
         }
-        if (gamepad2.y) {
+        if (gamepad2.b) {
             RobotContainer.extensionSubsystem.bucketHigh();
         }
-        if (gamepad2.right_stick_button){
+        if (gamepad2.a){
             RobotContainer.extensionSubsystem.zero();
         }
         pos = pos + (int) (-gamepad2.right_stick_y * 30);
@@ -77,7 +74,6 @@ public class TeleOp {
     }
 
     public void fieldCentricDrive(Gamepad gamepad1, Gamepad gamepad2,  Telemetry telemetry){
-
         double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
         double x = gamepad1.left_stick_x;
         double rx = gamepad1.right_stick_x;
@@ -100,18 +96,5 @@ public class TeleOp {
         else { //slow button
             RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
         }
-
-//        telemetry.addData("Front leftMotor", "#4.2f", frontLeftPower);
-//        telemetry.addData("Back leftMotor", "#4.2f", backLeftPower);
-//        telemetry.addData("Front rightMotor", "#4.2f", frontRightPower);
-//        telemetry.addData("Back rightMotor", "#4.2f", backRightPower);
-
-//        telemetry.addData("Launcher Position", ch.launcher.getPosition());
-//        telemetry.addData("arm position", ch.shoulder.getCurrentPosition());
-//        telemetry.addData("right pincer", ch.rightPincer.getPosition());
-//        telemetry.addData("left pincer", ch.leftPincer.getPosition());
-//        telemetry.addData("left pincer", pickupTime.milliseconds());
-//        telemetry.update();
     }
-
 }
