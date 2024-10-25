@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+
 @Autonomous(name="WristTest", group = "Autonomous")
 public class WristTest extends LinearOpMode{
     private CRServo intakeMotor;
@@ -17,8 +18,8 @@ public class WristTest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         intakeMotor = hardwareMap.get(CRServo.class, "Spinnny");
-        wristServoOne = hardwareMap.get(Servo.class, "WSO");
-        wristServoTwo = hardwareMap.get(Servo.class, "WST");
+        wristServoOne = hardwareMap.get(Servo.class, "WSR");
+        wristServoTwo = hardwareMap.get(Servo.class, "WSL");
 
         wristServoTwo.setDirection(Servo.Direction.REVERSE);
 
