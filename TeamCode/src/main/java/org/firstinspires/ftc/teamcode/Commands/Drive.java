@@ -41,8 +41,7 @@ public class Drive {
         yawError = targetHeading-currentPos.h;
 
 
-        while(op.opModeIsActive() && ((Math.abs(xError) > 0.87) || (Math.abs(yError) > 0.75)
-                || (Math.abs(yawError) > 4)) ) {
+        while(op.opModeIsActive() && ((Math.abs(xError) > 0.87) || (Math.abs(yError) > 0.75)) ) {
             // Use the speed and turn "gains" to calculate how we want the robot to move.
             drive  = Range.clip(xError * Constants.SPARKFUN_SPEED_GAIN, -Constants.SPARKFUN_MAX_AUTO_SPEED, Constants.SPARKFUN_MAX_AUTO_SPEED);
             strafe = Range.clip(yError * Constants.SPARKFUN_STRAFE_GAIN, -Constants.SPARKFUN_MAX_AUTO_STRAFE, Constants.SPARKFUN_MAX_AUTO_STRAFE);

@@ -41,6 +41,11 @@ public class ExtensionSubsystem{
     public void encoderReset(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public void liftReset(){
+        liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
     public void liftZero(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
