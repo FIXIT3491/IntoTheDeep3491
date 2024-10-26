@@ -24,6 +24,8 @@ public class TeleopTest extends LinearOpMode {
             CommandBase.teleOp.intake(gamepad1, gamepad2, telemetry);
             RobotContainer.telemetrySubsystem.getTelemetry(telemetry);
         }
+        RobotContainer.extensionSubsystem.zero();
         RobotContainer.intakeSubsystem.wristDown();
+        sleep(3000);
     }
 }

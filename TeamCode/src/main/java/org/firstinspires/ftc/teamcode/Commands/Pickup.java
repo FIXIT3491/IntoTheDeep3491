@@ -26,7 +26,7 @@ public class Pickup {
         distance = RobotContainer.colorSubsystem.DetectDistance();
         if (distance < 60) {
             sampleInClaw = true;
-            RobotContainer.intakeSubsystem.stopIntake();
+            RobotContainer.intakeSubsystem.spinIntake(0.2);
 
         } else {
             correctSample = false;
@@ -40,7 +40,7 @@ public class Pickup {
 //            if (color == "red" || color == "blue" || color == "yellow") {
                 correctSample = true;
 //                RobotContainer.intakeSubsystem.spinIntake(0.1);
-                RobotContainer.intakeSubsystem.wristUp();
+//                RobotContainer.intakeSubsystem.wristUp();
 
                 return true;
 //            } else {

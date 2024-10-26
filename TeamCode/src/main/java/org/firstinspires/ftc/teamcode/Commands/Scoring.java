@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.Commands;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Constants;
+import org.firstinspires.ftc.teamcode.Robot.SparkFunOTOSConfig;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 public class Scoring {
@@ -11,20 +13,20 @@ public class Scoring {
         op = opmoderef;
     }
 
-    public void scoreBucket() {
+    public void scoreBucket(SparkFunOTOSConfig myOtos) {
         RobotContainer.extensionSubsystem.bucketHigh();
         CommandBase.drive.imuTurn(0);
-        CommandBase.drive.otosDrive(12, -18, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(130);
-        op.sleep(500);
+        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.imuTurn(145);
         RobotContainer.intakeSubsystem.wristBucket();
-        RobotContainer.intakeSubsystem.spinIntake(-0.5);
-        op.sleep(1000);
-        RobotContainer.intakeSubsystem.wristUp();
         op.sleep(500);
+        RobotContainer.intakeSubsystem.spinIntake(-0.5);
+        op.sleep(500);
+        RobotContainer.intakeSubsystem.wristUp();
+        RobotContainer.intakeSubsystem.stopIntake();
+//        op.sleep(500);
         RobotContainer.extensionSubsystem.zero();
         CommandBase.drive.imuTurn(0);
-
     }
 
     public void scoreChamber(int y){
