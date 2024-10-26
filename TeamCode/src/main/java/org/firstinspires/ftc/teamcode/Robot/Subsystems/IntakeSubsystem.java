@@ -40,7 +40,7 @@ public class IntakeSubsystem{
     }
 
     public void wristDown(){
-        wristMove(0.012);
+        wristMove(0.01);
     }
     public void getTelemetry(Telemetry telemetry){
         telemetry.addData("WristServoRight", wristServoRight.getPosition());

@@ -32,4 +32,7 @@ public class IMUSubsystem {
     public YawPitchRollAngles getYawPitchRoll(){
         return imu.getRobotYawPitchRollAngles();
     }
+    public void resetHeading(){
+        imu.resetYaw();
+    }
 }

@@ -34,11 +34,11 @@ public class AutonomousTest extends LinearOpMode {
 //        CommandBase.drive.otosDrive(15, -3.2, 0, RobotContainer.sparkFunSubsystem.myOtos);
         CommandBase.drive.otosDrive(23, -3.2, 0, RobotContainer.sparkFunSubsystem.myOtos);
 //        sleep(500);
-        CommandBase.drive.imuTurn(42.5);
+        CommandBase.drive.imuTurn(41);
 //        sleep(1000);
 
         CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-        sleep(500);
+        sleep(400);
         pickupTimer.reset();
         while (pickupTimer.milliseconds() < 2000) {
             if(!CommandBase.pickup.SpikeMarkAuto("blue", telemetry))
@@ -50,79 +50,51 @@ public class AutonomousTest extends LinearOpMode {
         CommandBase.drive.imuTurn(0);
 
 
-        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.otosDrive(11, -16, 0, RobotContainer.sparkFunSubsystem.myOtos);
         CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(145);
+        CommandBase.drive.imuTurn(141);
         RobotContainer.intakeSubsystem.wristBucket();
-        sleep(500);
-        RobotContainer.intakeSubsystem.spinIntake(-0.5);
-        sleep(500);
+        sleep(200);
+        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+        sleep(250);
         RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.intakeSubsystem.stopIntake();
-//        op.sleep(500);
+        sleep(150);
         RobotContainer.extensionSubsystem.zero();
         CommandBase.drive.imuTurn(0);
 
-        CommandBase.drive.otosDrive(37, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.otosDrive(35, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
 
         CommandBase.drive.imuTurn(90);
+
 
 
         CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
         sleep(1000);
         pickupTimer.reset();
-        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 2500) {
+        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 2000) {
             CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
             RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
         }
-//
-//        RobotContainer.extensionSubsystem.bucketHigh();
-//        CommandBase.drive.imuTurn(0);
-//        CommandBase.drive.otosDrive(12, -17.5, 0, RobotContainer.sparkFunSubsystem.myOtos);
-//        CommandBase.drive.imuTurn(132);
-//        sleep(500);
-//        RobotContainer.intakeSubsystem.wristBucket();
-//        sleep(1000);
-//        RobotContainer.intakeSubsystem.spinIntake(-0.5);
-//        sleep(500);
-//        RobotContainer.intakeSubsystem.wristUp();
-//        RobotContainer.intakeSubsystem.stopIntake();
-//        sleep(500);
-//        RobotContainer.extensionSubsystem.zero();
-//        CommandBase.drive.imuTurn(0);
+        RobotContainer.intakeSubsystem.wristUp();
+        RobotContainer.intakeSubsystem.stopIntake();
+        RobotContainer.extensionSubsystem.bucketHigh();
+        CommandBase.drive.imuTurn(0);
 
+
+        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.imuTurn(141);
+        RobotContainer.intakeSubsystem.wristBucket();
+        sleep(200);
+        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+        sleep(250);
+        RobotContainer.intakeSubsystem.wristUp();
+        RobotContainer.intakeSubsystem.stopIntake();
+        sleep(150);
+        RobotContainer.extensionSubsystem.zero();
+        CommandBase.drive.imuTurn(0);
+        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
 //        CommandBase.drive.otosDrive(35.5, -19, 0, RobotContainer.sparkFunSubsystem.myOtos);
-//        CommandBase.drive.imuTurn(90);
-//
-
-//        CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-//        sleep(1000);
-//        pickupTimer.reset();
-//        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 2500) {
-//            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-//            RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
-//        }
-//
-//        RobotContainer.extensionSubsystem.bucketHigh();
-//        CommandBase.drive.imuTurn(0);
-//        CommandBase.drive.otosDrive(12, -17.5, 0, RobotContainer.sparkFunSubsystem.myOtos);
-//        CommandBase.drive.imuTurn(134);
-//        sleep(500);
-//        RobotContainer.intakeSubsystem.wristBucket();
-//        sleep(1000);
-//        RobotContainer.intakeSubsystem.spinIntake(-0.5);
-//        sleep(500);
-//        RobotContainer.intakeSubsystem.wristUp();
-//        RobotContainer.intakeSubsystem.stopIntake();
-//        sleep(500);
-//        RobotContainer.extensionSubsystem.zero();
-//        CommandBase.drive.imuTurn(0);
-//
-//        sleep(4000);
-//
-//
-
-
-
     }
 }

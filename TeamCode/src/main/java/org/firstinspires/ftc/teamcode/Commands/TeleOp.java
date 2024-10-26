@@ -16,6 +16,7 @@ public class TeleOp {
     double rotY;
     double rx;
     double x;
+    public int extensionPos = 0;
 
 
     public TeleOp(Telemetry telemetry) {
@@ -26,7 +27,7 @@ public class TeleOp {
             CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
         }else if (gamepad2.left_trigger > 0){
             RobotContainer.intakeSubsystem.wristBucket();
-            RobotContainer.intakeSubsystem.spinIntake(-0.2);
+            RobotContainer.intakeSubsystem.spinIntake(-0.5);
         }
         else
             RobotContainer.intakeSubsystem.stopIntake();
@@ -66,6 +67,8 @@ public class TeleOp {
         if (gamepad2.a){
             RobotContainer.extensionSubsystem.zero();
         }
+//        extensionPos = extensionPos + (int) (-gamepad2.left_stick_y * 30);
+//        RobotContainer.extensionSubsystem.powerExtension(extensionPos);
         pos = pos + (int) (-gamepad2.right_stick_y * 30);
         pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 
@@ -77,6 +80,10 @@ public class TeleOp {
     }
 
     public void fieldCentricDrive(Gamepad gamepad1, Gamepad gamepad2,  Telemetry telemetry) {
+        if (gamepad1.back){
+            RobotContainer.imuSubsystem.resetHeading();
+        }
+
         if (gamepad1.a) {
             locked = true;
             RobotContainer.lmecSubsystem.lockMechanum();
@@ -85,37 +92,62 @@ public class TeleOp {
             RobotContainer.lmecSubsystem.unlockMechanum();
         }
 
-        double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
+        if (locked){
+            double max;
+
+            // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
+            double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
+            double lateral =  gamepad1.left_stick_x;
+            double yaw     =  gamepad1.right_stick_x;
+
+            // Combine the joystick requests for each axis-motion to determine each wheel's power.
+            // Set up a variable for each drive wheel to save the power level for telemetry.
+            double leftFrontPower  = axial;
+            double rightFrontPower = axial;
+            double leftBackPower   = axial;
+            double rightBackPower  = axial;
+
+            // Normalize the values so no wheel power exceeds 100%
+            // This ensures that the robot maintains the desired motion.
+            max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
+            max = Math.max(max, Math.abs(leftBackPower));
+            max = Math.max(max, Math.abs(rightBackPower));
+
+            if (max > 1.0) {
+                leftFrontPower  /= max;
+                rightFrontPower /= max;
+                leftBackPower   /= max;
+                rightBackPower  /= max;
+            }
+            RobotContainer.driveSubsystem.setMotorPower(1, leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
+        }
+        else {
+
+            double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
 
 
-        if (locked) {
-            x = 0;
-            rx = 0;
-        }else {
             x = gamepad1.left_stick_x;
             rx = gamepad1.right_stick_x;
-        }
 
-        double botHeading = RobotContainer.imuSubsystem.getHeading();
+            double botHeading = RobotContainer.imuSubsystem.getHeading();
 
-        rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
-        rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+            rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+            rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
 
-        rotX = rotX * 1;  // Counteract imperfect strafing
+            rotX = rotX * 1;  // Counteract imperfect strafing
 
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
-        double frontLeftPower = (rotY + rotX + rx) / denominator;
-        double backLeftPower = (rotY - rotX + rx) / denominator;
-        double frontRightPower = (rotY - rotX - rx) / denominator;
-        double backRightPower = (rotY + rotX - rx) / denominator;
-
+            double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+            double frontLeftPower = (rotY + rotX + rx) / denominator;
+            double backLeftPower = (rotY - rotX + rx) / denominator;
+            double frontRightPower = (rotY - rotX - rx) / denominator;
+            double backRightPower = (rotY + rotX - rx) / denominator;
 
 
-        if (gamepad1.left_trigger > 0 || gamepad1.right_trigger > 0) {
-            RobotContainer.driveSubsystem.setMotorPower(0.3, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
-        }
-        else { //slow button
-            RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
+            if (gamepad1.left_trigger > 0 || gamepad1.right_trigger > 0) {
+                RobotContainer.driveSubsystem.setMotorPower(0.3, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
+            } else { //slow button
+                RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
+            }
         }
     }
 }

@@ -68,12 +68,16 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotorLeft.setPower(power);
     }
+    public void powerExtension(int power){
+        liftMotorRight.setPower(power);
+        liftMotorLeft.setPower(power);
+    }
 
     public void raiseLift(int pos){
         moveLift(pos, 1);
     }
     public void lowerLift(int pos){
-        moveLift(pos, 0.7 );
+        moveLift(pos, 0.8);
         //**must add checking system to make sure moveLiftOut > moveLiftIn**
     }
     public void zero(){
