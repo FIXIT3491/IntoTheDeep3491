@@ -79,13 +79,10 @@ public class TeleOp {
             RobotContainer.extensionSubsystem.liftZero();
         }
 
+        pos = pos + (int) (-gamepad2.right_stick_y * 30);
+        pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 
-//        extensionPos = extensionPos + (int) (-gamepad2.left_stick_y * 30);
-////        RobotContainer.extensionSubsystem.powerExtension(extensionPos);
-//        pos = pos + (int) (-gamepad2.right_stick_y * 30);
-//        pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
-//
-//        RobotContainer.extensionSubsystem.moveExtension(pos);
+        RobotContainer.extensionSubsystem.moveExtension(pos);
     }
 
     public void lmecCommands(Gamepad gamepad1) {

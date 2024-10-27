@@ -63,7 +63,7 @@ public class AutonomousTest extends LinearOpMode {
         RobotContainer.extensionSubsystem.zero();
         CommandBase.drive.imuTurn(0);
 
-        CommandBase.drive.otosDrive(35, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.otosDrive(30, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
 
         CommandBase.drive.imuTurn(90);
 
@@ -91,7 +91,7 @@ public class AutonomousTest extends LinearOpMode {
         sleep(250);
         RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.intakeSubsystem.stopIntake();
-        sleep(150);
+        sleep(153);
         RobotContainer.extensionSubsystem.zero();
         CommandBase.drive.imuTurn(0);
         CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);

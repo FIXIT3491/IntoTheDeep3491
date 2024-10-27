@@ -98,7 +98,10 @@ public class ExtensionSubsystem{
         //**must add checking system to make sure moveLiftOut > moveLiftIn**
     }
     public void zero(){
-        lowerLift(0);
+        if (!RobotContainer.extensionSubsystem.getTouchSensor()) {
+            RobotContainer.extensionSubsystem.extenderRetract(-0.01);
+        } else
+            RobotContainer.extensionSubsystem.liftZero();
     }
     public void chamberLow() {
         raiseLift(1000);
