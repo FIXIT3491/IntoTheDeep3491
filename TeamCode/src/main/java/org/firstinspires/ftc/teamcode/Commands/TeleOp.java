@@ -2,12 +2,12 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 
 import com.qualcomm.robotcore.hardware.Gamepad;
+import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class TeleOp {
     int pos = 0;
@@ -17,7 +17,7 @@ public class TeleOp {
     double rx;
     double x;
     public int extensionPos = 0;
-
+    boolean extensionDown;
 
     public TeleOp(Telemetry telemetry) {
 
@@ -55,24 +55,37 @@ public class TeleOp {
         }
     }
     public void extensionCommands(Gamepad gamepad2) {
-        if (RobotContainer.extensionSubsystem.getTouchSensor()){
-            RobotContainer.extensionSubsystem.liftReset();
-        }
-        if (gamepad2.x) {
+
+        if (gamepad2.a) {
+            if (!RobotContainer.extensionSubsystem.getTouchSensor()) {
+                RobotContainer.extensionSubsystem.extenderRetract(-0.01);
+            } else
+                RobotContainer.extensionSubsystem.liftZero();
+
+        } else if (gamepad2.x) {
             RobotContainer.extensionSubsystem.bucketLow();
-        }
-        if (gamepad2.b) {
+        } else if (gamepad2.b) {
             RobotContainer.extensionSubsystem.bucketHigh();
         }
-        if (gamepad2.a){
-            RobotContainer.extensionSubsystem.zero();
+        else if(RobotContainer.extensionSubsystem.getTouchSensor()){
+//            RobotContainer.extensionSubsystem.moveLiftRight(0.2);
         }
-//        extensionPos = extensionPos + (int) (-gamepad2.left_stick_y * 30);
-//        RobotContainer.extensionSubsystem.powerExtension(extensionPos);
-        pos = pos + (int) (-gamepad2.right_stick_y * 30);
-        pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
+//        if (RobotContainer.extensionSubsystem.getRightLift() < 0)
+//            RobotContainer.extensionSubsystem.moveLiftRight(0.4);
+//        else
+//            RobotContainer.extensionSubsystem.moveLiftRight(0);
 
-        RobotContainer.extensionSubsystem.moveExtension(pos);
+        if (RobotContainer.extensionSubsystem.getTouchSensor()){
+            RobotContainer.extensionSubsystem.liftZero();
+        }
+
+
+//        extensionPos = extensionPos + (int) (-gamepad2.left_stick_y * 30);
+////        RobotContainer.extensionSubsystem.powerExtension(extensionPos);
+//        pos = pos + (int) (-gamepad2.right_stick_y * 30);
+//        pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
+//
+//        RobotContainer.extensionSubsystem.moveExtension(pos);
     }
 
     public void lmecCommands(Gamepad gamepad1) {

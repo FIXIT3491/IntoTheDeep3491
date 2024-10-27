@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
-import com.qualcomm.robotcore.hardware.TouchSensorMultiplexer;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
@@ -37,22 +36,34 @@ public class ExtensionSubsystem{
         telemetry.addData("lift motor left", liftMotorLeft.getCurrentPosition());
         telemetry.addData("lift motor right", liftMotorRight.getCurrentPosition());
         telemetry.addData("extension", extensionMotor.getCurrentPosition());
+        telemetry.addData("touch sensor", getTouchSensor());
     }
     public void encoderReset(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
-    public void liftReset(){
-        liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
+
     public void liftZero(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
     }
     public boolean getTouchSensor(){
         return touchSensor.isPressed();
+    }
+    public int getRightLift(){
+        return liftMotorRight.getCurrentPosition();
+    }
+    public void moveLiftRight(double power){
+//        liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftMotorRight.setPower(power);
+    }
+    public int getLeftPosition(){
+        return liftMotorLeft.getCurrentPosition();
+    }
+    public void resetRightEncoder(){
+        liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void moveExtension(int pos){
@@ -71,6 +82,12 @@ public class ExtensionSubsystem{
     public void powerExtension(int power){
         liftMotorRight.setPower(power);
         liftMotorLeft.setPower(power);
+    }
+    public void extenderRetract(double speed) {
+        liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftMotorRight.setPower(speed);
+        liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftMotorLeft.setPower(speed);
     }
 
     public void raiseLift(int pos){
