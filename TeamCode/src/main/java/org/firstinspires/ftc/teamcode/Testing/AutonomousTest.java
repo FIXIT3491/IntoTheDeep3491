@@ -46,7 +46,7 @@ public class AutonomousTest extends LinearOpMode {
         }
         RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.bucketHigh();
+        RobotContainer.extensionSubsystem.bucketLow();
         CommandBase.drive.imuTurn(0);
 
 
@@ -78,7 +78,7 @@ public class AutonomousTest extends LinearOpMode {
         }
         RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.bucketHigh();
+        RobotContainer.extensionSubsystem.bucketLow();
         CommandBase.drive.imuTurn(0);
 
 

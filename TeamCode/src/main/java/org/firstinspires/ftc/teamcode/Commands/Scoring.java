@@ -14,7 +14,7 @@ public class Scoring {
     }
 
     public void scoreBucket(SparkFunOTOSConfig myOtos) {
-        RobotContainer.extensionSubsystem.bucketHigh();
+        RobotContainer.extensionSubsystem.bucketLow();
         CommandBase.drive.imuTurn(0);
         CommandBase.drive.otosDrive(9.5, -18, 0, RobotContainer.sparkFunSubsystem.myOtos);
         CommandBase.drive.imuTurn(141);

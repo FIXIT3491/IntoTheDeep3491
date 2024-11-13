@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 public class Pickup {
@@ -32,7 +33,7 @@ public class Pickup {
             correctSample = false;
             sampleInClaw = false;
             RobotContainer.intakeSubsystem.wristDown();
-            RobotContainer.intakeSubsystem.spinIntake(1);
+            RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
         }
 
         if (sampleInClaw) {

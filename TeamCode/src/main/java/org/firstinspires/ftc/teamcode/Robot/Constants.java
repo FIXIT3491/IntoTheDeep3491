@@ -22,6 +22,11 @@ public class Constants {
     public static final double BUCKET_X = 9.5;   //  Position of the bucket forward value for the OTOS auto relative to the robot (adjust for your robot)
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
+    public static final double SPINNING = 0.80;
+    public static final double WRIST_DOWN = 0.01;
+    public static final double WRIST_UP = 0.5;
+    public static final double WRIST_OUT = -1;
+
 
 
 }

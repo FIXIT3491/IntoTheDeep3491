@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Constants;
 
 public class IntakeSubsystem{
     private CRServo intakeMotor;
@@ -33,7 +34,7 @@ public class IntakeSubsystem{
     }
 
     public void wristUp(){
-        wristMove(0.6);
+        wristMove(Constants.WRIST_UP);
     }
     public void wristChamber(){
         wristMove(0.2);

@@ -14,7 +14,7 @@ public class WristTeleOpTest extends LinearOpMode{
         wristServoLeft = hardwareMap.get(Servo.class, "WSL");
         wristServoRight = hardwareMap.get(Servo.class, "WSR");
 
-        wristServoLeft.setDirection(Servo.Direction.REVERSE);
+        wristServoRight.setDirection(Servo.Direction.REVERSE);
 
         wristServoLeft.setPosition(0);
         wristServoRight.setPosition(0);
@@ -24,15 +24,25 @@ public class WristTeleOpTest extends LinearOpMode{
         // drop wrist
         while (opModeIsActive()) {
             if (gamepad1.a) {
-                wristServoLeft.setPosition(0.65);
-                wristServoRight.setPosition(0.65);
+                wristServoLeft.setPosition(0);
+                wristServoRight.setPosition(0);
             }
 
             // retract wrist
             if (gamepad1.b) {
-                wristServoLeft.setPosition(-1);
-                wristServoRight.setPosition(-1);
+                wristServoLeft.setPosition(0.2);
+                wristServoRight.setPosition(0.2);
             }
+            if (gamepad1.x) {
+                wristServoLeft.setPosition(0.4);
+                wristServoRight.setPosition(0.4);
+            }
+            if (gamepad1.y) {
+                wristServoLeft.setPosition(0.5);
+                wristServoRight.setPosition(0.5);
+            }
+
+
         }
     }
 }
