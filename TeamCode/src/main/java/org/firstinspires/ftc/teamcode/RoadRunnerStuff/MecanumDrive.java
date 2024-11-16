@@ -1,6 +1,4 @@
-package org.firstinspires.ftc.teamcode;
-
-import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
+package org.firstinspires.ftc.teamcode.RoadRunnerStuff;
 
 import androidx.annotation.NonNull;
 
@@ -40,14 +38,13 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
-import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
-import org.firstinspires.ftc.teamcode.messages.DriveCommandMessage;
-import org.firstinspires.ftc.teamcode.messages.MecanumCommandMessage;
-import org.firstinspires.ftc.teamcode.messages.MecanumLocalizerInputsMessage;
-import org.firstinspires.ftc.teamcode.messages.PoseMessage;
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.DriveCommandMessage;
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.MecanumCommandMessage;
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.MecanumLocalizerInputsMessage;
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.PoseMessage;
 
 import java.lang.Math;
 import java.util.ArrayList;
@@ -532,6 +529,8 @@ public class MecanumDrive {
                 defaultVelConstraint, defaultAccelConstraint
         );
     }
+
+
 
 }
 

@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
 
-import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -18,6 +18,7 @@ public class Drive {
 
     private LinearOpMode op;
     private SparkFunOTOSConfig.Pose2D pos;
+    private MecanumDrive drive;
 
 
     public Drive(LinearOpMode op, Telemetry telemetry){
@@ -77,6 +78,9 @@ public class Drive {
         op.telemetry.addData("current Y coordinate", currentPos.y);
         op.telemetry.addData("current Heading angle", currentPos.h);
         op.telemetry.update();
+    }
+    public void driveForwards(){
+
     }
     public void imuTurn(double heading) {
 
