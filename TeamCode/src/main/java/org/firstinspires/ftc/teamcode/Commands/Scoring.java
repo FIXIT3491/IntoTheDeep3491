@@ -1,4 +1,5 @@
 package org.firstinspires.ftc.teamcode.Commands;
+import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -14,7 +15,7 @@ public class Scoring {
     }
 
     public void scoreBucket(SparkFunOTOSConfig myOtos) {
-        RobotContainer.extensionSubsystem.bucketLow();
+        RobotContainer.extensionSubsystem.bucketHigh();
         CommandBase.drive.imuTurn(0);
         CommandBase.drive.otosDrive(9.5, -18, 0, RobotContainer.sparkFunSubsystem.myOtos);
         CommandBase.drive.imuTurn(141);
