@@ -69,7 +69,7 @@ public class ExtensionSubsystem{
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extensionMotor.setPower(0.4);
+        extensionMotor.setPower(0.8);
     }
     public void moveLift(int pos, double power){
         liftMotorRight.setTargetPosition(pos);

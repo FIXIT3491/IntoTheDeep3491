@@ -23,16 +23,16 @@ public class TeleOp {
 
     }
     public void intake(Gamepad gamepad1,Gamepad gamepad2, Telemetry telemetry){
-        if (gamepad2.right_trigger > 0 || gamepad1.right_trigger > 0){
+        if (gamepad1.right_trigger > 0){
             CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
-        }else if (gamepad2.left_trigger > 0){
+        }else if (gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0){
             RobotContainer.intakeSubsystem.wristBucket();
 //            RobotContainer.intakeSubsystem.spinIntake(-0.5);
         }
         else
             RobotContainer.intakeSubsystem.stopIntake();
 
-        if (gamepad2.right_trigger > 0 || gamepad1.right_trigger > 0){
+        if (gamepad1.right_trigger > 0){
         }
         else if (gamepad2.left_bumper)
             RobotContainer.intakeSubsystem.spinIntake(-0.4);
@@ -42,11 +42,11 @@ public class TeleOp {
 
 
     }
-    public void wrist (Gamepad gamepad2){
+    public void wrist (Gamepad gamepad2, Gamepad gamepad1){
 
         if (gamepad2.right_trigger > 0){
             //do nothing cause pickup method will set instead
-        }else if (gamepad2.left_trigger > 0) {
+        }else if (gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0) {
             RobotContainer.intakeSubsystem.wristBucket();
         } else {
             RobotContainer.intakeSubsystem.wristUp();
@@ -78,8 +78,9 @@ public class TeleOp {
             RobotContainer.extensionSubsystem.liftZero();
         }
 
-        pos = pos + (int) (-gamepad2.right_stick_y * 30);
+        pos = pos + (int) (-gamepad2.right_stick_y * 90);
         pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
+
 
         RobotContainer.extensionSubsystem.moveExtension(pos);
     }
@@ -152,11 +153,8 @@ public class TeleOp {
             double backRightPower = (rotY + rotX - rx) / denominator;
 
 
-            if (gamepad1.left_trigger > 0 || gamepad1.right_trigger > 0) {
-                RobotContainer.driveSubsystem.setMotorPower(0.3, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
-            } else { //slow button
                 RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
-            }
+
         }
     }
 }

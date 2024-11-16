@@ -18,10 +18,10 @@ public class OtosTest extends LinearOpMode {
 
         while(opModeIsActive()){
             RobotContainer.driveSubsystem.setMotorPower(1, 0.5,0.5,0.5,0.5);
-            SparkFunOTOSConfig.Pose2D currentPos = RobotContainer.sparkFunSubsystem.myPosition();
-            telemetry.addData("current X coordinate", currentPos.x);
-            telemetry.addData("current Y coordinate", currentPos.y);
-            telemetry.addData("current Heading angle", currentPos.h);
+//            SparkFunOTOSConfig.Pose2D currentPos = RobotContainer.sparkFunSubsystem.myPosition();
+//            telemetry.addData("current X coordinate", currentPos.x);
+//            telemetry.addData("current Y coordinate", currentPos.y);
+//            telemetry.addData("current Heading angle", currentPos.h);
             telemetry.addData("heading", RobotContainer.imuSubsystem.getHeading() );
         }
     }

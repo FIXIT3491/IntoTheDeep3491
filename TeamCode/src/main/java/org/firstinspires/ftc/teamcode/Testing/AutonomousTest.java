@@ -28,12 +28,12 @@ public class AutonomousTest extends LinearOpMode {
 
         waitForStart();
 //
-        CommandBase.scoring.scoreBucket(RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.scoring.scoreBucket(RobotContainer.sparkFunSubsystem.myOtos);
 //
 //
 //
 //        CommandBase.drive.otosDrive(15, -3.2, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.otosDrive(23, -3.2, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(23, -3.2, 0, RobotContainer.sparkFunSubsystem.myOtos);
 //        sleep(500);
         CommandBase.drive.imuTurn(47);
 //        sleep(1000);
@@ -51,9 +51,9 @@ public class AutonomousTest extends LinearOpMode {
         CommandBase.drive.imuTurn(0);
 
 
-        CommandBase.drive.otosDrive(11, -16, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(141);
+//        CommandBase.drive.otosDrive(11, -16, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.imuTurn(141);
         RobotContainer.intakeSubsystem.wristBucket();
         sleep(200);
         RobotContainer.intakeSubsystem.spinIntake(-0.6);
@@ -64,7 +64,7 @@ public class AutonomousTest extends LinearOpMode {
         RobotContainer.extensionSubsystem.zero();
         CommandBase.drive.imuTurn(0);
 
-        CommandBase.drive.otosDrive(30, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(30, -9.25, 0, RobotContainer.sparkFunSubsystem.myOtos);
 
         CommandBase.drive.imuTurn(90);
 
@@ -83,8 +83,8 @@ public class AutonomousTest extends LinearOpMode {
         CommandBase.drive.imuTurn(0);
 
 
-        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(Constants.BUCKET_X, Constants.BUCKET_Y, 0, RobotContainer.sparkFunSubsystem.myOtos);
         CommandBase.drive.imuTurn(141);
         RobotContainer.intakeSubsystem.wristBucket();
         sleep(200);
@@ -96,7 +96,7 @@ public class AutonomousTest extends LinearOpMode {
         RobotContainer.extensionSubsystem.zero();
         RobotContainer.extensionSubsystem.moveExtension(0);
         CommandBase.drive.imuTurn(0);
-        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.otosDrive(11, -15, 0, RobotContainer.sparkFunSubsystem.myOtos);
 //        CommandBase.drive.otosDrive(35.5, -19, 0, RobotContainer.sparkFunSubsystem.myOtos);
     }
 }

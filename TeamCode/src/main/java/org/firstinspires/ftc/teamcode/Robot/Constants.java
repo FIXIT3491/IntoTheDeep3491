@@ -25,7 +25,7 @@ public class Constants {
     public static final double SPINNING = 0.80;
     public static final double WRIST_DOWN = 0.01;
     public static final double WRIST_UP = 0.5;
-    public static final double WRIST_OUT = 0.4;
+    public static final double WRIST_OUT = 0.3;
 
 
 

@@ -25,7 +25,7 @@ public class TeleopTest extends LinearOpMode {
             CommandBase.teleOp.fieldCentricDrive(gamepad1, gamepad2, telemetry);
             CommandBase.teleOp.lmecCommands(gamepad1);
             CommandBase.teleOp.extensionCommands(gamepad2);
-            CommandBase.teleOp.wrist(gamepad2);
+            CommandBase.teleOp.wrist(gamepad1, gamepad2);
             CommandBase.teleOp.intake(gamepad1, gamepad2, telemetry);
             RobotContainer.telemetrySubsystem.getTelemetry(telemetry);
         }

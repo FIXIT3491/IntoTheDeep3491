@@ -14,21 +14,21 @@ public class Scoring {
         op = opmoderef;
     }
 
-    public void scoreBucket(SparkFunOTOSConfig myOtos) {
-        RobotContainer.extensionSubsystem.bucketHigh();
-        CommandBase.drive.imuTurn(0);
-        CommandBase.drive.otosDrive(9.5, -18, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(141);
-        RobotContainer.intakeSubsystem.wristBucket();
-        op.sleep(200);
-        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-        op.sleep(200);
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.intakeSubsystem.stopIntake();
-        op.sleep(150);
-//        op.sleep(500);
-        RobotContainer.extensionSubsystem.zero();
-        CommandBase.drive.imuTurn(0);
+    public void scoreBucket(/*SparkFunOTOSConfig myOtos*/) {
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//        CommandBase.drive.imuTurn(0);
+//        CommandBase.drive.otosDrive(9.5, -18, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.imuTurn(141);
+//        RobotContainer.intakeSubsystem.wristBucket();
+//        op.sleep(200);
+//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+//        op.sleep(200);
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        op.sleep(150);
+////        op.sleep(500);
+//        RobotContainer.extensionSubsystem.zero();
+//        CommandBase.drive.imuTurn(0);
     }
 
     public void scoreChamber(int y){
