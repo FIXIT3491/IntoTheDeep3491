@@ -34,9 +34,13 @@ public class MeepMeepTesting {
                         .setTangent(1) // set tangent for spline to bucket
                         .splineToSplineHeading(new Pose2d(53,53, Math.toRadians(45)), Math.toRadians(80)) // drive to bucket for third sample
                         .waitSeconds(1) // wait for scoring
-                        .strafeToLinearHeading(new Vector2d(60, 25), Math.toRadians(0)) // drive to spike mark for forth sample
+                        .strafeToLinearHeading(new Vector2d(55, 25), Math.toRadians(0)) // drive to spike mark for forth sample
                         .waitSeconds(.5)// wait for wrist to come down
-                        .lineToX(50) // pickup sample
+                        .lineToX(60) // pickup sample
+                        .waitSeconds(.5) // wait for claw to go up
+                        .setTangent(2) // set tangent for spline to bucket
+                        .splineToSplineHeading(new Pose2d(53,53, Math.toRadians(45)), Math.toRadians(80)) // drive to bucket for third sample
+                        .waitSeconds(1) // wait for scoring
 
 
                 .build());
