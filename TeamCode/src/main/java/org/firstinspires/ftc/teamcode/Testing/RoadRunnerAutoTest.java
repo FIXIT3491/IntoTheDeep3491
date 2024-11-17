@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -13,29 +16,38 @@ import org.firstinspires.ftc.teamcode.Commands.CommandBase;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
-@Autonomous
-public class RoadRunnerAutoTest extends LinearOpMode {
-    public static int a;
-    public static int b;
-    public static int c;
-    public static int d;
-    public static int e;
-    public static int f;
-    FtcDashboard dash;
-    public ElapsedTime pickupTimer = new ElapsedTime();
 
+public class RoadRunnerAutoTest extends LinearOpMode {
+    public ElapsedTime pickupTimer = new ElapsedTime();
     @Override
     public void runOpMode() {
         Pose2d initialPose = new Pose2d(40, 60, Math.toRadians(0));
-         MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
+        MecanumDrive drive = new MecanumDrive(hardwareMap, initialPose);
         CommandBase.initialize(hardwareMap, telemetry, this);
-         dash = FtcDashboard.getInstance();
+
+
+
+
+        TrajectoryActionBuilder trajectory = drive.actionBuilder(initialPose)
+                .strafeToConstantHeading(new Vector2d(35, 25))
+                .waitSeconds(.75)
+                .lineToX(40)
+                .waitSeconds(.5)
+                .setTangent(1)
+                .splineToSplineHeading(new Pose2d(53,53, Math.toRadians(45)), Math.toRadians(80))
+                .waitSeconds(3)
+                .setTangent(0)
+                .strafeToLinearHeading(new Vector2d(45, 25), Math.toRadians(0))
+                .waitSeconds(.5);
+        Action DriveToSpikeMark = trajectory.build();
+
+
+        TrajectoryActionBuilder trajectory1 = drive.actionBuilder(initialPose);
 
 
 
 
 
-        waitForStart();
 //        RobotContainer.extensionSubsystem.bucketHigh();
 //        RobotContainer.extensionSubsystem.moveExtension(1700);
 //
@@ -48,6 +60,13 @@ public class RoadRunnerAutoTest extends LinearOpMode {
 //        RobotContainer.extensionSubsystem.zero();
 //        RobotContainer.extensionSubsystem.moveExtension( 100);
 //
+        Actions.runBlocking(
+                new SequentialAction(
+
+                        DriveToSpikeMark
+
+                )
+        );
 
         Actions.runBlocking(
                 drive.actionBuilder(initialPose)
