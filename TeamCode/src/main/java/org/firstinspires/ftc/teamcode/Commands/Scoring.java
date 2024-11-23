@@ -34,7 +34,7 @@ public class Scoring {
     public void scoreChamber(int y){
         if (y == 1){
             RobotContainer.extensionSubsystem.chamberLow();
-            //sleep
+
             RobotContainer.intakeSubsystem.wristDown();
             //lift goes down a lil bit
             RobotContainer.intakeSubsystem.spinIntake(-1);

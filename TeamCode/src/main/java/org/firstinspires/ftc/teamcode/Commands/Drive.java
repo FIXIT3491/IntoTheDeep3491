@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
 import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
@@ -20,6 +23,11 @@ public class Drive {
     private LinearOpMode op;
     private SparkFunOTOSConfig.Pose2D pos;
     private MecanumDrive drive;
+
+    public DcMotor DriveFR;
+    public DcMotor DriveFL;
+    public DcMotor DriveBR;
+    public DcMotor DriveBL;
 
 
     public Drive(LinearOpMode op, Telemetry telemetry){
@@ -81,6 +89,21 @@ public class Drive {
         op.telemetry.update();
     }
     public void driveForwards(){
+        DriveFL = hardwareMap.get(DcMotor.class, "FLD");
+        DriveBL = hardwareMap.get(DcMotor.class, "BLD");
+        DriveFR = hardwareMap.get(DcMotor.class, "FRD");
+        DriveBR = hardwareMap.get(DcMotor.class, "BRD");
+
+        DriveFL.setDirection(DcMotor.Direction.REVERSE);
+        DriveBL.setDirection(DcMotor.Direction.REVERSE);
+        DriveFR.setDirection(DcMotor.Direction.FORWARD);
+        DriveBR.setDirection(DcMotor.Direction.FORWARD);
+
+        //brake on zero
+        DriveFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
     public void imuTurn(double heading) {

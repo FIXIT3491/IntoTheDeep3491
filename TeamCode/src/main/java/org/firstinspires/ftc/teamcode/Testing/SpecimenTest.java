@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandBase;
@@ -13,7 +14,6 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 public class SpecimenTest extends LinearOpMode {
 
     public ElapsedTime pickupTimer = new ElapsedTime();
-
 
     @Override
     public void runOpMode() {
@@ -27,7 +27,7 @@ public class SpecimenTest extends LinearOpMode {
 
         waitForStart();
 
-        RobotContainer.driveSubsystem.setMotorPower(1, 0.7, 0.7, 0.7, 0.7);
+        CommandBase.drive.driveForwards();
         sleep(500);
         RobotContainer.extensionSubsystem.chamberHigh();
         RobotContainer.driveSubsystem.setMotorPower(0.3, 0.2, 0.2, 0.2, 0.2);
@@ -37,7 +37,9 @@ public class SpecimenTest extends LinearOpMode {
         sleep(700);
         RobotContainer.extensionSubsystem.raiseLift(0);
         RobotContainer.intakeSubsystem.wristUp();
-        //Move to right to park
+        CommandBase.drive.imuTurn(180);
+        CommandBase.drive.driveForwards();
+        sleep(5000);
 
     }
     }
