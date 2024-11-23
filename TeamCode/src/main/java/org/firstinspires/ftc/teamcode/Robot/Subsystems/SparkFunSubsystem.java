@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
+import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
+import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -14,11 +16,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class SparkFunSubsystem {
     // Create an instance of the sensor
-    public SparkFunOTOSConfig myOtos;
-    SparkFunOTOSConfig.Pose2D pos;
+    public SparkFunOTOSCorrected myOtos;
+    SparkFunOTOSCorrected.Pose2D pos;
 
     public SparkFunSubsystem(HardwareMap hardwareMap, Telemetry telemetry){
-        myOtos = hardwareMap.get(SparkFunOTOSConfig.class, "sensor_otos");
+        myOtos = hardwareMap.get(SparkFunOTOSCorrected.class, "sensor_otos");
     }
 
     public void configureOtos() {
@@ -42,7 +44,7 @@ public class SparkFunSubsystem {
         // would be {-5, 10, -90}. These can be any value, even the angle can be
         // tweaked slightly to compensate for imperfect mounting (eg. 1.3 degrees).
         SparkFunOTOSConfig.Pose2D offset = new SparkFunOTOSConfig.Pose2D(0, -7.875, 0);
-        myOtos.setOffset(offset);
+        myOtos.setOffset(new SparkFunOTOS.Pose2D(0, -7.875, 0));
 
         // Here we can set the linear and angular scalars, which can compensate for
         // scaling issues with the sensor measurements. Note that as of firmware
@@ -87,12 +89,12 @@ public class SparkFunSubsystem {
 //         the origin. If your robot does not start at the origin, or you have
 //         another source of location information (eg. vision odometry), you can set
 //         the OTOS location to match and it will continue to track from there.
-        SparkFunOTOSConfig.Pose2D currentPosition = new SparkFunOTOSConfig.Pose2D(0, 0, 0);
+        SparkFunOTOSCorrected.Pose2D currentPosition = new SparkFunOTOSCorrected.Pose2D(0, 0, 0);
         myOtos.setPosition(currentPosition);
     }
 
 
-    public SparkFunOTOSConfig.Pose2D pos(){
+    public SparkFunOTOSCorrected.Pose2D pos(){
         return myOtos.getPosition();
     }
 
@@ -100,9 +102,9 @@ public class SparkFunSubsystem {
 
     }
 
-    public SparkFunOTOSConfig.Pose2D myPosition() {
+    public SparkFunOTOSCorrected.Pose2D myPosition() {
         pos = myOtos.getPosition();
-        SparkFunOTOSConfig.Pose2D myPos = new SparkFunOTOSConfig.Pose2D(pos.y, pos.x, pos.h);
+        SparkFunOTOSCorrected.Pose2D myPos = new SparkFunOTOSCorrected.Pose2D(pos.y, pos.x, pos.h);
         return(myPos);
     }
 

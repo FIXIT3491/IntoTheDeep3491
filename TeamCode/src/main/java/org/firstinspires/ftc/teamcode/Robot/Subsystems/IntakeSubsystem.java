@@ -48,6 +48,9 @@ public class IntakeSubsystem{
         telemetry.addData("WristServoLeft", wristServoLeft.getPosition());
         telemetry.addData("Intake motor", intakeMotor.getPower());
     }
+    public void wristOut(){
+        wristMove(Constants.WRIST_OUT);
+    }
     public void wristMove(double distance){
         wristServoRight.setPosition(distance);
         wristServoLeft.setPosition(distance);

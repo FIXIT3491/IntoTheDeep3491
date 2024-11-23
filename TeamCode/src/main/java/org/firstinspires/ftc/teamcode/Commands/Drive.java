@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
 
+import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -17,6 +19,7 @@ public class Drive {
 
     private LinearOpMode op;
     private SparkFunOTOSConfig.Pose2D pos;
+    private MecanumDrive drive;
 
 
     public Drive(LinearOpMode op, Telemetry telemetry){
@@ -29,13 +32,13 @@ public class Drive {
     }
 
 
-    public void otosDrive(double targetX, double targetY, double targetHeading, SparkFunOTOSConfig myOtos ) {
-
+    public void otosDrive(double targetx, double targetY, double targetHeading, SparkFunOTOSCorrected myOtos ) {
+        double targetX = targetx/1.1;
         double drive, strafe, turn;
         double currentRange, targetRange, initialBearing, targetBearing, xError, yError, yawError;
         double opp, adj;
 
-        SparkFunOTOSConfig.Pose2D currentPos = RobotContainer.sparkFunSubsystem.myPosition();
+        SparkFunOTOSCorrected.Pose2D currentPos = RobotContainer.sparkFunSubsystem.myPosition();
         xError = targetX-currentPos.x;
         yError = targetY-currentPos.y;
         yawError = targetHeading-currentPos.h;
@@ -76,6 +79,9 @@ public class Drive {
         op.telemetry.addData("current Y coordinate", currentPos.y);
         op.telemetry.addData("current Heading angle", currentPos.h);
         op.telemetry.update();
+    }
+    public void driveForwards(){
+
     }
     public void imuTurn(double heading) {
 

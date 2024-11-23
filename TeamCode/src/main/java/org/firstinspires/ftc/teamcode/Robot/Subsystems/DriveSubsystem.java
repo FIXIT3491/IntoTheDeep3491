@@ -41,10 +41,10 @@ public class DriveSubsystem{
         DriveBR.setDirection(DcMotor.Direction.FORWARD);
 
         //brake on zero
-//        DriveFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        DriveBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        DriveFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//        DriveBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveFL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveFR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        DriveBR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 

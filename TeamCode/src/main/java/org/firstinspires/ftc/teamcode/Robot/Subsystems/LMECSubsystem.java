@@ -22,21 +22,19 @@ public class LMECSubsystem{
         LMBLServo = hardwareMap.get(ServoImplEx.class, "LMBLS");
 
         //Direction Servo
-        LMFLServo.setDirection(Servo.Direction.REVERSE);
-        LMBRServo.setDirection(Servo.Direction.REVERSE);
+//        LMFLServo.setDirection(Servo.Direction.REVERSE);
+//        LMBRServo.setDirection(Servo.Direction.REVERSE);
 
     }
 
     // Intake method
     public void lockMechanum() {
         LMFRServo.setPosition(0.3);
-        LMFLServo.setPosition(0.3);
-        LMBRServo.setPosition(0.4);
+        LMFLServo.setPosition(0);
+        LMBRServo.setPosition(0);
         LMBLServo.setPosition(0.3);
 
         LMFRServo.setPosition(0.19);
-        LMFLServo.setPosition(0.19);
-        LMBRServo.setPosition(0.25);
         LMBLServo.setPosition(0.25);
     }
     public void getTelemetry(Telemetry telemetry){
@@ -44,12 +42,20 @@ public class LMECSubsystem{
         telemetry.addData("LMFLS", LMFLServo.getPosition());
         telemetry.addData("LMBRS", LMBRServo.getPosition());
         telemetry.addData("LMBLS", LMBLServo.getPosition());
+        telemetry.addData("LMFRS port", LMFRServo.getPortNumber());
+        telemetry.addData("LMFLS", LMFLServo.getPortNumber());
+        telemetry.addData("LMBRS", LMBRServo.getPortNumber());
+        telemetry.addData("LMBLS", LMBLServo.getPortNumber());
+//back left 0
     }
 
     public void unlockMechanum() {
         LMFRServo.setPosition(0);
         LMFLServo.setPosition(0);
-        LMBRServo.setPosition(0);
+        LMBRServo.setPosition(0.3);
         LMBLServo.setPosition(0);
+        LMBRServo.setPosition(0.19);
+        LMFLServo.setPosition(0.4);
+        LMFLServo.setPosition(0.19);
     }
 }

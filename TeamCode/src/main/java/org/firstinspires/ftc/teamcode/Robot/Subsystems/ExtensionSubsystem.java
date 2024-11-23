@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
@@ -43,6 +44,9 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
+    public void resetExtension(){
+        extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
 
     public void liftZero(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -69,7 +73,7 @@ public class ExtensionSubsystem{
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extensionMotor.setPower(0.4);
+        extensionMotor.setPower(0.8);
     }
     public void moveLift(int pos, double power){
         liftMotorRight.setTargetPosition(pos);
