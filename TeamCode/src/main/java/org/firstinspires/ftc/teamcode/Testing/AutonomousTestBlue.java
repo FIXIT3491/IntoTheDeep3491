@@ -32,11 +32,10 @@ public class AutonomousTestBlue extends LinearOpMode {
 
 
         TrajectoryActionBuilder DriveToFirstSpikeMark = drive.actionBuilder(initialPose)
-                .strafeToLinearHeading(new Vector2d(34.5, 33), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
+                .strafeToLinearHeading(new Vector2d(34.5, 32.5), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 //48 47
         TrajectoryActionBuilder DriveToSecondSpikeMark = drive.actionBuilder(new Pose2d(48, 47, 0))
-                .strafeToLinearHeading(new Vector2d(31.5, 42), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
-
+                .strafeToLinearHeading(new Vector2d(31.5, 40.5), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
         TrajectoryActionBuilder DriveToThirdSpikeMark = drive.actionBuilder(new Pose2d(48, 47, 0))
                 .strafeToLinearHeading(new Vector2d(36, 42), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 
@@ -56,7 +55,7 @@ public class AutonomousTestBlue extends LinearOpMode {
 //        Actions.runBlocking(DriveToSpikeMark1);
 
         RobotContainer.extensionSubsystem.bucketHigh();
-        RobotContainer.extensionSubsystem.moveExtension(1700);
+        RobotContainer.extensionSubsystem.moveExtension(1600);
         sleep(2300);
         RobotContainer.intakeSubsystem.wristOut();
         RobotContainer.intakeSubsystem.spinIntake(-0.7);
@@ -90,7 +89,7 @@ public class AutonomousTestBlue extends LinearOpMode {
 
 
         CommandBase.drive.otosDrive(12, 14, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(45);
+        CommandBase.drive.imuTurn(48);
 
         RobotContainer.extensionSubsystem.moveExtension(800);
         RobotContainer.intakeSubsystem.wristMove(0.4);
@@ -135,40 +134,35 @@ public class AutonomousTestBlue extends LinearOpMode {
         RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.extensionSubsystem.moveExtension(120);
         CommandBase.drive.imuTurn(0);
-
-
-        Actions.runBlocking(DriveToSpikeMark3);
-        CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-        sleep(1000);
-        pickupTimer.reset();
-        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 1000) {
-            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-            RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
-        }
-        RobotContainer.intakeSubsystem.wristBucket();
-        RobotContainer.extensionSubsystem.bucketHigh();
-
-        CommandBase.drive.otosDrive(12, 14, 0, RobotContainer.sparkFunSubsystem.myOtos);
-        CommandBase.drive.imuTurn(45);
-
-        RobotContainer.extensionSubsystem.moveExtension(800);
-        RobotContainer.intakeSubsystem.wristMove(0.4);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.wristMove(0.35);
-        RobotContainer.intakeSubsystem.stopIntake();
-        sleep(150);
-        RobotContainer.extensionSubsystem.moveExtension(0);
-        RobotContainer.extensionSubsystem.zero();
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.extensionSubsystem.moveExtension(0);
-        CommandBase.drive.imuTurn(0);
-
-
-
-
-
+//
+//
+//        Actions.runBlocking(DriveToSpikeMark3);
+//        CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
+//        sleep(1000);
+//        pickupTimer.reset();
+//        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 1000) {
+//            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
+//            RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
+//        }
+//        RobotContainer.intakeSubsystem.wristBucket();
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//
+//        CommandBase.drive.otosDrive(12, 14, 0, RobotContainer.sparkFunSubsystem.myOtos);
+//        CommandBase.drive.imuTurn(45);
+//
+//        RobotContainer.extensionSubsystem.moveExtension(800);
+//        RobotContainer.intakeSubsystem.wristMove(0.4);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.wristMove(0.35);
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        sleep(150);
+//        RobotContainer.extensionSubsystem.moveExtension(0);
+//        RobotContainer.extensionSubsystem.zero();
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.extensionSubsystem.moveExtension(0);
+//        CommandBase.drive.imuTurn(0);
 
     }
 }
