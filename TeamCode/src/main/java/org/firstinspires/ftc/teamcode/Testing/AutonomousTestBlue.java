@@ -32,7 +32,7 @@ public class AutonomousTestBlue extends LinearOpMode {
 
 
         TrajectoryActionBuilder DriveToFirstSpikeMark = drive.actionBuilder(initialPose)
-                .strafeToLinearHeading(new Vector2d(34.5, 32.5), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
+                .strafeToLinearHeading(new Vector2d(34.5, 33), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 //48 47
         TrajectoryActionBuilder DriveToSecondSpikeMark = drive.actionBuilder(new Pose2d(48, 47, 0))
                 .strafeToLinearHeading(new Vector2d(31.5, 40.5), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down

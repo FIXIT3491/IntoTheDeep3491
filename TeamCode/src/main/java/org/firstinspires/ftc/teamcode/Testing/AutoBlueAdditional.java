@@ -1,20 +1,22 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
-import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
-import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandBase;
-import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
+import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
+
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
+
 @Autonomous
-public class AutonomousTestRed extends LinearOpMode {
+public class AutoBlueAdditional extends LinearOpMode {
 
     public ElapsedTime pickupTimer = new ElapsedTime();
 
@@ -30,10 +32,10 @@ public class AutonomousTestRed extends LinearOpMode {
 
 
         TrajectoryActionBuilder DriveToFirstSpikeMark = drive.actionBuilder(initialPose)
-                .strafeToLinearHeading(new Vector2d(34.5, 33.5), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
+                .strafeToLinearHeading(new Vector2d(34.5, 32.5), Math.toRadians(5)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 //48 47
         TrajectoryActionBuilder DriveToSecondSpikeMark = drive.actionBuilder(new Pose2d(48, 47, 0))
-                .strafeToLinearHeading(new Vector2d(31.5, 41.5), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
+                .strafeToLinearHeading(new Vector2d(31.5, 40.5), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
         TrajectoryActionBuilder DriveToThirdSpikeMark = drive.actionBuilder(new Pose2d(48, 47, 0))
                 .strafeToLinearHeading(new Vector2d(36, 42), 0); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 
@@ -41,6 +43,7 @@ public class AutonomousTestRed extends LinearOpMode {
         Action DriveToSpikeMark2 = DriveToSecondSpikeMark.build();
         Action DriveToSpikeMark1 = DriveToFirstSpikeMark.build();
         Action DriveToSpikeMark3 = DriveToThirdSpikeMark.build();
+
 
         waitForStart();
 //
@@ -132,35 +135,34 @@ public class AutonomousTestRed extends LinearOpMode {
         RobotContainer.extensionSubsystem.moveExtension(120);
         CommandBase.drive.imuTurn(0);
 
-//
-//
-//        Actions.runBlocking(DriveToSpikeMark3);
-//        CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-//        sleep(1000);
-//        pickupTimer.reset();
-//        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 1000) {
-//            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
-//            RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
-//        }
-//        RobotContainer.intakeSubsystem.wristBucket();
-//        RobotContainer.extensionSubsystem.bucketHigh();
-//
-//        CommandBase.drive.otosDrive(12, 14, 0, RobotContainer.sparkFunSubsystem.myOtos);
-//        CommandBase.drive.imuTurn(45);
-//
-//        RobotContainer.extensionSubsystem.moveExtension(800);
-//        RobotContainer.intakeSubsystem.wristMove(0.4);
-//        sleep(1000);
-//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-//        sleep(1000);
-//        RobotContainer.intakeSubsystem.wristMove(0.35);
-//        RobotContainer.intakeSubsystem.stopIntake();
-//        sleep(150);
-//        RobotContainer.extensionSubsystem.moveExtension(0);
-//        RobotContainer.extensionSubsystem.zero();
-//        RobotContainer.intakeSubsystem.wristUp();
-//        RobotContainer.extensionSubsystem.moveExtension(0);
-//        CommandBase.drive.imuTurn(0);
+
+            Actions.runBlocking(DriveToSpikeMark3);
+            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
+            sleep(1000);
+            pickupTimer.reset();
+        while (!CommandBase.pickup.SpikeMarkAuto("blue", telemetry) && pickupTimer.milliseconds() < 1000) {
+            CommandBase.pickup.SpikeMarkAuto("blue", telemetry);
+            RobotContainer.driveSubsystem.moveRobot(0.2, 0, 0);
+        }
+        RobotContainer.intakeSubsystem.wristBucket();
+        RobotContainer.extensionSubsystem.bucketHigh();
+
+        CommandBase.drive.otosDrive(12, 14, 0, RobotContainer.sparkFunSubsystem.myOtos);
+        CommandBase.drive.imuTurn(45);
+
+        RobotContainer.extensionSubsystem.moveExtension(800);
+        RobotContainer.intakeSubsystem.wristMove(0.4);
+        sleep(1000);
+        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+        sleep(1000);
+        RobotContainer.intakeSubsystem.wristMove(0.35);
+        RobotContainer.intakeSubsystem.stopIntake();
+        sleep(150);
+        RobotContainer.extensionSubsystem.moveExtension(0);
+        RobotContainer.extensionSubsystem.zero();
+        RobotContainer.intakeSubsystem.wristUp();
+        RobotContainer.extensionSubsystem.moveExtension(0);
+        CommandBase.drive.imuTurn(0);
 
     }
 }
