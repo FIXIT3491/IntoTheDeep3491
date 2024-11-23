@@ -44,7 +44,7 @@ public class TeleOp {
     }
     public void wrist (Gamepad gamepad2, Gamepad gamepad1){
 
-        if (gamepad2.right_trigger > 0){
+        if (gamepad1.right_trigger > 0){
             //do nothing cause pickup method will set instead
         }else if (gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0) {
             RobotContainer.intakeSubsystem.wristBucket();
@@ -77,7 +77,9 @@ public class TeleOp {
         if (RobotContainer.extensionSubsystem.getTouchSensor()){
             RobotContainer.extensionSubsystem.liftZero();
         }
-
+        if (gamepad2.back){
+            RobotContainer.extensionSubsystem.resetExtension();
+        }
         pos = pos + (int) (-gamepad2.right_stick_y * 90);
         pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 

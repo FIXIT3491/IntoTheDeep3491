@@ -13,7 +13,7 @@ public class RobotContainer{
     public static ExtensionSubsystem extensionSubsystem;
     public static LMECSubsystem lmecSubsystem;
     public static ColorSubsystem colorSubsystem;
-//    public static SparkFunSubsystem sparkFunSubsystem;
+    public static SparkFunSubsystem sparkFunSubsystem;
     private static RobotContainer robotContainer;
     public static IMUSubsystem imuSubsystem;
     public static TelemetrySubsystem telemetrySubsystem;
@@ -26,10 +26,10 @@ public class RobotContainer{
         extensionSubsystem = new ExtensionSubsystem(hardwareMap, telemetry);
         lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
-//        sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
+        sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
         imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
         telemetrySubsystem = new TelemetrySubsystem(telemetry);
-//        sparkFunSubsystem.configureOtos();
+        sparkFunSubsystem.configureOtos();
         extensionSubsystem.encoderReset();
 
     }

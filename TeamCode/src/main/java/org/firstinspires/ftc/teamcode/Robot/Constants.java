@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 public class Constants {
-    public static final int MIN_EXTENSION = 100;
+    public static final int MIN_EXTENSION = 150;
     public static final int MAX_EXTENSION = 1870;
     public static final int LIFT_BUCKET_1 = 2600;
     public static final int LIFT_BUCKET_2 = 4300;

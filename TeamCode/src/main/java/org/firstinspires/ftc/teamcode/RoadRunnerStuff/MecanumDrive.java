@@ -65,7 +65,7 @@ public class MecanumDrive {
 
         // drive model parameters
         public double inPerTick = 1; // SparkFun OTOS Note: you can probably leave this at 1
-        public double lateralInPerTick = 0.4346905245807554;
+        public double lateralInPerTick = 1;
 //        public double lateralInPerTick =  inPerTick;
         public double trackWidthTicks = 11.675554013582753;
 
@@ -85,7 +85,7 @@ public class MecanumDrive {
 
         // path controller gains
         public double axialGain = 2.3;
-        public double lateralGain = 1.5;
+        public double lateralGain = 2;
         public double headingGain = 2.0; // shared with turn
 
         public double axialVelGain = 0.0;
@@ -224,8 +224,8 @@ public class MecanumDrive {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
 
-        // TODO: make sure your config has motors with these names (or change them)
-        //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
+//         TODO: make sure your config has motors with these names (or change them)
+//           see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         leftFront = hardwareMap.get(DcMotorEx.class, "FLD");
         leftBack = hardwareMap.get(DcMotorEx.class, "BLD");
         rightBack = hardwareMap.get(DcMotorEx.class, "BRD");
@@ -236,8 +236,9 @@ public class MecanumDrive {
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+
 //        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-////        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 //        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
