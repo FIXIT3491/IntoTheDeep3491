@@ -33,7 +33,7 @@ public class SpecimenTest extends LinearOpMode {
         RobotContainer.intakeSubsystem.wristOut();
         sleep(50);
         RobotContainer.driveSubsystem.setMotorPower(0.3, 0.2, 0.2, 0.2, 0.2);
-        sleep(950);
+        sleep(975);
         RobotContainer.extensionSubsystem.raiseLift(1450);
         sleep(200);
         RobotContainer.driveSubsystem.setMotorPower(0.3, -0.3, -0.3, -0.3, -0.3);
