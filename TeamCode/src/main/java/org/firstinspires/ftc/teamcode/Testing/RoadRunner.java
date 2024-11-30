@@ -30,24 +30,32 @@ public class RoadRunner extends LinearOpMode {
 
 
         TrajectoryActionBuilder DriveToFirstSpikeMark = drive.actionBuilder(initialPose)
-                .strafeToConstantHeading(new Vector2d(0, 52)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
+                .strafeToConstantHeading(new Vector2d(-52, 10)); //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
 
-        TrajectoryActionBuilder DriveToBucket2 = drive.actionBuilder(new Pose2d(36, 36, Math.toRadians(0)))
+        TrajectoryActionBuilder DriveToBucket2 = drive.actionBuilder(new Pose2d(-52, 0, Math.toRadians(0)))
 //                .setTangent(1) // set tangent line for spline
-                .strafeToConstantHeading(new Vector2d(36,53)); // drive to bucket for second sample
+                .strafeToConstantHeading(new Vector2d(-36,53)); // drive to bucket for second sample
 
-        TrajectoryActionBuilder DriveToSecondSpikeMark = drive.actionBuilder(new Pose2d(36, 53, Math.toRadians(0)))
-                .splineToConstantHeading(new Vector2d(36, 36), 0); // drive to spikemark for third sample
+        TrajectoryActionBuilder DriveToSecondSpikeMark = drive.actionBuilder(new Pose2d(-36, 53, Math.toRadians(0)))
+                .splineToConstantHeading(new Vector2d(-36, 36), 0); // drive to spikemark for third sample
 
 
 
         Action driveToSpikeMark = DriveToFirstSpikeMark.build();
+        Action driveToBucket2 = DriveToBucket2.build();
+        Action driveToSecondSpikeMark = DriveToSecondSpikeMark.build();
 
 
 
         waitForStart();
         Actions.runBlocking(
                 driveToSpikeMark
+        );
+        Actions.runBlocking(
+                driveToBucket2
+        );
+        Actions.runBlocking(
+                driveToSecondSpikeMark
         );
 
 

@@ -6,20 +6,28 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
+import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
 
 public final class SplineTest extends LinearOpMode {
     @Override
     public void runOpMode(){
-        Pose2d beginPose = new Pose2d(0, 0, 0);
+        Pose2d beginPose = new Pose2d(48, 48, 0);
 //        if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
-            MecanumDrive drive = new MecanumDrive(hardwareMap, beginPose);
+            SparkFunOTOSDrive drive = new SparkFunOTOSDrive(hardwareMap, beginPose);
 
             waitForStart();
 
             Actions.runBlocking(
                 drive.actionBuilder(beginPose)
-                        .splineTo(new Vector2d(10, 10), Math.PI / 2)
-                        .splineTo(new Vector2d(0, 60), Math.PI)
+                        .strafeToLinearHeading(new Vector2d(48, -40), 0)
+                        .waitSeconds(0.1)
+                        .strafeToLinearHeading(new Vector2d(-40, -40), Math.PI /2)
+                        .waitSeconds(0.1)
+                        .strafeToLinearHeading(new Vector2d(-40, 48), 0)
+                        .waitSeconds(0.1)
+                        .strafeToLinearHeading(new Vector2d(48, 48), 0 )
+
+//                        .splineTo(new Vector2d(0, 60), Math.PI)
                         .build());
 //        }
 
