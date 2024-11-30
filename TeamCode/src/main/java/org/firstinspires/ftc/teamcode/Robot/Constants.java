@@ -5,8 +5,8 @@ public class Constants {
     public static final int MAX_EXTENSION = 1870;
     public static final int LIFT_BUCKET_1 = 2600;
     public static final int LIFT_BUCKET_2 = 4300;
-    public static final int LIFT_CHAMBER_1 = -1;
-    public static final int LIFT_CHAMBER_2 = -1;
+    public static final int LIFT_CHAMBER_1 = 1300;
+    public static final int LIFT_CHAMBER_2 = 2000;
 
     public static final double SPARKFUN_SPEED_GAIN =  0.09;   // 0.02 Forward Speed Control "Gain". eg: Ramp up to 50% power at a 25 inch error.   (0.50 / 25.0)
     public static final double SPARKFUN_STRAFE_GAIN =  0.2;   // 0.015 Strafe Speed Control "Gain".  eg: Ramp up to 25% power at a 25 degree Yaw error.   (0.25 / 25.0)
