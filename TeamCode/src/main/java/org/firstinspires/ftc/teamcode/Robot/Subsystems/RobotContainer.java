@@ -29,7 +29,7 @@ public class RobotContainer{
         sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
         imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
         telemetrySubsystem = new TelemetrySubsystem(telemetry);
-        sparkFunSubsystem.configureOtos();
+//        sparkFunSubsystem.configureOtos();
         extensionSubsystem.encoderReset();
 
     }
