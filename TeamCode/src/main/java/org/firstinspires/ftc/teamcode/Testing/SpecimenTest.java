@@ -24,6 +24,7 @@ public class SpecimenTest extends LinearOpMode {
 
         waitForStart();
 
+
         RobotContainer.driveSubsystem.setMotorPower(0.7, 0.6, 0.6, 0.6, 0.6);
         sleep(600);
         RobotContainer.driveSubsystem.setMotorPower(0.0, 0, 0, 0, 0);
