@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
-@TeleOp
+@Autonomous
 public class RoadRunner extends LinearOpMode {
     public ElapsedTime pickupTimer = new ElapsedTime();
 
@@ -46,22 +47,22 @@ public class RoadRunner extends LinearOpMode {
         TrajectoryActionBuilder PickupSecondSpikeMark = drive.actionBuilder(new Pose2d(52, 12.5, 0))
                 .strafeToLinearHeading(new Vector2d(58, 12.5), 0); // drive to spikemark for third sample
 
-        TrajectoryActionBuilder DriveToBucket3 = drive.actionBuilder(new Pose2d(58, 13.5,0))
+        TrajectoryActionBuilder DriveToBucket3 = drive.actionBuilder(new Pose2d(58, 12.5,0))
 //                .setTangent(1) // set tangent line for spline
                 .strafeToLinearHeading(new Vector2d(76,35), 45); // drive to bucket for second sample
 
         TrajectoryActionBuilder DriveToThirdSpikeMark = drive.actionBuilder(new Pose2d(76, 35, 45))
-                .strafeToLinearHeading(new Vector2d(64, 12.5), 0); // drive to spikemark for third sample
+                .strafeToLinearHeading(new Vector2d(63, 12.5), 0); // drive to spikemark for third sample
 
-        TrajectoryActionBuilder PickupThirdSpikeMark = drive.actionBuilder(new Pose2d(64, 12.5, 0))
-                .strafeToLinearHeading(new Vector2d(68, 12.5), 0); // drive to spikemark for third sample
+        TrajectoryActionBuilder PickupThirdSpikeMark = drive.actionBuilder(new Pose2d(63, 12.5, 0))
+                .strafeToLinearHeading(new Vector2d(65, 12.5), 0); // drive to spikemark for third sample
 
-        TrajectoryActionBuilder DriveToBucket4 = drive.actionBuilder(new Pose2d(65, 12.5,0))
+        TrajectoryActionBuilder DriveToBucket4 = drive.actionBuilder(new Pose2d(63, 12.5,0))
 //                .setTangent(1) // set tangent line for spline
                 .strafeToLinearHeading(new Vector2d(76,35), 45); // drive to bucket for second sample
         TrajectoryActionBuilder DriveToZero = drive.actionBuilder(new Pose2d(76, 35,45))
 //                .setTangent(1) // set tangent line for spline
-                .strafeToLinearHeading(new Vector2d(72,32), -90); // drive to bucket for second sample
+                .strafeToLinearHeading(new Vector2d(72,32), -Math.PI/4 ); // drive to bucket for second sample
 
 
         Action driveToSpikeMark = DriveToFirstSpikeMark.build();
@@ -132,7 +133,7 @@ public class RoadRunner extends LinearOpMode {
         RobotContainer.intakeSubsystem.stopIntake();
         sleep(150);
         RobotContainer.extensionSubsystem.zero();
-        RobotContainer.extensionSubsystem.moveExtension(120);
+        RobotContainer.extensionSubsystem.moveExtension(150);
 
         Actions.runBlocking(driveToThirdSpikeMark);
         RobotContainer.intakeSubsystem.wristDown();
