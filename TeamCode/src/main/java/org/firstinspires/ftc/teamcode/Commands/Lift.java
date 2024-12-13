@@ -10,10 +10,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.ExtensionSubsystem;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 
 public class Lift {
         private DcMotorEx lift;
         private ExtensionSubsystem extensionSubsystem;
+        private IntakeSubsystem intakeSubsystem;
 
         public Lift(HardwareMap hardwareMap) {
 
@@ -24,40 +26,16 @@ public class Lift {
 
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
-                if (!initialized) {
-                    extensionSubsystem.chamberHigh();
-                    initialized = true;
-                }
-
-                double pos = lift.getCurrentPosition();
-                packet.put("liftPos", pos);
-                if (pos < 3000.0) {
-                    return true;
-                } else {
-                    lift.setPower(0);
-                    return false;
-                }
+                return extensionSubsystem.chamberHigh();
             }
         }
 
-    public class LiftHighBasket implements Action {
-        private boolean initialized = false;
+        public class LiftHighBasket implements Action {
+            private boolean initialized = false;
 
-        @Override
-        public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialized) {
-                extensionSubsystem.bucketHigh();
-                initialized = true;
-            }
-
-            double pos = lift.getCurrentPosition();
-            packet.put("liftPos", pos);
-            if (pos < 3000.0) {
-                return true;
-            } else {
-                lift.setPower(0);
-                return false;
-            }
+            @Override
+            public boolean run(@NonNull TelemetryPacket packet) {
+                return extensionSubsystem.bucketHigh();
         }
     }
 
@@ -67,19 +45,14 @@ public class Lift {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialized) {
 
-                initialized = true;
-            }
-
-            double pos = lift.getCurrentPosition();
-            packet.put("liftPos", pos);
-            if (pos < 3000.0) {
-                return true;
+            if (!extensionSubsystem.getTouchSensor()) {
+                extensionSubsystem.liftRetract(-0.01);
             } else {
-                lift.setPower(0);
-                return false;
+                extensionSubsystem.liftRetract(0);
+                extensionSubsystem.liftEncoderReset();
             }
+
         }
     }
 
