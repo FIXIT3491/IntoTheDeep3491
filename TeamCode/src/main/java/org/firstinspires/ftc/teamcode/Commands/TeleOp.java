@@ -24,20 +24,20 @@ public class TeleOp {
     }
     public void intake(Gamepad gamepad1,Gamepad gamepad2, Telemetry telemetry){
         if (gamepad1.right_trigger > 0){
-            CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
+//            CommandBase.pickup.SpikeMarkAuto("Blue",telemetry);
         }else if (gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0){
-            RobotContainer.intakeSubsystem.wristBucket();
+//            RobotContainer.intakeSubsystem.wristBucket();
 //            RobotContainer.intakeSubsystem.spinIntake(-0.5);
         }
         else
-            RobotContainer.intakeSubsystem.stopIntake();
+//            RobotContainer.intakeSubsystem.stopIntake();
 
         if (gamepad1.right_trigger > 0){
         }
-        else if (gamepad2.left_bumper)
-            RobotContainer.intakeSubsystem.spinIntake(-0.4);
+        else if (gamepad2.left_bumper){}
+//            RobotContainer.intakeSubsystem.spinIntake(-0.4);
         else {
-            RobotContainer.intakeSubsystem.stopIntake();
+//            RobotContainer.intakeSubsystem.stopIntake();
         }
 
 
@@ -47,45 +47,44 @@ public class TeleOp {
         if (gamepad1.right_trigger > 0){
             //do nothing cause pickup method will set instead
         }else if (gamepad2.left_trigger > 0 || gamepad1.left_trigger > 0) {
-            RobotContainer.intakeSubsystem.wristBucket();
+//            RobotContainer.intakeSubsystem.wristBucket();
         } else {
-            RobotContainer.intakeSubsystem.wristUp();
+//            RobotContainer.intakeSubsystem.wristUp();
 
         }
     }
     public void extensionCommands(Gamepad gamepad2) {
 
         if (gamepad2.a) {
-            if (!RobotContainer.extensionSubsystem.getTouchSensor()) {
-                RobotContainer.extensionSubsystem.extenderRetract(-0.01);
-            } else
-                RobotContainer.extensionSubsystem.liftZero();
+//            if (!RobotContainer.extensionSubsystem.getTouchSensor()) {
+//                RobotContainer.extensionSubsystem.extenderRetract(-0.01);
+//            } else
+//                RobotContainer.extensionSubsystem.liftZero();
 
-        } else if (gamepad2.y) {
-            RobotContainer.extensionSubsystem.chamberRaise();
-        } else if (gamepad2.b) {
-            RobotContainer.extensionSubsystem.bucketHigh();
         } else if (gamepad2.x) {
-            RobotContainer.extensionSubsystem.chamberScore();
-        } else if(RobotContainer.extensionSubsystem.getTouchSensor()){
-//
+//            RobotContainer.extensionSubsystem.bucketLow();
+        } else if (gamepad2.b) {
+//            RobotContainer.extensionSubsystem.bucketHigh();
         }
+//        else if(RobotContainer.extensionSubsystem.getTouchSensor()){
+//            RobotContainer.extensionSubsystem.moveLiftRight(0.2);
+//        }
 //        if (RobotContainer.extensionSubsystem.getRightLift() < 0)
 //            RobotContainer.extensionSubsystem.moveLiftRight(0.4);
 //        else
 //            RobotContainer.extensionSubsystem.moveLiftRight(0);
 
-        if (RobotContainer.extensionSubsystem.getTouchSensor()){
-            RobotContainer.extensionSubsystem.liftZero();
-        }
+//        if (RobotContainer.extensionSubsystem.getTouchSensor()){
+//            RobotContainer.extensionSubsystem.liftZero();
+//        }
         if (gamepad2.back){
-            RobotContainer.extensionSubsystem.resetExtension();
+//            RobotContainer.extensionSubsystem.resetExtension();
         }
         pos = pos + (int) (-gamepad2.right_stick_y * 90);
         pos = Range.clip(pos, Constants.MIN_EXTENSION, Constants.MAX_EXTENSION);
 
 
-        RobotContainer.extensionSubsystem.moveExtension(pos);
+//        RobotContainer.extensionSubsystem.moveExtension(pos);
     }
 
     public void lmecCommands(Gamepad gamepad1) {
@@ -94,7 +93,7 @@ public class TeleOp {
 
     public void fieldCentricDrive(Gamepad gamepad1, Gamepad gamepad2,  Telemetry telemetry) {
         if (gamepad1.back){
-            RobotContainer.imuSubsystem.resetHeading();
+//            RobotContainer.imuSubsystem.resetHeading();
         }
 
         if (gamepad1.a) {
@@ -132,7 +131,7 @@ public class TeleOp {
                 leftBackPower   /= max;
                 rightBackPower  /= max;
             }
-            RobotContainer.driveSubsystem.setMotorPower(1, leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
+//            RobotContainer.driveSubsystem.setMotorPower(1, leftFrontPower, rightFrontPower, leftBackPower, rightBackPower);
         }
         else {
 
@@ -142,10 +141,10 @@ public class TeleOp {
             x = gamepad1.left_stick_x;
             rx = gamepad1.right_stick_x;
 
-            double botHeading = RobotContainer.imuSubsystem.getHeading();
+//            double botHeading = RobotContainer.imuSubsystem.getHeading();
 
-            rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
-            rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+//            rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+//            rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
 
             rotX = rotX * 1;  // Counteract imperfect strafing
 
@@ -156,7 +155,7 @@ public class TeleOp {
             double backRightPower = (rotY + rotX - rx) / denominator;
 
 
-                RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
+//                RobotContainer.driveSubsystem.setMotorPower(1, frontLeftPower, frontRightPower, backLeftPower, backRightPower);
 
         }
     }

@@ -17,31 +17,34 @@ public class SpecimenTest extends LinearOpMode {
 
         CommandBase.initialize(hardwareMap, telemetry, this);
 
-        /*RobotContainer.intakeSubsystem.wristUp();
+        RobotContainer.intakeSubsystem.wristUp();
         RobotContainer.intakeSubsystem.spinIntake(0.5);
         sleep(500);
-        RobotContainer.intakeSubsystem.stopIntake(); */
+        RobotContainer.intakeSubsystem.stopIntake();
 
         waitForStart();
 
-
-        RobotContainer.driveSubsystem.setMotorPower(0.7, -0.6, -0.6, -0.6, -0.6);
-        sleep(800);
+        RobotContainer.driveSubsystem.setMotorPower(0.7, 0.6, 0.6, 0.6, 0.6);
+        sleep(600);
         RobotContainer.driveSubsystem.setMotorPower(0.0, 0, 0, 0, 0);
         sleep(50);
-        RobotContainer.extensionSubsystem.chamberRaise();
-        sleep(2200);
-        RobotContainer.driveSubsystem.setMotorPower(0.3, -0.2, -0.2, -0.2, -0.2);
-        sleep(500);
-        RobotContainer.extensionSubsystem.raiseLift(0);
+        RobotContainer.extensionSubsystem.chamberHigh();
+        sleep(2300);
+        RobotContainer.intakeSubsystem.wristOut();
         sleep(50);
-        RobotContainer.driveSubsystem.setMotorPower(0.3, 0.3, 0.3, 0.3, 0.3);
+        RobotContainer.driveSubsystem.setMotorPower(0.3, 0.2, 0.2, 0.2, 0.2);
         sleep(1000);
-        CommandBase.drive.imuTurn(90);
+        RobotContainer.extensionSubsystem.raiseLift(1430);
+        sleep(50);
+        RobotContainer.driveSubsystem.setMotorPower(0.3, -0.3, -0.3, -0.3, -0.3);
+        sleep(1000);
+        RobotContainer.extensionSubsystem.raiseLift(0);
+        RobotContainer.intakeSubsystem.wristUp();
+        CommandBase.drive.imuTurn(-90);
         sleep(100);
         RobotContainer.driveSubsystem.setMotorPower(0.8, 0.7, 0.7, 0.7, 0.7);
         sleep(1200);
-        CommandBase.drive.imuTurn(180);
+        CommandBase.drive.imuTurn(0);
         sleep(100);
         RobotContainer.driveSubsystem.setMotorPower(0.3, -0.3, -0.3, -0.3, -0.3);
         sleep(650);
