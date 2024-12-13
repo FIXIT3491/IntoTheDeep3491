@@ -13,24 +13,24 @@ public class TeleopTest extends LinearOpMode {
 
     @Override
     public void runOpMode()  {
-        CommandBase.initialize(hardwareMap, telemetry, this);
+//        CommandBase.initialize(hardwareMap, telemetry, this);
 
         ElapsedTime time = new ElapsedTime();
-        CommandBase.teleOp.extensionCommands(gamepad2);
+//        CommandBase.teleOp.extensionCommands(gamepad2);
 
         waitForStart();
         time.reset();
         while (opModeIsActive()) {
 
-            CommandBase.teleOp.fieldCentricDrive(gamepad1, gamepad2, telemetry);
-            CommandBase.teleOp.lmecCommands(gamepad1);
-            CommandBase.teleOp.extensionCommands(gamepad2);
-            CommandBase.teleOp.wrist(gamepad1, gamepad2);
-            CommandBase.teleOp.intake(gamepad1, gamepad2, telemetry);
-            RobotContainer.telemetrySubsystem.getTelemetry(telemetry);
+//            CommandBase.teleOp.fieldCentricDrive(gamepad1, gamepad2, telemetry);
+//            CommandBase.teleOp.lmecCommands(gamepad1);
+//            CommandBase.teleOp.extensionCommands(gamepad2);
+//            CommandBase.teleOp.wrist(gamepad1, gamepad2);
+//            CommandBase.teleOp.intake(gamepad1, gamepad2, telemetry);
+//            RobotContainer.telemetrySubsystem.getTelemetry(telemetry);
         }
-        RobotContainer.extensionSubsystem.zero();
-        RobotContainer.intakeSubsystem.wristDown();
+//        RobotContainer.extensionSubsystem.zero();
+//        RobotContainer.intakeSubsystem.wristDown();
         sleep(3000);
     }
 }

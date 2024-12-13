@@ -3,10 +3,7 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.TouchSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.Commands.CommandBase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
@@ -46,32 +43,13 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
-    public void resetExtension(){
-        extensionMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
-
-    public void liftZero(){
+    public void liftEncoderReset(){
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
     }
     public boolean getTouchSensor(){
         return touchSensor.isPressed();
     }
-    public int getRightLift(){
-        return liftMotorRight.getCurrentPosition();
-    }
-    public void moveLiftRight(double power){
-//        liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        liftMotorRight.setPower(power);
-    }
-    public int getLeftPosition(){
-        return liftMotorLeft.getCurrentPosition();
-    }
-    public void resetRightEncoder(){
-        liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-    }
-
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -85,11 +63,12 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotorLeft.setPower(power);
     }
-    public void powerExtension(int power){
-        liftMotorRight.setPower(power);
-        liftMotorLeft.setPower(power);
+    public void extensionManual(int power1, int power2, int power3){
+        liftMotorRight.setPower(power1);
+        liftMotorLeft.setPower(power2);
+        extensionMotor.setPower(power3);
     }
-    public void extenderRetract(double speed) {
+    public void liftRetract(double speed) {
         liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotorRight.setPower(speed);
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -99,23 +78,15 @@ public class ExtensionSubsystem{
     public void raiseLift(int pos){
         moveLift(pos, 1);
     }
-    public void lowerLift(int pos){
-        moveLift(pos, 0.8);
-        //**must add checking system to make sure moveLiftOut > moveLiftIn**
-    }
+
     public void zero(){
-        if (!RobotContainer.extensionSubsystem.getTouchSensor()) {
-            RobotContainer.extensionSubsystem.extenderRetract(-0.01);
+        if (!getTouchSensor()) {
+            liftRetract(-0.01);
         } else
-            RobotContainer.extensionSubsystem.liftZero();
+           liftEncoderReset();
     }
-    public void chamberLow() {
-        raiseLift(1300);
-    }
+
     public void chamberHigh() { raiseLift(Constants.LIFT_CHAMBER_2);}
-    public void bucketLow() {
-        raiseLift(Constants.LIFT_BUCKET_1);
-    }
     public void bucketHigh() {
         raiseLift(Constants.LIFT_BUCKET_2);
     }
