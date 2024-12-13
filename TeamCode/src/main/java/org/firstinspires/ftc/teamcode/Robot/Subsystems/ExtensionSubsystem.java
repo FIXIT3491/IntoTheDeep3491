@@ -50,6 +50,7 @@ public class ExtensionSubsystem{
     public boolean getTouchSensor(){
         return touchSensor.isPressed();
     }
+
     public void moveExtension(int pos){
         extensionMotor.setTargetPosition(pos);
         extensionMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -82,8 +83,9 @@ public class ExtensionSubsystem{
     public void zero(){
         if (!getTouchSensor()) {
             liftRetract(-0.01);
-        } else
-           liftEncoderReset();
+        } else {
+            liftEncoderReset();
+        }
     }
 
     public boolean chamberHigh() {
