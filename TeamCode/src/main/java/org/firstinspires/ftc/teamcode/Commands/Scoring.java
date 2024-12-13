@@ -31,34 +31,34 @@ public class Scoring {
 //        CommandBase.drive.imuTurn(0);
     }
 
-    public void scoreChamber(int y){
-        if (y == 1){
-            RobotContainer.extensionSubsystem.chamberLow();
-
-            RobotContainer.intakeSubsystem.wristDown();
-            //lift goes down a lil bit
-            RobotContainer.intakeSubsystem.spinIntake(-1);
-            //if touch sensor isnt pressed then
-            RobotContainer.intakeSubsystem.stopIntake();
-            RobotContainer.intakeSubsystem.wristUp();
-            //sleep
-            RobotContainer.extensionSubsystem.chamberLow();
-            //lift down
-
-        }
-
-        if (y == 2){
-            RobotContainer.extensionSubsystem.chamberHigh();
-            //sleep
-            RobotContainer.intakeSubsystem.wristDown();
-            //lift goes down a lil bit
-            RobotContainer.intakeSubsystem.spinIntake(-1);
-            //if touch sensor isnt pressed then
-            RobotContainer.intakeSubsystem.stopIntake();
-            RobotContainer.intakeSubsystem.wristUp();
-            //sleep
-            RobotContainer.extensionSubsystem.chamberHigh();
-            //lift down
-        }
-    }
+//    public void scoreChamber(int y){
+//        if (y == 1){
+//            RobotContainer.extensionSubsystem.chamberLow();
+//
+//            RobotContainer.intakeSubsystem.wristDown();
+//            //lift goes down a lil bit
+//            RobotContainer.intakeSubsystem.spinIntake(-1);
+//            //if touch sensor isnt pressed then
+//            RobotContainer.intakeSubsystem.stopIntake();
+//            RobotContainer.intakeSubsystem.wristUp();
+//            //sleep
+//            RobotContainer.extensionSubsystem.chamberLow();
+//            //lift down
+//
+//        }
+//
+//        if (y == 2){
+//            RobotContainer.extensionSubsystem.chamberHigh();
+//            //sleep
+//            RobotContainer.intakeSubsystem.wristDown();
+//            //lift goes down a lil bit
+//            RobotContainer.intakeSubsystem.spinIntake(-1);
+//            //if touch sensor isnt pressed then
+//            RobotContainer.intakeSubsystem.stopIntake();
+//            RobotContainer.intakeSubsystem.wristUp();
+//            //sleep
+//            RobotContainer.extensionSubsystem.chamberHigh();
+//            //lift down
+//        }
+//    }
 }

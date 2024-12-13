@@ -11,31 +11,18 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 //import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunSubsystem;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 public class CommandBase {
-
+HardwareMap hardwareMap;
 
     // Instances of your subsystems (child classes)
 //    public static Config config;
-    public static Drive drive;
-    public static Pickup pickup;
-    public static Scoring scoring;
-    public static TeleOp teleOp;
+    Claw claw = new Claw(hardwareMap);
+    public Lift lift = new Lift(hardwareMap);
 
 
 
-
-    public static void initialize(HardwareMap hardwareMap, Telemetry telemetry, LinearOpMode op) {
-
-//        config = new Config(telemetry);
-        drive = new Drive(op, telemetry);
-        pickup = new Pickup(telemetry);
-        scoring = new Scoring(telemetry, op);
-        teleOp = new TeleOp(telemetry);
-        RobotContainer.initialize(hardwareMap, telemetry);
-
-
-    }
     public CommandBase(){
 
     }
