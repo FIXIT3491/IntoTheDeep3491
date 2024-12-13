@@ -25,7 +25,7 @@ public class Lift {
             @Override
             public boolean run(@NonNull TelemetryPacket packet) {
                 if (!initialized) {
-                    extensionSubsystem.moveLift(3,3);
+                    extensionSubsystem.chamberHigh();
                     initialized = true;
                 }
 
@@ -39,13 +39,14 @@ public class Lift {
                 }
             }
         }
+
     public class LiftHighBasket implements Action {
         private boolean initialized = false;
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
-                extensionSubsystem.moveLift(3,3);
+                extensionSubsystem.bucketHigh();
                 initialized = true;
             }
 
@@ -59,6 +60,7 @@ public class Lift {
             }
         }
     }
+
     //@Todo add arm logic
     public class LiftZero implements Action {
         private boolean initialized = false;
@@ -66,7 +68,7 @@ public class Lift {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
-                extensionSubsystem.moveLift(3,3);
+
                 initialized = true;
             }
 
