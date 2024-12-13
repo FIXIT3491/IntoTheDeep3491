@@ -8,23 +8,23 @@ public class RobotContainer{
 
 
     // Instances of your subsystems (child classes)
-    public static DriveSubsystem driveSubsystem;
-    public static IntakeSubsystem intakeSubsystem;
-    public static ExtensionSubsystem extensionSubsystem;
-//    public static LMECSubsystem lmecSubsystem;
-    public static ColorSubsystem colorSubsystem;
-    public static SparkFunSubsystem sparkFunSubsystem;
-    private static RobotContainer robotContainer;
-    public static IMUSubsystem imuSubsystem;
-    public static TelemetrySubsystem telemetrySubsystem;
+    public  DriveSubsystem driveSubsystem;
+    public  IntakeSubsystem intakeSubsystem;
+    public  ExtensionSubsystem extensionSubsystem;
+    public  LMECSubsystem lmecSubsystem;
+    public  ColorSubsystem colorSubsystem;
+    public  SparkFunSubsystem sparkFunSubsystem;
+    private  RobotContainer robotContainer;
+    public IMUSubsystem imuSubsystem;
+    public TelemetrySubsystem telemetrySubsystem;
 
 
 
-    public static void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
+    public void initialize(HardwareMap hardwareMap, Telemetry telemetry) {
         driveSubsystem = new DriveSubsystem(hardwareMap, telemetry);
         intakeSubsystem = new IntakeSubsystem(hardwareMap, telemetry);
         extensionSubsystem = new ExtensionSubsystem(hardwareMap, telemetry);
-//        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
+        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
         sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
         imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
