@@ -86,8 +86,12 @@ public class ExtensionSubsystem{
            liftEncoderReset();
     }
 
-    public void chamberHigh() { raiseLift(Constants.LIFT_CHAMBER_2);}
-    public void bucketHigh() {
+    public boolean chamberHigh() {
+        raiseLift(Constants.LIFT_CHAMBER_2);
+        return true;
+    }
+    public boolean bucketHigh() {
         raiseLift(Constants.LIFT_BUCKET_2);
+        return true;
     }
 }
