@@ -24,59 +24,61 @@ public class Intake {
 
     }
 
-    public class pickUpSample implements Action {
+    public class wristDown implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+                intakeSubsystem.wristDown();
+            return true;
+        }
+    }
+
+    public class wristBasket implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+                intakeSubsystem.wristBucket();
+                return true;
+        }
+    }
+
+    public class wristUp implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            intakeSubsystem.wristUp();
+            return true;
+        }
+    }
+
+    public class intake implements Action {
         private boolean initialized = false;
         private double distance = 0;
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
-                intakeSubsystem.wristDown();
-                // @TODO check if power 1 is good
-                intakeSubsystem.spinIntake(1);
+                intakeSubsystem.spinIntake(0.7);
                 initialized = true;
             }
-
                 distance = colorSubsystem.DetectDistance();
                 while (distance > 60) {
                     distance = colorSubsystem.DetectDistance();
                 }
                     intakeSubsystem.spinIntake(0);
-                    return true;
+            return true;
         }
     }
 
-    public class scoreBasket implements Action {
-        private boolean initialized = false;
+    public class outtake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialized) {
-                intakeSubsystem.wristBucket();
-                initialized = true;
-            }   // @TODO check if this works
-                intakeSubsystem.wristBucket();
-                return true;
+            intakeSubsystem.spinIntake(-0.7);
+            return true;
         }
     }
 
-    //@Todo add arm logic
-    public class LiftZero implements Action {
-        private boolean initialized = false;
-
+    public class stopIntake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            if (!initialized) {
-
-                initialized = true;
-            }
-
-            double pos = lift.getCurrentPosition();
-            packet.put("liftPos", pos);
-            if (pos < 3000.0) {
-                return true;
-            } else {
-                lift.setPower(0);
-                return false;
-            }
+            intakeSubsystem.spinIntake(0);
+            return true;
         }
     }
 }
