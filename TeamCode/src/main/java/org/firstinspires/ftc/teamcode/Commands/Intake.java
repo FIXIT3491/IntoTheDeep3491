@@ -24,7 +24,7 @@ public class Intake {
 
     }
 
-    public class wristDown implements Action {
+    public class WristDown implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
                 intakeSubsystem.wristDown();
@@ -32,7 +32,7 @@ public class Intake {
         }
     }
 
-    public class wristBasket implements Action {
+    public class WristBasket implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
                 intakeSubsystem.wristBucket();
@@ -40,7 +40,7 @@ public class Intake {
         }
     }
 
-    public class wristUp implements Action {
+    public class WristUp implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             intakeSubsystem.wristUp();
@@ -48,7 +48,7 @@ public class Intake {
         }
     }
 
-    public class intake implements Action {
+    public class Spinnny implements Action {
         private boolean initialized = false;
         private double distance = 0;
         @Override
@@ -66,7 +66,7 @@ public class Intake {
         }
     }
 
-    public class outtake implements Action {
+    public class Outtake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             intakeSubsystem.spinIntake(-0.7);
@@ -74,11 +74,19 @@ public class Intake {
         }
     }
 
-    public class stopIntake implements Action {
+    public class StopIntake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             intakeSubsystem.spinIntake(0);
             return true;
         }
     }
+
+    public Action wristDown() { return new Intake.WristDown(); }
+    public Action wristBasket() { return new Intake.WristBasket(); }
+    public Action wristUp() { return new Intake.WristUp(); }
+    public Action spinnny() { return new Intake.Spinnny(); }
+    public Action outtake() { return new Intake.Outtake(); }
+    public Action stopIntake() { return new Intake.StopIntake(); }
+
 }
