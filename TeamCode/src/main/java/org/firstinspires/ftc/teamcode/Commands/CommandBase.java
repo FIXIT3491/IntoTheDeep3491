@@ -18,7 +18,7 @@ HardwareMap hardwareMap;
 
     // Instances of your subsystems (child classes)
 //    public static Config config;
-    Claw claw = new Claw(hardwareMap);
+//    Claw claw = new Claw(hardwareMap);
     public Lift lift = new Lift(hardwareMap);
 
 
