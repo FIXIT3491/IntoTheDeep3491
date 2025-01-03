@@ -39,7 +39,7 @@ public class Lift {
         }
     }
 
-    //@Todo add arm logic
+    //Todo: test da code
     public class LiftZero implements Action {
         private boolean initialized = false;
 
@@ -54,7 +54,6 @@ public class Lift {
                 return true;
         }
     }
-    //@Todo add arm logic
     public class MoveExtension implements Action {
         private boolean initialized = false;
 
