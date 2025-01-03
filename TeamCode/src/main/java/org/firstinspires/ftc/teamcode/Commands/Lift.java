@@ -54,17 +54,15 @@ public class Lift {
                 return true;
         }
     }
-    public class MoveExtension implements Action {
+    public class MoveExtensionPreload implements Action {
         private boolean initialized = false;
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
 
-            while (!extensionSubsystem.getTouchSensor()) {
-                extensionSubsystem.liftRetract(-0.01);
-            }
-            extensionSubsystem.liftRetract(0);
-            extensionSubsystem.liftEncoderReset();
+
+            extensionSubsystem.moveExtension(1600);
+
             return true;
         }
     }
@@ -72,6 +70,7 @@ public class Lift {
     public Action liftHighBasket() {return new LiftHighBasket();}
     public Action liftHighChamber() {return new LiftHighChamber();}
     public Action liftZero() {return new LiftZero();}
+    public Action moveExtensionPreload() {return new MoveExtensionPreload();}
 
 
 

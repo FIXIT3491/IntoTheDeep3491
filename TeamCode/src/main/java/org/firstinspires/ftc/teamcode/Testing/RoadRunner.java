@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -14,10 +15,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Commands.CommandBase;
 import org.firstinspires.ftc.teamcode.Commands.Drive;
 import org.firstinspires.ftc.teamcode.Commands.Intake;
+import org.firstinspires.ftc.teamcode.Commands.LMEC;
 import org.firstinspires.ftc.teamcode.Commands.Lift;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 @Autonomous
@@ -26,17 +29,18 @@ public class RoadRunner extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         Pose2d initialPose = new Pose2d(52, 52, 0);
 
         RobotContainer robot = new RobotContainer(hardwareMap);
         Drive drive = new Drive(hardwareMap);
         Lift lift = new Lift(hardwareMap);
         Intake intake = new Intake(hardwareMap);
+        LMEC lmec = new LMEC(hardwareMap);
+
 
         robot.initialize(telemetry);
 
-//        CommandBase.initialize(hardwareMap, telemetry, this);
 
 
         waitForStart();
@@ -44,9 +48,14 @@ public class RoadRunner extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-
+                        new ParallelAction(
+                                lift.moveExtensionPreload(),
+                                lift.liftHighBasket()
+                        )
 
                 )
+
+
         );
 
 
