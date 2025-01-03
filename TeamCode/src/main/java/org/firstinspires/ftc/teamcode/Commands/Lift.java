@@ -46,23 +46,35 @@ public class Lift {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
 
-            if (!extensionSubsystem.getTouchSensor()) {
+            while (!extensionSubsystem.getTouchSensor()) {
                 extensionSubsystem.liftRetract(-0.01);
-            } else {
+            }
                 extensionSubsystem.liftRetract(0);
                 extensionSubsystem.liftEncoderReset();
-            }
+                return true;
+        }
+    }
+    //@Todo add arm logic
+    public class MoveExtension implements Action {
+        private boolean initialized = false;
 
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+
+            while (!extensionSubsystem.getTouchSensor()) {
+                extensionSubsystem.liftRetract(-0.01);
+            }
+            extensionSubsystem.liftRetract(0);
+            extensionSubsystem.liftEncoderReset();
+            return true;
         }
     }
 
-    public Action liftHighBasket() {
-        return new LiftHighBasket();
-    }
+    public Action liftHighBasket() {return new LiftHighBasket();}
     public Action liftHighChamber() {return new LiftHighChamber();}
-    public Action liftZero() {
-        return new LiftZero();
-    }
+    public Action liftZero() {return new LiftZero();}
+
+
 
 
 

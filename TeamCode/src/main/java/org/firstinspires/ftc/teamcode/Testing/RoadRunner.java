@@ -12,6 +12,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandBase;
+import org.firstinspires.ftc.teamcode.Commands.Intake;
+import org.firstinspires.ftc.teamcode.Commands.Lift;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
@@ -27,7 +29,8 @@ public class RoadRunner extends LinearOpMode {
         Pose2d initialPose = new Pose2d(52, 52, 0);
 
         SparkFunOTOSDrive drive = new SparkFunOTOSDrive(hardwareMap, initialPose);
-        CommandBase.initialize(hardwareMap, telemetry, this);
+        Lift lift = new Lift(hardwareMap);
+//        CommandBase.initialize(hardwareMap, telemetry, this);
 
 
 
@@ -78,86 +81,87 @@ public class RoadRunner extends LinearOpMode {
 
         waitForStart();
 
-        RobotContainer.extensionSubsystem.bucketHigh();
-        RobotContainer.extensionSubsystem.moveExtension(1600);
-        sleep(2300);
-        RobotContainer.intakeSubsystem.wristOut();
-        RobotContainer.intakeSubsystem.spinIntake(-0.7);
-        sleep(1750);
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.zero();
-        RobotContainer.extensionSubsystem.moveExtension( 120);
 
-        Actions.runBlocking(driveToSpikeMark);
-        RobotContainer.intakeSubsystem.wristDown();
-        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
-        sleep(400);
-        Actions.runBlocking(pickupSpikeMark);
-        sleep(750);
-        RobotContainer.intakeSubsystem.wristOut();
-        RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.bucketHigh();
-
-
-        Actions.runBlocking(driveToBucket2);
-        RobotContainer.extensionSubsystem.moveExtension(850);
-        RobotContainer.intakeSubsystem.wristMove(0.4);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-        sleep(750);
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.intakeSubsystem.stopIntake();
-        sleep(150);
-        RobotContainer.extensionSubsystem.zero();
-        RobotContainer.extensionSubsystem.moveExtension(120);
-
-        Actions.runBlocking(driveToSecondSpikeMark);
-        RobotContainer.intakeSubsystem.wristDown();
-        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
-        sleep(400);
-        Actions.runBlocking(pickupSecondSpikeMark);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.wristOut();
-        RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.bucketHigh();
-
-
-        Actions.runBlocking(driveToBucket3);
-        RobotContainer.extensionSubsystem.moveExtension(850);
-        RobotContainer.intakeSubsystem.wristMove(0.4);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-        sleep(750);
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.intakeSubsystem.stopIntake();
-        sleep(150);
-        RobotContainer.extensionSubsystem.zero();
-        RobotContainer.extensionSubsystem.moveExtension(150);
-
-        Actions.runBlocking(driveToThirdSpikeMark);
-        RobotContainer.intakeSubsystem.wristDown();
-        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
-        sleep(400);
-        Actions.runBlocking(pickupThirdSpikeMark);
-        sleep(750);
-        RobotContainer.intakeSubsystem.wristOut();
-        RobotContainer.intakeSubsystem.stopIntake();
-        RobotContainer.extensionSubsystem.bucketHigh();
-
-        Actions.runBlocking(driveToBucket4);
-        RobotContainer.extensionSubsystem.moveExtension(850);
-        RobotContainer.intakeSubsystem.wristMove(0.4);
-        sleep(1000);
-        RobotContainer.intakeSubsystem.spinIntake(-0.6);
-        sleep(750);
-        RobotContainer.intakeSubsystem.wristUp();
-        RobotContainer.intakeSubsystem.stopIntake();
-        sleep(150);
-        RobotContainer.extensionSubsystem.zero();
-        CommandBase.drive.imuTurn(-90);
-        RobotContainer.extensionSubsystem.moveExtension(0);
-        sleep(1000);
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//        RobotContainer.extensionSubsystem.moveExtension(1600);
+//        sleep(2300);
+//        RobotContainer.intakeSubsystem.wristOut();
+//        RobotContainer.intakeSubsystem.spinIntake(-0.7);
+//        sleep(1750);
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        RobotContainer.extensionSubsystem.zero();
+//        RobotContainer.extensionSubsystem.moveExtension( 120);
+//
+//        Actions.runBlocking(driveToSpikeMark);
+//        RobotContainer.intakeSubsystem.wristDown();
+//        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
+//        sleep(400);
+//        Actions.runBlocking(pickupSpikeMark);
+//        sleep(750);
+//        RobotContainer.intakeSubsystem.wristOut();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//
+//
+//        Actions.runBlocking(driveToBucket2);
+//        RobotContainer.extensionSubsystem.moveExtension(850);
+//        RobotContainer.intakeSubsystem.wristMove(0.4);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+//        sleep(750);
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        sleep(150);
+//        RobotContainer.extensionSubsystem.zero();
+//        RobotContainer.extensionSubsystem.moveExtension(120);
+//
+//        Actions.runBlocking(driveToSecondSpikeMark);
+//        RobotContainer.intakeSubsystem.wristDown();
+//        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
+//        sleep(400);
+//        Actions.runBlocking(pickupSecondSpikeMark);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.wristOut();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//
+//
+//        Actions.runBlocking(driveToBucket3);
+//        RobotContainer.extensionSubsystem.moveExtension(850);
+//        RobotContainer.intakeSubsystem.wristMove(0.4);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+//        sleep(750);
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        sleep(150);
+//        RobotContainer.extensionSubsystem.zero();
+//        RobotContainer.extensionSubsystem.moveExtension(150);
+//
+//        Actions.runBlocking(driveToThirdSpikeMark);
+//        RobotContainer.intakeSubsystem.wristDown();
+//        RobotContainer.intakeSubsystem.spinIntake(Constants.SPINNING);
+//        sleep(400);
+//        Actions.runBlocking(pickupThirdSpikeMark);
+//        sleep(750);
+//        RobotContainer.intakeSubsystem.wristOut();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        RobotContainer.extensionSubsystem.bucketHigh();
+//
+//        Actions.runBlocking(driveToBucket4);
+//        RobotContainer.extensionSubsystem.moveExtension(850);
+//        RobotContainer.intakeSubsystem.wristMove(0.4);
+//        sleep(1000);
+//        RobotContainer.intakeSubsystem.spinIntake(-0.6);
+//        sleep(750);
+//        RobotContainer.intakeSubsystem.wristUp();
+//        RobotContainer.intakeSubsystem.stopIntake();
+//        sleep(150);
+//        RobotContainer.extensionSubsystem.zero();
+//        CommandBase.drive.imuTurn(-90);
+//        RobotContainer.extensionSubsystem.moveExtension(0);
+//        sleep(1000);
 
     }
 }

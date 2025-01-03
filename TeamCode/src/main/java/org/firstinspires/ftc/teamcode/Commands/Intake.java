@@ -51,6 +51,7 @@ public class Intake {
     public class Spinnny implements Action {
         private boolean initialized = false;
         private double distance = 0;
+
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             if (!initialized) {
