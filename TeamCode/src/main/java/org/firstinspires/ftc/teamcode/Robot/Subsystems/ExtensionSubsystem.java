@@ -110,7 +110,7 @@ public class ExtensionSubsystem{
             RobotContainer.extensionSubsystem.liftZero();
     }
     public void chamberLow() {
-        raiseLift(1300);
+        raiseLift(Constants.LIFT_CHAMBER_1);
     }
     public void chamberHigh() { raiseLift(Constants.LIFT_CHAMBER_2);}
     public void bucketLow() {
