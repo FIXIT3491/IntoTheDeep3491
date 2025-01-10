@@ -16,10 +16,10 @@ public class LMECSubsystem{
 
     public LMECSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
         //Hardware maps
-        LMFRServo = hardwareMap.get(ServoImplEx.class, "LMFRS");
-        LMFLServo = hardwareMap.get(ServoImplEx.class, "LMFLS");
-        LMBRServo = hardwareMap.get(ServoImplEx.class, "LMBRS");
-        LMBLServo = hardwareMap.get(ServoImplEx.class, "LMBLS");
+//        LMFRServo = hardwareMap.get(ServoImplEx.class, "LMFRS");
+//        LMFLServo = hardwareMap.get(ServoImplEx.class, "LMFLS");
+//        LMBRServo = hardwareMap.get(ServoImplEx.class, "LMBRS");
+//        LMBLServo = hardwareMap.get(ServoImplEx.class, "LMBLS");
 
         //Direction Servo
 //        LMFLServo.setDirection(Servo.Direction.REVERSE);

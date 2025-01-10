@@ -35,11 +35,11 @@ public class RoadRunner extends LinearOpMode {
         RobotContainer robot = new RobotContainer(hardwareMap);
         Drive drive = new Drive(hardwareMap);
         Lift lift = new Lift(hardwareMap);
-        Intake intake = new Intake(hardwareMap);
+//        Intake intake = new Intake(hardwareMap);
         LMEC lmec = new LMEC(hardwareMap);
 
 
-        robot.initialize(telemetry);
+//        robot.initialize(telemetry);
 
 
 

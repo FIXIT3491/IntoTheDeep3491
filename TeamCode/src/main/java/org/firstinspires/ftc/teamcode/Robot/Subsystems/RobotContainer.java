@@ -13,24 +13,22 @@ public class RobotContainer{
     public  ExtensionSubsystem extensionSubsystem;
     public  LMECSubsystem lmecSubsystem;
     public  ColorSubsystem colorSubsystem;
-    private  RobotContainer robotContainer;
     public IMUSubsystem imuSubsystem;
     public TelemetrySubsystem telemetrySubsystem;
-    HardwareMap h;
+
 
     public RobotContainer(HardwareMap hardwareMap) {
-        h = hardwareMap;
     }
 
 
-    public void initialize(Telemetry telemetry) {
+    public void initialize(Telemetry telemetry, HardwareMap hardwareMap) {
 
-        driveSubsystem = new DriveSubsystem(h, telemetry);
-        intakeSubsystem = new IntakeSubsystem(h, telemetry);
-        extensionSubsystem = new ExtensionSubsystem(h, telemetry);
-        lmecSubsystem = new LMECSubsystem(h, telemetry);
-        colorSubsystem = new ColorSubsystem(h, telemetry);
-        imuSubsystem = new IMUSubsystem(h, telemetry);
+        driveSubsystem = new DriveSubsystem(hardwareMap, telemetry);
+        intakeSubsystem = new IntakeSubsystem(hardwareMap, telemetry);
+        extensionSubsystem = new ExtensionSubsystem(hardwareMap, telemetry);
+//        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
+        colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
+        imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
         telemetrySubsystem = new TelemetrySubsystem(telemetry);
         extensionSubsystem.encoderReset();
 
