@@ -14,20 +14,30 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorDigitalTouch;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.Intake;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 @Autonomous(name="WristTest", group = "Autonomous")
     public class WristTest extends LinearOpMode{
-        Intake intake = new Intake(hardwareMap);
 
 
-
+        RobotContainer robot = new RobotContainer(hardwareMap);
+        IntakeSubsystem intakeSubsystem;
 
         @Override
         public void runOpMode() throws InterruptedException {
 
-            Actions.runBlocking(intake.wristBasket());
+            Intake intake = new Intake(hardwareMap, intakeSubsystem);
 
 
+
+            waitForStart();
+
+            Actions.runBlocking(
+                    intake.wristBasket()
+            );
+
+            sleep(1000);
         }
 
 }
