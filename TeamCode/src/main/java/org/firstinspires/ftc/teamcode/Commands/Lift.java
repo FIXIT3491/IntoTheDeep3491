@@ -13,36 +13,33 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.ExtensionSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 
 public class Lift {
-        private DcMotorEx lift;
-        private ExtensionSubsystem extensionSubsystem;
-        private IntakeSubsystem intakeSubsystem;
 
-        public Lift(HardwareMap hardwareMap) {
+    private DcMotorEx lift;
 
+    ExtensionSubsystem extensionSubsystem;
+
+    public Lift(ExtensionSubsystem i) {
+        extensionSubsystem = i;
+    }
+
+    public class LiftHighChamber implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            extensionSubsystem.chamberHigh();
+            return false;
         }
+    }
 
-        public class LiftHighChamber implements Action {
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket packet) {
-                return extensionSubsystem.chamberHigh();
-            }
-        }
-
-        public class LiftHighBasket implements Action {
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket packet) {
-                return extensionSubsystem.bucketHigh();
+    public class LiftHighBasket implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            extensionSubsystem.bucketHigh();
+            return false;
         }
     }
 
     //Todo: test da code
     public class LiftZero implements Action {
-        private boolean initialized = false;
-
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
 
@@ -51,19 +48,32 @@ public class Lift {
             }
                 extensionSubsystem.liftRetract(0);
                 extensionSubsystem.liftEncoderReset();
-                return true;
+            return false;
         }
     }
     public class MoveExtensionPreload implements Action {
-        private boolean initialized = false;
-
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-
-
             extensionSubsystem.moveExtension(1600);
 
-            return true;
+            return false;
+        }
+    }
+    public class MoveExtensionZero implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            extensionSubsystem.moveExtension(120);
+
+            return false;
+        }
+    }
+
+    public class MoveExtensionScoring implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            extensionSubsystem.moveExtension(850);
+
+            return false;
         }
     }
 
@@ -71,6 +81,8 @@ public class Lift {
     public Action liftHighChamber() {return new LiftHighChamber();}
     public Action liftZero() {return new LiftZero();}
     public Action moveExtensionPreload() {return new MoveExtensionPreload();}
+    public Action moveExtensionZero() {return new MoveExtensionZero();}
+    public Action moveExtensionScoring() {return new MoveExtensionScoring();}
 
 
 
