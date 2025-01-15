@@ -14,7 +14,6 @@ public class RobotContainer{
     public  LMECSubsystem lmecSubsystem;
     public  ColorSubsystem colorSubsystem;
     public IMUSubsystem imuSubsystem;
-    public TelemetrySubsystem telemetrySubsystem;
 
 
     public RobotContainer(HardwareMap hardwareMap) {
@@ -29,7 +28,6 @@ public class RobotContainer{
 //        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
         imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
-        telemetrySubsystem = new TelemetrySubsystem(telemetry);
         extensionSubsystem.encoderReset();
 
     }

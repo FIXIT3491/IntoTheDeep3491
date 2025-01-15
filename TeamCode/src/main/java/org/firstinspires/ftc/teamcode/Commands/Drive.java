@@ -11,10 +11,12 @@ import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
 
 public class Drive {
     HardwareMap h;
+    SparkFunOTOSDrive drive;
 
 
-    public Drive(HardwareMap hardwareMap){
+    public Drive(HardwareMap hardwareMap, SparkFunOTOSDrive d){
         h = hardwareMap;
+        drive = d;
     }
 
 
@@ -23,7 +25,7 @@ public class Drive {
 
     Pose2d initialPose = new Pose2d(52, 52, 0);
 
-    SparkFunOTOSDrive drive = new SparkFunOTOSDrive(h, initialPose);
+
 
 
     TrajectoryActionBuilder DriveToFirstSpikeMark = drive.actionBuilder(initialPose)
