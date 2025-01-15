@@ -11,7 +11,7 @@ public class RobotContainer{
     public static DriveSubsystem driveSubsystem;
     public static IntakeSubsystem intakeSubsystem;
     public static ExtensionSubsystem extensionSubsystem;
-    public static LMECSubsystem lmecSubsystem;
+//    public static LMECSubsystem lmecSubsystem;
     public static ColorSubsystem colorSubsystem;
     public static SparkFunSubsystem sparkFunSubsystem;
     private static RobotContainer robotContainer;
@@ -24,7 +24,7 @@ public class RobotContainer{
         driveSubsystem = new DriveSubsystem(hardwareMap, telemetry);
         intakeSubsystem = new IntakeSubsystem(hardwareMap, telemetry);
         extensionSubsystem = new ExtensionSubsystem(hardwareMap, telemetry);
-        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
+//        lmecSubsystem = new LMECSubsystem(hardwareMap, telemetry);
         colorSubsystem = new ColorSubsystem(hardwareMap, telemetry);
         sparkFunSubsystem = new SparkFunSubsystem(hardwareMap, telemetry);
         imuSubsystem = new IMUSubsystem(hardwareMap, telemetry);
