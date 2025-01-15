@@ -98,10 +98,10 @@ public class TeleOp {
 
         if (gamepad1.a) {
             locked = true;
-            RobotContainer.lmecSubsystem.lockMechanum();
+//            RobotContainer.lmecSubsystem.lockMechanum();
         } else if (gamepad1.b) {
             locked = false;
-            RobotContainer.lmecSubsystem.unlockMechanum();
+//            RobotContainer.lmecSubsystem.unlockMechanum();
         }
 
         if (locked){

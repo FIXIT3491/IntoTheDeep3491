@@ -11,7 +11,7 @@ public class TelemetrySubsystem {
 
     public void getTelemetry(Telemetry telemetry){
         RobotContainer.extensionSubsystem.getTelemetry(telemetry);
-        RobotContainer.lmecSubsystem.getTelemetry(telemetry);
+//        RobotContainer.lmecSubsystem.getTelemetry(telemetry);
         RobotContainer.driveSubsystem.getTelemetry(telemetry);
         RobotContainer.intakeSubsystem.getTelemetry(telemetry);
         CommandBase.pickup.getTelemetry(telemetry);
