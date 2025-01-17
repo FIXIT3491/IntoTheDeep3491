@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 @Autonomous
-public class RoadRunner extends LinearOpMode {
+public class TestingActions extends LinearOpMode {
     public ElapsedTime pickupTimer = new ElapsedTime();
 
 
@@ -91,128 +91,12 @@ public class RoadRunner extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        new ParallelAction(
-                                lift.moveExtensionPreload(),
-                                lift.liftHighBasket()
-                        ),
+                        driveToSpikeMark,
+                        intake.wristDown()
 
-                        new SleepAction(1),
-                        intake.wristBasket(),
-                        intake.outtake(),
-                        new SleepAction(1),
-
-//                      new ParallelAction(
-                        intake.wristUp(),
-                        new SleepAction(1),
-                        intake.stopIntake(),
-                        new SleepAction(1),
-                        lift.liftZero(),
-                        new SleepAction(1),
-                        lift.moveExtensionZero(),
-//                      ),
-
-//                        driveToSpikeMark,
-                        intake.wristDown(),
-                        intake.spinnny(),
-                        new SleepAction(400),
-                        pickupSpikeMark,
-                        new SleepAction(750),
-
-                        new ParallelAction(
-                                intake.wristUp(),
-                                intake.stopIntake(),
-                                lift.liftHighBasket()
-                        ),
-
-
-                        driveToBucket2,
-                        lift.moveExtensionScoring(),
-                        intake.wristBasket(),
-                        new SleepAction(1000),
-                        intake.outtake(),
-                        new SleepAction(750),
-
-                        new ParallelAction(
-                                intake.wristUp(),
-                                intake.stopIntake(),
-                                lift.liftZero(),
-                                lift.moveExtensionZero()
-                        ),
-
-
-                        driveToSecondSpikeMark,
-                        lift.liftZero(),
-                        intake.wristDown(),
-                        intake.spinnny(),
-                        new SleepAction(400),
-                        pickupSecondSpikeMark,
-                        new SleepAction(1000),
-
-                        new ParallelAction(
-                                intake.wristBasket(),
-                                intake.stopIntake(),
-                                lift.liftHighBasket()
-                        ),
-
-
-                        driveToBucket3,
-                        lift.moveExtensionScoring(),
-                        intake.wristBasket(),
-                        new SleepAction(1000),
-                        intake.outtake(),
-                        new SleepAction(750),
-
-                        new ParallelAction(
-                                intake.wristUp(),
-                                intake.stopIntake(),
-                                lift.liftZero(),
-                                lift.moveExtensionZero()
-                        ),
-
-
-                        driveToThirdSpikeMark,
-                        intake.wristDown(),
-                        intake.spinnny(),
-                        new SleepAction(400),
-                        pickupThirdSpikeMark,
-                        new SleepAction(750),
-
-                        new ParallelAction(
-                                intake.wristBasket(),
-                                intake.stopIntake(),
-                                lift.liftHighBasket()
-                        ),
-
-
-                        driveToBucket4,
-                        lift.moveExtensionScoring(),
-                        intake.wristBasket(),
-                        new SleepAction(1000),
-                        intake.outtake(),
-                        new SleepAction(750),
-                        intake.wristUp(),
-                        intake.stopIntake(),
-                        new SleepAction(150),
-                        intake.spinnny(),
-                        new SleepAction(750),
-
-                        new ParallelAction(
-                                intake.wristUp(),
-                                intake.stopIntake(),
-                                lift.liftZero(),
-                                lift.moveExtensionZero()
-                        ),
-
-                        //turn to 0 for max
-                        new SleepAction(1000)
-
-
-
-
-                        )
-
-
+                )
         );
+
 
         sleep(1000);
     }
