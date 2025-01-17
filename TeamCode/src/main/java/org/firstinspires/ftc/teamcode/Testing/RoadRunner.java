@@ -96,10 +96,10 @@ public class RoadRunner extends LinearOpMode {
                                 lift.liftHighBasket()
                         ),
 
-                        new SleepAction(2300),
+                        new SleepAction(2),
                         intake.wristBasket(),
                         intake.outtake(),
-                        new SleepAction(1750),
+                        new SleepAction(1),
 
                         new ParallelAction(
                                 intake.wristUp(),

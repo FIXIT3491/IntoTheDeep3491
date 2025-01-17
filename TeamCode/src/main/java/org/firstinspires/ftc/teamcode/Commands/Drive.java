@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
+import androidx.annotation.NonNull;
+
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
@@ -7,15 +10,17 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
 
 
 public class Drive {
     HardwareMap h;
     SparkFunOTOSDrive drive;
+    LMECSubsystem lock;
 
-
-    public Drive(HardwareMap hardwareMap, SparkFunOTOSDrive d){
+    public Drive(HardwareMap hardwareMap, SparkFunOTOSDrive d, LMECSubsystem l){
         h = hardwareMap;
+        lock = l;
         drive = d;
     }
 
@@ -25,6 +30,22 @@ public class Drive {
 
     Pose2d initialPose = new Pose2d(52, 52, 0);
 
+
+    private class lock implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            lock.lockMechanum();
+            return false;
+        }
+    }
+
+    private class unlock implements Action {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            lock.unlockMechanum();
+            return false;
+        }
+    }
 
 
 
@@ -72,4 +93,6 @@ public class Drive {
     public Action pickupThirdSpikeMark = PickupThirdSpikeMark.build();
     public Action driveToBucket4 = DriveToBucket4.build();
     public Action driveToZero = DriveToZero.build();
+    public Action lockMec() {return new Drive.lock();}
+    public Action unlockMec() {return new Drive.unlock();}
 }
