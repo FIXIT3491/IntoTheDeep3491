@@ -101,14 +101,17 @@ public class RoadRunner extends LinearOpMode {
                         intake.outtake(),
                         new SleepAction(1),
 
-                        new ParallelAction(
-                                intake.wristUp(),
-                                intake.stopIntake(),
-                                lift.liftZero(),
-                                lift.moveExtensionZero()
-                        ),
+//                      new ParallelAction(
+                        intake.wristUp(),
+                        new SleepAction(1),
+                        intake.stopIntake(),
+                        new SleepAction(1),
+                        lift.liftZero(),
+                        new SleepAction(1),
+                        lift.moveExtensionZero(),
+//                      ),
 
-                        driveToSpikeMark,
+//                        driveToSpikeMark,
                         intake.wristDown(),
                         intake.spinnny(),
                         new SleepAction(400),

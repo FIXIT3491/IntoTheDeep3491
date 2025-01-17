@@ -58,20 +58,11 @@ public class Intake {
 
 
     public class Spinnny implements Action {
-        private boolean initialized = false;
-        private double distance = 0;
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-//            if (!initialized) {
                 intake.spinIntake(0.7);
-//                initialized = true;
-//            }
-//                distance = colorSubsystem.DetectDistance();
-//                while (distance > 60) {
-//                    distance = colorSubsystem.DetectDistance();
-//                }
-//                    intake.spinIntake(0);
+
             return false;
         }
     }

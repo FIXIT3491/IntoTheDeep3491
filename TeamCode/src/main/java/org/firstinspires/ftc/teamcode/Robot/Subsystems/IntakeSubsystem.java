@@ -22,7 +22,7 @@ public class IntakeSubsystem{
     }
 
     // Intake method
-    public void spinIntake (double power) {
+    public void spinIntake(double power) {
         intakeMotor.setPower(power);
     }
 
