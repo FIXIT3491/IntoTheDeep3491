@@ -7,7 +7,8 @@ import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.Servo;
 @Autonomous(name="axon test", group="KaiGoodCode")
 public class axonLMECTest extends LinearOpMode {
-    Servo servo;
+    Servo servoFront;
+    Servo servoBack;
 
     AnalogInput analogInput;
 
@@ -17,20 +18,32 @@ public class axonLMECTest extends LinearOpMode {
     public void runOpMode() {
 
 
-    servo = hardwareMap.get(Servo.class, "axon");
-    analogInput = hardwareMap.get(AnalogInput.class, "axonDataFront");
+    servoFront = hardwareMap.get(Servo.class, "LMECFront");
+    servoBack = hardwareMap.get(Servo.class, "LMECBack");
+
+        analogInput = hardwareMap.get(AnalogInput.class, "axonDataFront");
 
         waitForStart();
         while (opModeIsActive()) {
             double position = analogInput.getVoltage() / 3.3 * 360;
 
             if (gamepad1.a)
-                servo.setPosition(0.5);
-
+                servoFront.setPosition(0.5);
             if (gamepad1.b)
-                servo.setPosition(0);
+                servoFront.setPosition(0);
+            if (gamepad1.x)
+                servoBack.setPosition(0.5);
+            if (gamepad1.y)
+                servoBack.setPosition(0);
 
+
+
+            telemetry.addData("Gamepad a ", "lock");
+            telemetry.addData("Gamepad b", "unlock");
+            telemetry.addData("Gamepad x", "lock");
+            telemetry.addData("Gamepad y", "unlock");
             telemetry.addData("axon", position);
+
             telemetry.update();
         }
 
