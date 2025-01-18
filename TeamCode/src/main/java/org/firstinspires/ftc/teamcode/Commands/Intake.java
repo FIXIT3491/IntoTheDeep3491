@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
-import com.acmerobotics.roadrunner.SequentialAction;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -57,11 +56,11 @@ public class Intake {
     }
 
 
-    public class Spinnny implements Action {
+    public class Pickup implements Action {
 
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-                intake.spinIntake(0.7);
+            intake.spinIntake(0.7);
 
             return false;
         }
@@ -70,7 +69,7 @@ public class Intake {
     public class Outtake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-//            intakeSubsystem.spinIntake(-0.7);
+            intake.spinIntake(-0.7);
             return false;
         }
     }
@@ -86,7 +85,7 @@ public class Intake {
     public Action wristDown() { return new WristDown(); }
     public Action wristBasket() { return new WristBasket(); }
     public Action wristUp() { return new WristUp(); }
-    public Action spinnny() { return new Spinnny(); }
+    public Action intake() { return new Pickup(); }
     public Action outtake() { return new Outtake(); }
     public Action stopIntake() { return new StopIntake(); }
 

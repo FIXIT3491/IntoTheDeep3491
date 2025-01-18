@@ -2,12 +2,10 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 
 import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 public class TeleOp {
     int pos = 0;

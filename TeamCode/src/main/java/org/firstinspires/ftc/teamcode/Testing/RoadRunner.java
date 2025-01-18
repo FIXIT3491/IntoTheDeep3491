@@ -11,13 +11,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.Commands.Drive;
 import org.firstinspires.ftc.teamcode.Commands.Intake;
 import org.firstinspires.ftc.teamcode.Commands.Lift;
-import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.ExtensionSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 @Autonomous
 public class RoadRunner extends LinearOpMode {
@@ -28,7 +26,6 @@ public class RoadRunner extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Pose2d initialPose = new Pose2d(52, 52, 0);
 
-        RobotContainer robot = new RobotContainer(hardwareMap);
 
         Intake intake = new Intake(new IntakeSubsystem(hardwareMap, telemetry));
         Lift lift = new Lift(new ExtensionSubsystem(hardwareMap, telemetry));

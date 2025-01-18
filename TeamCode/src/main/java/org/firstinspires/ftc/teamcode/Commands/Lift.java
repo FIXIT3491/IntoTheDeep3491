@@ -78,7 +78,6 @@ public class Lift {
     }
 
     public Action liftHighBasket() {return new LiftHighBasket();}
-    public Action liftHighChamber() {return new LiftHighChamber();}
     public Action liftZero() {return new LiftZero();}
     public Action moveExtensionPreload() {return new MoveExtensionPreload();}
     public Action moveExtensionZero() {return new MoveExtensionZero();}

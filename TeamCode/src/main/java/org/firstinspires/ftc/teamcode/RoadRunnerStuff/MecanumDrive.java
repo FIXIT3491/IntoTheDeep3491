@@ -236,18 +236,9 @@ public class MecanumDrive {
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
-//        leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        // TODO: reverse motor directions if needed
-            leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
-            leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
-        //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
         lazyImu = new LazyImu(hardwareMap, "imu", new RevHubOrientationOnRobot(
                 PARAMS.logoFacingDirection, PARAMS.usbFacingDirection));
 
@@ -257,22 +248,6 @@ public class MecanumDrive {
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
 
-//        motors = Arrays.asList(leftFront, leftBack, rightBack, rightFront);
-//        for (DcMotorEx motor : motors) {
-//            MotorConfigurationType motorConfigurationType = motor.getMotorType().clone();
-//            motorConfigurationType.setAchieveableMaxRPMFraction(1.0);
-//            motor.setMotorType(motorConfigurationType);
-//        }
-//
-//        if (RUN_USING_ENCODER) {
-//            setMode(RUN_USING_ENCODER);
-//        }
-
-//        setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-//
-//        if (RUN_USING_ENCODER && MOTOR_VELO_PID != null) {
-//            setPIDFCoefficients(RUN_USING_ENCODER, MOTOR_VELO_PID);
-//        }
 
 
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
