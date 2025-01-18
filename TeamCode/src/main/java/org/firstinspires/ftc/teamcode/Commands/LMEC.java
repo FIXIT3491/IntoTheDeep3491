@@ -16,7 +16,7 @@ public class LMEC {
     private IntakeSubsystem intakeSubsystem;
     private ColorSubsystem colorSubsystem;
 
-    public LMEC(HardwareMap hardwareMap) {
+    public LMEC() {
 
     }
 

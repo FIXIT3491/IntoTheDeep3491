@@ -7,26 +7,19 @@ import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.RoadRunnerStuff.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
 
 
 public class Drive {
-    HardwareMap h;
     SparkFunOTOSDrive drive;
     LMECSubsystem lock;
 
-    public Drive(HardwareMap hardwareMap, SparkFunOTOSDrive d, LMECSubsystem l){
-        h = hardwareMap;
+    public Drive(SparkFunOTOSDrive d, LMECSubsystem l){
         lock = l;
         drive = d;
     }
-
-
-
-
 
     Pose2d initialPose = new Pose2d(52, 52, 0);
 

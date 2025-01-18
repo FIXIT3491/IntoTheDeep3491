@@ -12,17 +12,10 @@ public class LMECSubsystem{
     public ServoImplEx  servoBack;
 
 
-    public LMECSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
+    public LMECSubsystem(HardwareMap hardwareMap ) {
         //Hardware maps
-//        LMFRServo = hardwareMap.get(ServoImplEx.class, "LMFRS");
-//        LMFLServo = hardwareMap.get(ServoImplEx.class, "LMFLS");
-//        LMBRServo = hardwareMap.get(ServoImplEx.class, "LMBRS");
-//        LMBLServo = hardwareMap.get(ServoImplEx.class, "LMBLS");
-
-        //Direction Servo
-//        LMFLServo.setDirection(Servo.Direction.REVERSE);
-//        LMBRServo.setDirection(Servo.Direction.REVERSE);
-
+        servoFront = hardwareMap.get(ServoImplEx.class, "LMECFront");
+        servoBack = hardwareMap.get(ServoImplEx.class, "LMECBack");
     }
 
     // Intake method
