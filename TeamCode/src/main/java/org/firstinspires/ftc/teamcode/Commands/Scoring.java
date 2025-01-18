@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands;
-import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Robot.Constants;
-import org.firstinspires.ftc.teamcode.Robot.SparkFunOTOSConfig;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 public class Scoring {
@@ -33,7 +30,7 @@ public class Scoring {
 
     public void scoreChamber(int y){
         if (y == 1){
-            RobotContainer.extensionSubsystem.chamberLow();
+            RobotContainer.extensionSubsystem.chamberScore();
 
             RobotContainer.intakeSubsystem.wristDown();
             //lift goes down a lil bit
@@ -42,13 +39,13 @@ public class Scoring {
             RobotContainer.intakeSubsystem.stopIntake();
             RobotContainer.intakeSubsystem.wristUp();
             //sleep
-            RobotContainer.extensionSubsystem.chamberLow();
+            RobotContainer.extensionSubsystem.chamberScore();
             //lift down
 
         }
 
         if (y == 2){
-            RobotContainer.extensionSubsystem.chamberHigh();
+            RobotContainer.extensionSubsystem.chamberRaise();
             //sleep
             RobotContainer.intakeSubsystem.wristDown();
             //lift goes down a lil bit
@@ -57,7 +54,7 @@ public class Scoring {
             RobotContainer.intakeSubsystem.stopIntake();
             RobotContainer.intakeSubsystem.wristUp();
             //sleep
-            RobotContainer.extensionSubsystem.chamberHigh();
+            RobotContainer.extensionSubsystem.chamberRaise();
             //lift down
         }
     }

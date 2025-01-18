@@ -61,13 +61,14 @@ public class TeleOp {
             } else
                 RobotContainer.extensionSubsystem.liftZero();
 
-        } else if (gamepad2.x) {
-            RobotContainer.extensionSubsystem.bucketLow();
+        } else if (gamepad2.y) {
+            RobotContainer.extensionSubsystem.chamberRaise();
         } else if (gamepad2.b) {
             RobotContainer.extensionSubsystem.bucketHigh();
-        }
-        else if(RobotContainer.extensionSubsystem.getTouchSensor()){
-//            RobotContainer.extensionSubsystem.moveLiftRight(0.2);
+        } else if (gamepad2.x) {
+            RobotContainer.extensionSubsystem.chamberScore();
+        } else if(RobotContainer.extensionSubsystem.getTouchSensor()){
+//
         }
 //        if (RobotContainer.extensionSubsystem.getRightLift() < 0)
 //            RobotContainer.extensionSubsystem.moveLiftRight(0.4);

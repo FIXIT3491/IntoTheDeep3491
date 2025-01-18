@@ -3,10 +3,7 @@ package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.hardware.TouchSensor;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import org.firstinspires.ftc.teamcode.Commands.CommandBase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
@@ -109,10 +106,10 @@ public class ExtensionSubsystem{
         } else
             RobotContainer.extensionSubsystem.liftZero();
     }
-    public void chamberLow() {
-        raiseLift(1300);
+    public void chamberScore() {
+        raiseLift(Constants.LIFT_CHAMBER_2);
     }
-    public void chamberHigh() { raiseLift(Constants.LIFT_CHAMBER_2);}
+    public void chamberRaise() { raiseLift(Constants.LIFT_CHAMBER_1);}
     public void bucketLow() {
         raiseLift(Constants.LIFT_BUCKET_1);
     }
