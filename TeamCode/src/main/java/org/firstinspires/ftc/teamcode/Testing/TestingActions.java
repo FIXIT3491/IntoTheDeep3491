@@ -43,6 +43,7 @@ public class TestingActions extends LinearOpMode {
                                 lift.liftZero(),
                                 drive.driveToSpikeMark
                         ),
+
                         new ParallelAction(
                                 intake.wristDown(),
                                 intake.intake()
@@ -52,7 +53,7 @@ public class TestingActions extends LinearOpMode {
                         new ParallelAction(
                                 intake.wristDown(),
                                 intake.intake()
-                        ),
+                        )
 
 
 

@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.ColorSubsystem;
 
@@ -25,7 +26,6 @@ public class Intake {
     Telemetry telemetry;
 
     public Intake(IntakeSubsystem i) {
-
         intake = i;
     }
 
@@ -34,7 +34,7 @@ public class Intake {
     public class WristDown implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristDown();
+            intake.wristMove(Constants.WRIST_DOWN);
             return false;
         }
     }
@@ -42,7 +42,7 @@ public class Intake {
     public class WristBasket implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristBucket();
+            intake.wristMove(Constants.WRIST_OUT);
             return false;
         }
     }
@@ -50,7 +50,7 @@ public class Intake {
     public class WristUp implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristUp();
+            intake.wristMove(Constants.WRIST_UP);
             return false;
         }
     }
