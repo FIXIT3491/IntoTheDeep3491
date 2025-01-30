@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
+import com.arcrobotics.ftclib.command.Command;
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -18,7 +19,6 @@ public class IntakeSubsystem extends SubsystemBase {
         wristServoRight = hardwareMap.get(Servo.class, "WSR");
         wristServoLeft = hardwareMap.get(Servo.class, "WSL");
 
-//        wristServoTwo.setDirection(Servo.Direction.REVERSE);
         wristServoRight.setDirection(Servo.Direction.REVERSE);
     }
 
@@ -27,10 +27,10 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.setPower(power);
     }
 
-    public void stopIntake() {
-        intakeMotor.setPower(0);
+    @Override
+    public void setDefaultCommand(Command defaultCommand) {
+        super.setDefaultCommand(defaultCommand);
     }
-
 
     public void wristMove(double distance){
         wristServoRight.setPosition(distance);
