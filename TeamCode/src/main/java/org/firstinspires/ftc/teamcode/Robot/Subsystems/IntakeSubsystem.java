@@ -11,15 +11,11 @@ import org.firstinspires.ftc.teamcode.Robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
     private CRServo intakeMotor;
-    private Servo wristServoRight;
-    private Servo wristServoLeft;
+
 
     public IntakeSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
         intakeMotor = hardwareMap.get(CRServo.class, "Spinnny");
-        wristServoRight = hardwareMap.get(Servo.class, "WSR");
-        wristServoLeft = hardwareMap.get(Servo.class, "WSL");
 
-        wristServoRight.setDirection(Servo.Direction.REVERSE);
     }
 
     // Intake method
@@ -27,15 +23,8 @@ public class IntakeSubsystem extends SubsystemBase {
         intakeMotor.setPower(power);
     }
 
-    @Override
-    public void setDefaultCommand(Command defaultCommand) {
-        super.setDefaultCommand(defaultCommand);
-    }
 
-    public void wristMove(double distance){
-        wristServoRight.setPosition(distance);
-        wristServoLeft.setPosition(distance);
-    }
+
 
 }
 
