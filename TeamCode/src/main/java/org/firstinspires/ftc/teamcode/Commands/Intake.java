@@ -12,12 +12,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.ColorSubsystem;
 
 public class Intake {
 
     private DcMotorEx lift;
-    private ColorSubsystem colorSubsystem;
     private CRServo intakeMotor;
     private Servo wristServoRight;
     private Servo wristServoLeft;
