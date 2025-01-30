@@ -18,7 +18,7 @@ public class ColorSubsystem {
     double distance;
 
 
-    public ColorSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
+    public ColorSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
         //Hardware maps
         colorSensor = hardwareMap.get(ColorRangeSensor.class, "color");
     }

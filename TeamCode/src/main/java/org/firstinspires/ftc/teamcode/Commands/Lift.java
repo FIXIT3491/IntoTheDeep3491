@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Robot.Constants;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.ExtensionSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
 
@@ -25,7 +26,7 @@ public class Lift {
     public class LiftHighChamber implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            extensionSubsystem.chamberHigh();
+            extensionSubsystem.raiseLift(Constants.LIFT_CHAMBER_2);
             return false;
         }
     }
@@ -33,7 +34,7 @@ public class Lift {
     public class LiftHighBasket implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            extensionSubsystem.bucketHigh();
+            extensionSubsystem.raiseLift(Constants.LIFT_BUCKET_2);
             return false;
         }
     }

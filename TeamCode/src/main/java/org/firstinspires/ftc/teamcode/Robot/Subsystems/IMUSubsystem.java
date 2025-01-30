@@ -12,7 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 public class IMUSubsystem {
     public IMU imu;
 
-    public IMUSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
+    public IMUSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
 
         imu = hardwareMap.get(IMU.class, "imu");
 

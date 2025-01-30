@@ -16,7 +16,7 @@ public class ExtensionSubsystem{
     private TouchSensor touchSensor;
 
 
-    public ExtensionSubsystem(HardwareMap hardwareMap, Telemetry telemetry) {
+    public ExtensionSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
 
         extensionMotor = hardwareMap.get(DcMotorEx.class, "extension");
         liftMotorRight = hardwareMap.get(DcMotorEx.class, "liftRight");
@@ -41,6 +41,7 @@ public class ExtensionSubsystem{
         liftMotorRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
+
     public boolean getTouchSensor(){
         return touchSensor.isPressed();
     }
@@ -58,11 +59,7 @@ public class ExtensionSubsystem{
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotorLeft.setPower(power);
     }
-    public void extensionManual(int power1, int power2, int power3){
-        liftMotorRight.setPower(power1);
-        liftMotorLeft.setPower(power2);
-        extensionMotor.setPower(power3);
-    }
+
     public void liftRetract(double speed) {
         liftMotorRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotorRight.setPower(speed);
@@ -72,22 +69,5 @@ public class ExtensionSubsystem{
 
     public void raiseLift(int pos){
         moveLift(pos, 1);
-    }
-
-    public void zero(){
-        if (!getTouchSensor()) {
-            liftRetract(-0.01);
-        } else {
-            liftEncoderReset();
-        }
-    }
-
-    public boolean chamberHigh() {
-        raiseLift(Constants.LIFT_CHAMBER_2);
-        return true;
-    }
-    public boolean bucketHigh() {
-        raiseLift(Constants.LIFT_BUCKET_2);
-        return true;
     }
 }
