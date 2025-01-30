@@ -28,8 +28,8 @@ public class TestingActions extends LinearOpMode {
 
         new IntakeSpinCommand(intakeSubsystem, 0.5);
 
+
     }
 
+
 }
-
-

@@ -32,7 +32,6 @@ public class Intake {
     public class WristDown implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristMove(Constants.WRIST_DOWN);
             return false;
         }
     }
@@ -40,7 +39,6 @@ public class Intake {
     public class WristBasket implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristMove(Constants.WRIST_OUT);
             return false;
         }
     }
@@ -48,7 +46,6 @@ public class Intake {
     public class WristUp implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intake.wristMove(Constants.WRIST_UP);
             return false;
         }
     }
