@@ -1,21 +1,19 @@
 package org.firstinspires.ftc.teamcode.Commands.Custom;
 
+
 import com.arcrobotics.ftclib.command.InstantCommand;
 
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.SlideSubsystem;
 
-public class MoveExtensionCommand extends InstantCommand {
-
-    int position;
+public class ResetExtensionCommand extends InstantCommand {
     SlideSubsystem slideSubsystem;
 
-    public MoveExtensionCommand(SlideSubsystem slideSubsystem, int position){
-        this.position = position;
+    public ResetExtensionCommand(SlideSubsystem slideSubsystem){
         this.slideSubsystem = slideSubsystem;
     }
 
     @Override
     public void initialize() {
-        slideSubsystem.moveExtension(position);
+        slideSubsystem.liftEncoderReset();
     }
 }

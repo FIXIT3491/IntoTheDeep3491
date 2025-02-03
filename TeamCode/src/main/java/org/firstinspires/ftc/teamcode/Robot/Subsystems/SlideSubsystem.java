@@ -6,17 +6,16 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Robot.Constants;
 
 
-public class ExtensionSubsystem{
+public class SlideSubsystem {
     private DcMotorEx extensionMotor;
     private DcMotorEx liftMotorRight;
     private DcMotorEx liftMotorLeft;
     private TouchSensor touchSensor;
 
 
-    public ExtensionSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
+    public SlideSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
 
         extensionMotor = hardwareMap.get(DcMotorEx.class, "extension");
         liftMotorRight = hardwareMap.get(DcMotorEx.class, "liftRight");
