@@ -7,6 +7,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Robot.Subsystems.WristSubsystem;
 
 public class AutoSpikeIntake extends SequentialCommandGroup {
