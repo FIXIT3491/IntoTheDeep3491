@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.Vector2d;
+
 public class Constants {
     public static final int MIN_EXTENSION = 150;
     public static final int MAX_EXTENSION = 1870;
@@ -27,6 +30,13 @@ public class Constants {
     public static final double WRIST_UP = 0.5;
     public static final double WRIST_OUT = 0.25;
 
+    public static final Vector2d FIRST_SPIKE_MARK = new Vector2d(-1,-1);
+    public static final Vector2d SECOND_SPIKE_MARK = new Vector2d(-1,-1);
+    public static final Vector2d THIRD_SPIKE_MARK = new Vector2d(-1,-1);
 
+    public static final int SPIKE_HEADING = 0;
+
+
+    public static final Vector2d BUCKET = new Vector2d(-1,-1);
 
 }
