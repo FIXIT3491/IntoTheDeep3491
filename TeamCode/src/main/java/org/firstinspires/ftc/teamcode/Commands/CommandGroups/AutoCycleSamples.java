@@ -16,7 +16,7 @@ public class AutoCycleSamples extends SequentialCommandGroup {
 
     Vector2d pos;
 
-    public AutoCycleSamples(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSDrive drive, SlideSubsystem slide, int cycleCount, Pose2d startPose){
+    public AutoCycleSamples(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSDrive drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
 
         if (cycleCount == 1){
             pos = Constants.FIRST_SPIKE_MARK;
@@ -29,13 +29,13 @@ public class AutoCycleSamples extends SequentialCommandGroup {
 
         addCommands(
                 new StrafeToPointCommand(drive, startPose, pos),
-                new AutoSpikeIntake(intake, slide, wrist),
+                new AutoSpikeIntake(intake, slides, wrist),
                 new StrafeToPointCommand(drive, new Pose2d(pos, 0), Constants.BUCKET, 45 ),
-                new RaiseLiftCommand(slide, Constants.LIFT_BUCKET_2)
-
-
-
+                new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
+                new ScoreSample(slides, wrist, intake)
         );
+        addRequirements(slides, wrist, intake);
+
 
     }
 

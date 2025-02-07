@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot.Subsystems;
 
+import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 
-public class SlideSubsystem {
+public class SlideSubsystem extends SubsystemBase {
     private DcMotorEx extensionMotor;
     private DcMotorEx liftMotorRight;
     private DcMotorEx liftMotorLeft;
@@ -24,9 +25,10 @@ public class SlideSubsystem {
 
         liftMotorRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
         liftMotorLeft.setDirection(DcMotor.Direction.REVERSE);
-//        liftMotor1.setDirection(DcMotorSimple.Direction.REVERSE);
         extensionMotor.setDirection(DcMotor.Direction.REVERSE);
+
         extensionMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

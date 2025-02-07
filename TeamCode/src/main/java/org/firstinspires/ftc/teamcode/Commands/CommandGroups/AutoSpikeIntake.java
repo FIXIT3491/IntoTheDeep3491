@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.CommandGroups;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandBase;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
@@ -20,23 +21,20 @@ import org.firstinspires.ftc.teamcode.Robot.Subsystems.WristSubsystem;
 public class AutoSpikeIntake extends SequentialCommandGroup {
 
     public AutoSpikeIntake (IntakeSubsystem intake, SlideSubsystem slides, WristSubsystem wrist){
-
-        // add
-
         addCommands(
-
-                new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                new IntakeSpinCommand(intake, Constants.SPINNING),
+                new ParallelCommandGroup(
+                    new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                    new IntakeSpinCommand(intake, Constants.SPINNING)
+                ),
                 new WaitCommand(500),
-                new MoveExtensionCommand(slides, 100),
+                new MoveExtensionCommand(slides, Constants.SPIKE_EXTENSION),
                 new WaitCommand(500),
-                new MoveWristCommand(wrist, Constants.WRIST_UP),
-                new IntakeSpinCommand(intake, 0)
-
-
-
+                new ParallelCommandGroup(
+                    new MoveWristCommand(wrist, Constants.WRIST_UP),
+                    new IntakeSpinCommand(intake, 0)
+                )
         );
-
+        addRequirements(slides, wrist, intake);
 
     }
 }
