@@ -29,11 +29,11 @@ public class AxonTest extends LinearOpMode {
             double position = analogInput.getVoltage() / 3.3 * 360;
 
             if (gamepad1.a)
-                servoFront.setPosition(0.5);
+                servoFront.setPosition(0.7);
             if (gamepad1.b)
                 servoFront.setPosition(0);
             if (gamepad1.x)
-                servoBack.setPosition(0.5);
+                servoBack.setPosition(0.7);
             if (gamepad1.y)
                 servoBack.setPosition(0);
 
