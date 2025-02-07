@@ -21,6 +21,7 @@ public abstract class Robot extends LinearOpMode {
         wrist = new WristSubsystem(hardwareMap, telemetry);
         slides = new SlideSubsystem(hardwareMap, telemetry);
 
+
         CommandScheduler.getInstance().registerSubsystem(slides, wrist, intake);
     }
 
