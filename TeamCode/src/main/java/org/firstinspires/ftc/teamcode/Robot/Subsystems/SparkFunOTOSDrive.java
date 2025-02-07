@@ -54,6 +54,14 @@ public class SparkFunOTOSDrive extends MecanumDrive {
         System.out.println(otos.calibrateImu(255, true));
         System.out.println("OTOS calibration complete!");
     }
+
+    //TODO make sure that this method actually works and returns the right values
+    public Pose2d getOTOSPose(){
+        double x = otos.getPosition().x;
+        double y = otos.getPosition().y;
+        double h = otos.getPosition().h;
+        return new Pose2d(x, y , h);
+    }
     @Override
     public PoseVelocity2d updatePoseEstimate() {
         if (lastOtosPose != pose) {

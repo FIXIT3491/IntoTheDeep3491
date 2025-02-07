@@ -19,6 +19,8 @@ public abstract class AutoContainer extends Robot {
         initialize(startPose);
 
 
+
+
         wrist.wristMove(Constants.WRIST_UP);
         waitForStart();
         slides.encoderReset();

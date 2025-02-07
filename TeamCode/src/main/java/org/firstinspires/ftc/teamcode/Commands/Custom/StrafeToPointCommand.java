@@ -22,7 +22,8 @@ public class StrafeToPointCommand extends InstantCommand {
     //strafeToConstantHeading
     public StrafeToPointCommand(SparkFunOTOSDrive sparkFunOTOSDrive, Pose2d startingPose, Vector2d endingPose){
         this.sparkFunOTOSDrive = sparkFunOTOSDrive;
-        this.startingPose = startingPose;
+        //TODO make sure this returns the current value and not how much it has move or something
+        this.startingPose = sparkFunOTOSDrive.getOTOSPose();
         this.endingPose = endingPose;
         Linear = false;
 
@@ -30,7 +31,8 @@ public class StrafeToPointCommand extends InstantCommand {
     //StrafeToLinearHeading
     public StrafeToPointCommand(SparkFunOTOSDrive sparkFunOTOSDrive, Pose2d startingPose, Vector2d endingPose, double endingHeading){
         this.sparkFunOTOSDrive = sparkFunOTOSDrive;
-        this.startingPose = startingPose;
+        //TODO PLZ CHECK THIS ASWELL LEO IM TALKING TO YOU PROBABLLY
+        this.startingPose = sparkFunOTOSDrive.getOTOSPose();
         this.endingPose = endingPose;
         this.endingHeading = endingHeading;
         Linear = true;

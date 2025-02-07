@@ -21,7 +21,6 @@ public class AxonTest extends LinearOpMode {
         servoFront = hardwareMap.get(Servo.class, "LMECFront");
         servoBack = hardwareMap.get(Servo.class, "LMECBack");
         servoFront.setDirection(Servo.Direction.REVERSE);
-
         analogInput = hardwareMap.get(AnalogInput.class, "axonDataFront");
 
         waitForStart();
