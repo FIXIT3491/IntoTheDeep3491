@@ -10,7 +10,6 @@ public class IntakeSpinCommand extends InstantCommand {
 
     public IntakeSpinCommand(IntakeSubsystem intake, double power) {
         addRequirements(intake);
-
         this.intake = intake;
         this.power = power;
     }
