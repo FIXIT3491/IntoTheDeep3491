@@ -11,8 +11,10 @@ public abstract class Robot extends LinearOpMode {
     public WristSubsystem wrist;
     public IntakeSubsystem intake;
     public SparkFunOTOSDrive drive;
+    public LMECSubsystem lmec;
 
     public CommandScheduler cs = CommandScheduler.getInstance();
+
     public void initialize(Pose2d pose) {
 
 
@@ -20,9 +22,9 @@ public abstract class Robot extends LinearOpMode {
         intake = new IntakeSubsystem(hardwareMap, telemetry);
         wrist = new WristSubsystem(hardwareMap, telemetry);
         slides = new SlideSubsystem(hardwareMap, telemetry);
+        lmec = new LMECSubsystem(hardwareMap);
 
-
-        CommandScheduler.getInstance().registerSubsystem(slides, wrist, intake);
+        CommandScheduler.getInstance().registerSubsystem(slides, wrist, intake, lmec);
     }
 
     public void update() {

@@ -17,6 +17,7 @@ public class LMECSubsystem extends SubsystemBase {
         //Hardware maps
         servoFront = hardwareMap.get(ServoImplEx.class, "LMECFront");
         servoBack = hardwareMap.get(ServoImplEx.class, "LMECBack");
+        servoFront.setDirection(Servo.Direction.REVERSE);
     }
 
     // Intake method
