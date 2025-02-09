@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.SensorDigitalTouch;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Robot.Subsystems.RobotContainer;
 
 @Disabled
 @Autonomous(name="WristTest", group = "Autonomous")
@@ -36,6 +37,20 @@ public class WristTest extends LinearOpMode{
         wristServoTwo.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
+
+        RobotContainer.intakeSubsystem.wristMove(0.03);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.2);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.3);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.4);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.5);
+        sleep(2000);
+        RobotContainer.intakeSubsystem.wristMove(0.6);
+        sleep(2000);
+
         while(opModeIsActive()) {
             telemetry.addData("touch", touch.isPressed());
             telemetry.update();
