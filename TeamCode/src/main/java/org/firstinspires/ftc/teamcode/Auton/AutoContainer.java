@@ -14,7 +14,7 @@ public abstract class AutoContainer extends Robot {
 
 
     @Override
-    public void runOpMode(){
+    public void runOpMode() throws InterruptedException{
         Pose2d startPose = new Pose2d(-1,-1,-1);
         initialize(startPose);
 
