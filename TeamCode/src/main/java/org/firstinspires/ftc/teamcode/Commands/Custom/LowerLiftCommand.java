@@ -1,11 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands.Custom;
 
-import android.transition.Slide;
-
 import com.arcrobotics.ftclib.command.InstantCommand;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SlideSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 
 
 

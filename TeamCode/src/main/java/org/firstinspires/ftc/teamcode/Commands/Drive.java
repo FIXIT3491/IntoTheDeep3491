@@ -9,17 +9,17 @@ import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.hardware.IMU;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
+import org.firstinspires.ftc.teamcode.Subsystems.LMECSubsystem;
 
 
 public class Drive {
-    SparkFunOTOSDrive drive;
+    SparkFunOTOSSubSystem drive;
     LMECSubsystem lock;
     IMU imu;
 
 
-    public Drive(SparkFunOTOSDrive d, LMECSubsystem l){
+    public Drive(SparkFunOTOSSubSystem d, LMECSubsystem l){
         lock = l;
         drive = d;
     }

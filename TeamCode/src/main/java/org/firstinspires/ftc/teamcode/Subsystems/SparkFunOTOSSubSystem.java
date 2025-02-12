@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Robot.Subsystems;
+package org.firstinspires.ftc.teamcode.Subsystems;
 
 
 
@@ -25,20 +25,20 @@ import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.PoseMessage;
  * Portions of this code made and released under the MIT License by SparkFun
  * Unless otherwise noted, comments are from SparkFun
  */
-public class SparkFunOTOSDrive extends MecanumDrive {
+public class SparkFunOTOSSubSystem extends MecanumDrive {
     public static class Params {
         public SparkFunOTOS.Pose2D offset = new SparkFunOTOS.Pose2D(0.0721, 7.2089, Math.toRadians(-90));
         public double linearScalar = 1.032;
         public double angularScalar = 0.9923;
     }
 
-    public static SparkFunOTOSDrive.Params PARAMS = new SparkFunOTOSDrive.Params();
+    public static SparkFunOTOSSubSystem.Params PARAMS = new SparkFunOTOSSubSystem.Params();
     public SparkFunOTOSCorrected otos;
     private Pose2d lastOtosPose = pose;
 
     private final DownsampledWriter estimatedPoseWriter = new DownsampledWriter("ESTIMATED_POSE", 50_000_000);
 
-    public SparkFunOTOSDrive(HardwareMap hardwareMap, Pose2d pose) {
+    public SparkFunOTOSSubSystem(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         FlightRecorder.write("OTOS_PARAMS",PARAMS);
         otos = hardwareMap.get(SparkFunOTOSCorrected.class,"sensor_otos");
@@ -62,6 +62,8 @@ public class SparkFunOTOSDrive extends MecanumDrive {
         double h = otos.getPosition().h;
         return new Pose2d(x, y , h);
     }
+
+
     @Override
     public PoseVelocity2d updatePoseEstimate() {
         if (lastOtosPose != pose) {
@@ -85,6 +87,8 @@ public class SparkFunOTOSDrive extends MecanumDrive {
         // OTOS velocity units happen to be identical to Roadrunners, so we don't need any conversion!
         return new PoseVelocity2d(new Vector2d(otosVel.x, otosVel.y),otosVel.h);
     }
+
+
 
     public void driveFieldCentric(double x, double y, double rx, double heading) {
 
@@ -118,5 +122,6 @@ public class SparkFunOTOSDrive extends MecanumDrive {
     public void driveFieldCentric(double x, double y, double rx) {
 //        driveFieldCentric(x, y, rx, lazyImu );
     }
+
 
 }

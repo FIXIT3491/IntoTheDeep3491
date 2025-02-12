@@ -5,14 +5,14 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 
 public final class SplineTest extends LinearOpMode {
     @Override
     public void runOpMode(){
         Pose2d beginPose = new Pose2d(48, 48, 0);
 //        if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
-            SparkFunOTOSDrive drive = new SparkFunOTOSDrive(hardwareMap, beginPose);
+            SparkFunOTOSSubSystem drive = new SparkFunOTOSSubSystem(hardwareMap, beginPose);
 
             waitForStart();
 

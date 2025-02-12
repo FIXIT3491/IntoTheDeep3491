@@ -1,10 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands.Custom;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.LMECSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.LMECSubsystem;
 
 public class LMECControl extends InstantCommand {
 

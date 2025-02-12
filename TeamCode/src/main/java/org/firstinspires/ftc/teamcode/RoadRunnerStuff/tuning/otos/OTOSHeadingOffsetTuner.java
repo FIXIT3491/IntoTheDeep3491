@@ -4,13 +4,13 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 @TeleOp
 public class OTOSHeadingOffsetTuner extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        SparkFunOTOSDrive drive = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0,0,0));
+        SparkFunOTOSSubSystem drive = new SparkFunOTOSSubSystem(hardwareMap, new Pose2d(0,0,0));
         telemetry.addLine("OTOS Heading Offset Tuner");
         telemetry.addLine("Line the side of the robot against a wall and Press START.");
         telemetry.addLine("Then push the robot forward some distance.");

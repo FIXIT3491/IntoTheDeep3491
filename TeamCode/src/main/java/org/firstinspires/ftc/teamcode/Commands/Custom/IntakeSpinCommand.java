@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Commands.Custom;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 
 public class IntakeSpinCommand extends InstantCommand {
 

@@ -5,9 +5,8 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamples;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSample;
-import org.firstinspires.ftc.teamcode.Robot.Constants;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.Robot;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Lib.Constants;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 public abstract class AutoContainer extends Robot {
 

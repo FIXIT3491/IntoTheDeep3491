@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
 public class MotorTest extends Robot {
 

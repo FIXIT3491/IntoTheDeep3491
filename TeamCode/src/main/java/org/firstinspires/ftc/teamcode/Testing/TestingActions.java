@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 
 @TeleOp
 public class TestingActions extends LinearOpMode {
