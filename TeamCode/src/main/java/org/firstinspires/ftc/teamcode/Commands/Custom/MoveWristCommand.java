@@ -2,8 +2,7 @@ package org.firstinspires.ftc.teamcode.Commands.Custom;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.WristSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 public class MoveWristCommand extends InstantCommand {
 

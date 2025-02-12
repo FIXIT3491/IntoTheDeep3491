@@ -7,11 +7,11 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.arcrobotics.ftclib.command.InstantCommand;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 
 public class StrafeToPointCommand extends InstantCommand {
 
-    SparkFunOTOSDrive sparkFunOTOSDrive;
+    SparkFunOTOSSubSystem sparkFunOTOSSubSystem;
     Pose2d startingPose;
     Vector2d endingPose;
     double endingHeading;
@@ -20,19 +20,19 @@ public class StrafeToPointCommand extends InstantCommand {
 
 
     //strafeToConstantHeading
-    public StrafeToPointCommand(SparkFunOTOSDrive sparkFunOTOSDrive, Pose2d startingPose, Vector2d endingPose){
-        this.sparkFunOTOSDrive = sparkFunOTOSDrive;
+    public StrafeToPointCommand(SparkFunOTOSSubSystem sparkFunOTOSSubSystem, Pose2d startingPose, Vector2d endingPose){
+        this.sparkFunOTOSSubSystem = sparkFunOTOSSubSystem;
         //TODO make sure this returns the current value and not how much it has move or something
-        this.startingPose = sparkFunOTOSDrive.getOTOSPose();
+        this.startingPose = sparkFunOTOSSubSystem.getOTOSPose();
         this.endingPose = endingPose;
         Linear = false;
 
     }
     //StrafeToLinearHeading
-    public StrafeToPointCommand(SparkFunOTOSDrive sparkFunOTOSDrive, Pose2d startingPose, Vector2d endingPose, double endingHeading){
-        this.sparkFunOTOSDrive = sparkFunOTOSDrive;
+    public StrafeToPointCommand(SparkFunOTOSSubSystem sparkFunOTOSSubSystem, Pose2d startingPose, Vector2d endingPose, double endingHeading){
+        this.sparkFunOTOSSubSystem = sparkFunOTOSSubSystem;
         //TODO PLZ CHECK THIS ASWELL LEO IM TALKING TO YOU PROBABLLY
-        this.startingPose = sparkFunOTOSDrive.getOTOSPose();
+        this.startingPose = sparkFunOTOSSubSystem.getOTOSPose();
         this.endingPose = endingPose;
         this.endingHeading = endingHeading;
         Linear = true;
@@ -46,10 +46,10 @@ public class StrafeToPointCommand extends InstantCommand {
         TrajectoryActionBuilder DriveToFirstSpikeMark;//drive to spike mark for second sample
 
         if (Linear) {
-            DriveToFirstSpikeMark = sparkFunOTOSDrive.actionBuilder(startingPose)
+            DriveToFirstSpikeMark = sparkFunOTOSSubSystem.actionBuilder(startingPose)
                     .strafeToLinearHeading(endingPose, endingHeading);
         } else {
-            DriveToFirstSpikeMark = sparkFunOTOSDrive.actionBuilder(startingPose)
+            DriveToFirstSpikeMark = sparkFunOTOSSubSystem.actionBuilder(startingPose)
                     .strafeToConstantHeading(endingPose);
         }
         driveToSpikeMark = DriveToFirstSpikeMark.build();

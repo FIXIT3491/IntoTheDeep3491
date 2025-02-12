@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Custom;
 
 import com.arcrobotics.ftclib.command.InstantCommand;
 
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SlideSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 
 public class ResetExtensionCommand extends InstantCommand {
     SlideSubsystem slideSubsystem;

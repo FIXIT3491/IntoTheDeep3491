@@ -24,14 +24,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public final class TuningOpModes {
-    public static final Class<?> DRIVE_CLASS = SparkFunOTOSDrive.class;
+    public static final Class<?> DRIVE_CLASS = SparkFunOTOSSubSystem.class;
 
     public static final String GROUP = "quickstart";
     public static final boolean DISABLED = false;
@@ -51,9 +51,9 @@ public final class TuningOpModes {
         if (DISABLED) return;
 
         DriveViewFactory dvf;
-        if (DRIVE_CLASS.equals(SparkFunOTOSDrive.class)) {
+        if (DRIVE_CLASS.equals(SparkFunOTOSSubSystem.class)) {
             dvf = hardwareMap -> {
-                SparkFunOTOSDrive od = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0, 0, 0));
+                SparkFunOTOSSubSystem od = new SparkFunOTOSSubSystem(hardwareMap, new Pose2d(0, 0, 0));
 
                 List<Encoder> leftEncs = new ArrayList<>(), rightEncs = new ArrayList<>();
                 List<Encoder> parEncs = new ArrayList<>(), perpEncs = new ArrayList<>();

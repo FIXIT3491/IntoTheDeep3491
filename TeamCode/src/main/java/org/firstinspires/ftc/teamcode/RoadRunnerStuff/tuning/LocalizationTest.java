@@ -9,14 +9,14 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.Drawing;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 
 public class LocalizationTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        SparkFunOTOSDrive drive = new SparkFunOTOSDrive(hardwareMap, new Pose2d(0, 0, 0));
+        SparkFunOTOSSubSystem drive = new SparkFunOTOSSubSystem(hardwareMap, new Pose2d(0, 0, 0));
 
         waitForStart();
 

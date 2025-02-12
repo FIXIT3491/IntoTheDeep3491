@@ -6,17 +6,17 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
-import org.firstinspires.ftc.teamcode.Robot.Constants;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SlideSubsystem;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.SparkFunOTOSDrive;
-import org.firstinspires.ftc.teamcode.Robot.Subsystems.WristSubsystem;
+import org.firstinspires.ftc.teamcode.Lib.Constants;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
+import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 public class AutoCycleSamples extends SequentialCommandGroup {
 
     Vector2d pos;
 
-    public AutoCycleSamples(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSDrive drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
+    public AutoCycleSamples(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
 
         if (cycleCount == 1){
             pos = Constants.FIRST_SPIKE_MARK;
