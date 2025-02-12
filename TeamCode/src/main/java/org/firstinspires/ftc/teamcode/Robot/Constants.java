@@ -29,6 +29,10 @@ public class Constants {
 
     public static final int SPIKE_HEADING = 0;
 
+    public static final double LMECFrontLock = 0.7;
+    public static final double LMECFrontUnlock = 0;
+    public static final double LMECBackLock = 0;
+    public static final double LMECBackUnlock = 0;
 
     public static final Vector2d BUCKET = new Vector2d(-1,-1);
 

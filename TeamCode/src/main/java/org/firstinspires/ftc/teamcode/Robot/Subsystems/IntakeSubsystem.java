@@ -14,7 +14,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
 
     public IntakeSubsystem(final HardwareMap hardwareMap, Telemetry telemetry) {
-        intakeMotor = hardwareMap.get(CRServo.class, "Spinnny");
+        intakeMotor = hardwareMap.get(CRServo.class, "spinnny");
 
     }
 

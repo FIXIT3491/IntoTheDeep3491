@@ -250,7 +250,6 @@ public class MecanumDrive  extends SubsystemBase {
 
         // setLocalizer(new StandardTrackingWheelLocalizer(hardwareMap, lastTrackingEncPositions, lastTrackingEncVels));
 
-
     }
 
 
@@ -499,38 +498,7 @@ public class MecanumDrive  extends SubsystemBase {
                 defaultVelConstraint, defaultAccelConstraint
         );
     }
-    public void driveFieldCentric(double x, double y, double rx, double heading) {
 
-        double headingRads = -Math.toRadians(heading);
-
-        double rotX = y * Math.cos(headingRads) + x * Math.sin(headingRads);
-
-        double rotY = y * Math.sin(headingRads) - x * Math.cos(headingRads);
-
-
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
-        double frontLeftPower = (rotY + rotX + rx) / denominator;
-        double backLeftPower = (rotY - rotX + rx) / denominator;
-        double frontRightPower = (rotY - rotX - rx) / denominator;
-        double backRightPower = (rotY + rotX - rx) / denominator;
-        if (!(Double.valueOf(frontLeftPower).isNaN() ||
-                Double.valueOf(backLeftPower).isNaN() ||
-                Double.valueOf(frontRightPower).isNaN() ||
-                Double.valueOf(backRightPower).isNaN())) {
-
-
-            leftFront.setPower(frontLeftPower);
-            leftBack.setPower(backLeftPower);
-            rightFront.setPower(frontRightPower);
-            rightBack.setPower(backRightPower);
-        }
-
-        //FtcDashboard.getInstance().getTelemetry().addData("fl", frontLeftPower);
-        //FtcDashboard.getInstance().getTelemetry().addData("br", backRightPower);
-    }
-    public void driveFieldCentric(double x, double y, double rx) {
-//        driveFieldCentric(x, y, rx, lazyImu );
-    }
 
 
 
