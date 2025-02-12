@@ -19,9 +19,12 @@ public class Constants {
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
     public static final double SPINNING = -1;
+    public static final double STOPPED = -1;
     public static final double WRIST_DOWN = -1;
     public static final double WRIST_UP = -1;
     public static final double WRIST_OUT = -1;
+    public static final double WRIST_SCORE_BUCKET = -1;
+    public static final double WRIST_SCORE_CHAMBER = -1;
 
     public static final Vector2d FIRST_SPIKE_MARK = new Vector2d(-1,-1);
     public static final Vector2d SECOND_SPIKE_MARK = new Vector2d(-1,-1);
@@ -29,10 +32,12 @@ public class Constants {
 
     public static final int SPIKE_HEADING = 0;
 
-    public static final double LMECFrontLock = 0.7;
-    public static final double LMECFrontUnlock = 0;
-    public static final double LMECBackLock = 0;
-    public static final double LMECBackUnlock = 0;
+    public static final double LMEC_FRONT_LOCK = -1;
+    public static final double LMEC_FRONT_UNLOCK = 1;
+    public static final double LMEC_BACK_UNLOCK = -1;
+    public static final double LMEC_BACK_LOCK = -1;
+
+    public static final int EXTENSION_SCORE_SPECIMEN = -1;
 
     public static final Vector2d BUCKET = new Vector2d(-1,-1);
 
