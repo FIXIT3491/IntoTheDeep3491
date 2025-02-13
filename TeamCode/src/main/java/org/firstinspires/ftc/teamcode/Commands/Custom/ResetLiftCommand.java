@@ -10,6 +10,7 @@ public class ResetLiftCommand extends InstantCommand {
 
     public ResetLiftCommand(SlideSubsystem slideSubsystem){
         this.slideSubsystem = slideSubsystem;
+        addRequirements(slideSubsystem);
     }
 
     @Override

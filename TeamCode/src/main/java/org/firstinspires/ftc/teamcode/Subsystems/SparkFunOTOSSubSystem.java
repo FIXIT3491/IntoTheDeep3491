@@ -18,6 +18,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.messages.PoseMessage;
 
+import java.util.function.DoubleSupplier;
+
 /**
  * Experimental extension of MecanumDrive that uses the SparkFun OTOS sensor for localization.
  * <p>
@@ -61,6 +63,9 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
         double y = otos.getPosition().y;
         double h = otos.getPosition().h;
         return new Pose2d(x, y , h);
+    }
+    public double getHeading(){
+        return otos.getPosition().h;
     }
 
 

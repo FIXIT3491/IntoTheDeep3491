@@ -13,6 +13,7 @@ public class LMECControl extends InstantCommand {
     public LMECControl(LMECSubsystem lmecSubsystem, boolean locked ) {
         this.lmecSubsystem  = lmecSubsystem;
         this.locked = locked;
+        addRequirements(lmecSubsystem);
     }
 
     @Override

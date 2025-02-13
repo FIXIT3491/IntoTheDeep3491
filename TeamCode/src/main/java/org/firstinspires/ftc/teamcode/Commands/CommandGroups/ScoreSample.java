@@ -26,7 +26,7 @@ public class ScoreSample extends SequentialCommandGroup {
                 new WaitCommand(500),
                 new ParallelCommandGroup(
                         new RaiseLiftCommand(slides, 0),
-                        new MoveWristCommand(wrist, Constants.WRIST_UP),
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new IntakeSpinCommand(intake, 0)
                 )
         );
