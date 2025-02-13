@@ -10,6 +10,7 @@ public class ResetExtensionCommand extends InstantCommand {
 
     public ResetExtensionCommand(SlideSubsystem slideSubsystem){
         this.slideSubsystem = slideSubsystem;
+        addRequirements(slideSubsystem);
     }
 
     @Override

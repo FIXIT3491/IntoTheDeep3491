@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.Testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
+@Autonomous(name="MotorTest", group="02")
 public class MotorTest extends Robot {
 
     @Override

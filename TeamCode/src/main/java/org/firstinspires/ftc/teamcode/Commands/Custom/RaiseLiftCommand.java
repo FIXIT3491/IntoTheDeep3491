@@ -11,7 +11,7 @@ public class RaiseLiftCommand extends InstantCommand {
     public RaiseLiftCommand(SlideSubsystem slideSubsystem, int position){
         this.slideSubsystem = slideSubsystem;
         this.position = position;
-
+        addRequirements(slideSubsystem);
     }
 
     @Override
