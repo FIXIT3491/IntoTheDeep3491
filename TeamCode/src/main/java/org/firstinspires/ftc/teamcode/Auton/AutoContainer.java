@@ -3,8 +3,8 @@ package org.firstinspires.ftc.teamcode.Auton;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
-import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamples;
-import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSample;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 
@@ -20,16 +20,17 @@ public abstract class AutoContainer extends Robot {
 
 
 
-        wrist.wristMove(Constants.WRIST_UP);
+        wrist.wristMove(Constants.WRIST_RETRACTED);
+
         waitForStart();
         slides.encoderReset();
 
         cs.schedule(
                 new SequentialCommandGroup(
-                        new ScoreSample(slides, wrist, intake),
-                        new AutoCycleSamples(intake, wrist, drive, slides,1, startPose),
-                        new AutoCycleSamples(intake, wrist, drive, slides,2, startPose),
-                        new AutoCycleSamples(intake, wrist, drive, slides,3, startPose)
+                        new ScoreSampleCommand(slides, wrist, intake),
+                        new AutoCycleSamplesCommand(intake, wrist, drive, slides,1, startPose),
+                        new AutoCycleSamplesCommand(intake, wrist, drive, slides,2, startPose),
+                        new AutoCycleSamplesCommand(intake, wrist, drive, slides,3, startPose)
                 )
         );
 

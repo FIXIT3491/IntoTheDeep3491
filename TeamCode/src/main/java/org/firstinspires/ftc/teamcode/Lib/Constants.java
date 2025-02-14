@@ -40,4 +40,6 @@ public class Constants {
 
     public static final Vector2d BUCKET = new Vector2d(-1,-1);
 
+    public static final double DISTANCE_WHEN_IN = -1;
+
 }

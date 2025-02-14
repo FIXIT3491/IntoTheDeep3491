@@ -12,11 +12,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public class AutoCycleSamples extends SequentialCommandGroup {
+public class AutoCycleSamplesCommand extends SequentialCommandGroup {
 
     Vector2d pos;
 
-    public AutoCycleSamples(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
+    public AutoCycleSamplesCommand(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
 
         if (cycleCount == 1){
             pos = Constants.FIRST_SPIKE_MARK;
@@ -27,14 +27,15 @@ public class AutoCycleSamples extends SequentialCommandGroup {
         }
 
 
+
         addCommands(
                 new StrafeToPointCommand(drive, startPose, pos),
-                new AutoSpikeIntake(intake, slides, wrist),
+                new AutoSpikeIntakeCommand(intake, slides, wrist),
                 new StrafeToPointCommand(drive, new Pose2d(pos, 0), Constants.BUCKET, 45 ),
                 new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-                new ScoreSample(slides, wrist, intake)
+                new ScoreSampleCommand(slides, wrist, intake)
         );
-        addRequirements(slides, wrist, intake);
+        addRequirements(slides, wrist, intake, drive);
 
 
     }
