@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -13,9 +14,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public class ScoreSample extends SequentialCommandGroup {
+public class ScoreSampleCommand extends SequentialCommandGroup {
 
-    public ScoreSample(SlideSubsystem slides, WristSubsystem wrist, IntakeSubsystem intake){
+    public ScoreSampleCommand(SlideSubsystem slides, WristSubsystem wrist, IntakeSubsystem intake){
         addCommands(
                 new ParallelCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
@@ -25,7 +26,7 @@ public class ScoreSample extends SequentialCommandGroup {
                 new IntakeSpinCommand(intake,-Constants.SPINNING),
                 new WaitCommand(500),
                 new ParallelCommandGroup(
-                        new RaiseLiftCommand(slides, 0),
+                        new LowerLiftCommand(slides),
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new IntakeSpinCommand(intake, 0)
                 )

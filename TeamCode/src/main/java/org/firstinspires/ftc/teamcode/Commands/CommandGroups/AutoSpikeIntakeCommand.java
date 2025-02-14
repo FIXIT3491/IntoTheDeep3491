@@ -12,9 +12,9 @@ import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public class AutoSpikeIntake extends SequentialCommandGroup {
+public class AutoSpikeIntakeCommand extends SequentialCommandGroup {
 
-    public AutoSpikeIntake (IntakeSubsystem intake, SlideSubsystem slides, WristSubsystem wrist){
+    public AutoSpikeIntakeCommand(IntakeSubsystem intake, SlideSubsystem slides, WristSubsystem wrist){
         addCommands(
                 new ParallelCommandGroup(
                     new MoveWristCommand(wrist, Constants.WRIST_DOWN),

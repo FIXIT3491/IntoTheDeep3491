@@ -17,6 +17,9 @@ public class MoveWristCommand extends InstantCommand {
     }
 
     @Override
-    public void initialize() {wrist.wristMove(distance);}
+    public void initialize() {
+        wrist.wristMove(distance);
+
+    }
 
 }
