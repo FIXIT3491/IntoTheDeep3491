@@ -16,6 +16,7 @@ import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenComman
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.LMECControl;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
@@ -54,7 +55,10 @@ public class TeleOpTest extends Robot {
         );
         configureOperator();
 
+
         waitForStart();
+
+
         while (opModeIsActive()){
             update();
         }
@@ -84,6 +88,11 @@ public class TeleOpTest extends Robot {
         //TODO create pickup button maybe?
         new Trigger(() -> gamepad1.right_trigger > 0).whenActive(
                 new Pickup(wrist, intake)
+        );
+        driverPad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).toggleWhenPressed(
+                new LMECControl(lmec, true),
+                new LMECControl(lmec, false)
+
         );
 
 
