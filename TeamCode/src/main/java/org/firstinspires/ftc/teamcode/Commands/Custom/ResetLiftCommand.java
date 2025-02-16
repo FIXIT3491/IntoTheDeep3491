@@ -15,6 +15,6 @@ public class ResetLiftCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        slideSubsystem.liftEncoderReset();
+        slideSubsystem.encoderReset();
     }
 }

@@ -4,9 +4,9 @@ import com.acmerobotics.roadrunner.Vector2d;
 
 public class Constants {
     public static final int EXTENSION_MIN = -1;
-    public static final int EXTENSION_SPIKE = -1;
-    public static final int EXTENSION_SCORE_SPECIMEN = 500;
-    public static final int EXTENSION_MAX = -1;
+    public static final int EXTENSION_SPIKE = 200;
+    public static final int EXTENSION_SCORE_SPECIMEN = 100;
+    public static final int EXTENSION_MAX = 360;
 
 
     public static final int LIFT_PICKUP_SPECIMEN = 400;
@@ -22,7 +22,7 @@ public class Constants {
 
 
     public static final double WRIST_DOWN = 0;
-    public static final double WRIST_START = 0.55;
+    public static final double WRIST_START = 0.5;
     public static final double WRIST_RETRACTED = 0.4;
     public static final double WRIST_PICKUP_SPECIMEN = 0;
     public static final double WRIST_SCORE_BUCKET = 0.2;
@@ -41,6 +41,6 @@ public class Constants {
 
     public static final Vector2d BUCKET = new Vector2d(-1,-1);
 
-    public static final double DISTANCE_WHEN_IN = -1;
+    public static final double DISTANCE_WHEN_IN = 58;
 
 }

@@ -26,7 +26,7 @@ public class IntakeSubsystem extends SubsystemBase {
     }
 
     public double getDistance(){
-        return colorSensor.getDistance(DistanceUnit.CM);
+        return colorSensor.getDistance(DistanceUnit.MM);
     }
 
     public boolean sampleIsRed(){

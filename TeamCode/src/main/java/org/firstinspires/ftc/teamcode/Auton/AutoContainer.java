@@ -14,7 +14,7 @@ public abstract class AutoContainer extends Robot {
 
     @Override
     public void runOpMode() throws InterruptedException{
-        Pose2d startPose = new Pose2d(-1,-1,-1);
+        Pose2d startPose = new Pose2d(36,61,0);
         initialize(startPose);
 
 
@@ -25,7 +25,7 @@ public abstract class AutoContainer extends Robot {
         waitForStart();
         slides.encoderReset();
 
-        cs.schedule(
+        cs.schedule(false,
                 new SequentialCommandGroup(
                         new ScoreSampleCommand(slides, wrist, intake),
                         new AutoCycleSamplesCommand(intake, wrist, drive, slides,1, startPose),

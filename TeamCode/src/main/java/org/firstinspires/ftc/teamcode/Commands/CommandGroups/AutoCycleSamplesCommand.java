@@ -18,13 +18,13 @@ public class AutoCycleSamplesCommand extends SequentialCommandGroup {
 
     public AutoCycleSamplesCommand(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides, int cycleCount, Pose2d startPose){
 
-        if (cycleCount == 1){
+//        if (cycleCount == 1){
             pos = Constants.FIRST_SPIKE_MARK;
-        } else if (cycleCount == 2 ) {
-            pos = Constants.SECOND_SPIKE_MARK;
-        } else if (cycleCount == 3 ) {
-            pos = Constants.THIRD_SPIKE_MARK;
-        }
+//        } else if (cycleCount == 2 ) {
+//            pos = Constants.SECOND_SPIKE_MARK;
+//        } else if (cycleCount == 3 ) {
+//            pos = Constants.THIRD_SPIKE_MARK;
+//        }
 
 
 

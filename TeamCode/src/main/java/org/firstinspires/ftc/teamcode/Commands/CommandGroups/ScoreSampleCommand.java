@@ -5,8 +5,11 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -17,21 +20,26 @@ import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 public class ScoreSampleCommand extends SequentialCommandGroup {
 
     public ScoreSampleCommand(SlideSubsystem slides, WristSubsystem wrist, IntakeSubsystem intake){
+        addRequirements(slides, wrist, intake);
         addCommands(
-                new ParallelCommandGroup(
-                        new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-                        new MoveWristCommand(wrist, Constants.WRIST_PICKUP_SPECIMEN)
-                ),
+//                new SequentialCommandGroup(
+
+//                new ParallelCommandGroup(
+//                        new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
+                        new MoveWristAutoCommand(wrist, Constants.WRIST_SCORE_BUCKET),
+//                ),
+                new MoveExtensionCommand(slides, 200),
                 new WaitCommand(500),
-                new IntakeSpinCommand(intake,-Constants.SPINNING),
+                new IntakeSpinAutoCommand(intake,-Constants.SPINNING),
                 new WaitCommand(500),
                 new ParallelCommandGroup(
                         new LowerLiftCommand(slides),
-                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                        new IntakeSpinCommand(intake, 0)
-                )
+                        new MoveWristAutoCommand(wrist, Constants.WRIST_RETRACTED),
+                        new IntakeSpinAutoCommand(intake, 0)
+                ),
+        new MoveExtensionCommand(slides, 200)
+//                )
         );
-        addRequirements(slides, wrist, intake);
 
     }
 
