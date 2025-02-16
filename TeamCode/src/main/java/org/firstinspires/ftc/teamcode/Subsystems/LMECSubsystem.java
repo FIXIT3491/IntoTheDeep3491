@@ -22,7 +22,7 @@ public class LMECSubsystem extends SubsystemBase {
 
     // Intake method
     public void lockMechanum() {
-        servoFront.setPosition(0.5);
+        servoFront.setPosition(0.7);
         servoBack.setPosition(0.5);
 
     }

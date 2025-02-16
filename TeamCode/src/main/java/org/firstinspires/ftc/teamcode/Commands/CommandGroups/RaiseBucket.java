@@ -10,14 +10,14 @@ import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public class RaiseSpecimenCommand extends SequentialCommandGroup {
+public class RaiseBucket extends SequentialCommandGroup {
 
-    public RaiseSpecimenCommand(SlideSubsystem slides, WristSubsystem wrist){
+    public RaiseBucket(SlideSubsystem slides, WristSubsystem wrist){
         addCommands(
+
                 new SequentialCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
-                        new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                        new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN)
+                        new MoveWristCommand(wrist, Constants.WRIST_SCORE_BUCKET)
                 )
         );
         addRequirements(slides, wrist);
