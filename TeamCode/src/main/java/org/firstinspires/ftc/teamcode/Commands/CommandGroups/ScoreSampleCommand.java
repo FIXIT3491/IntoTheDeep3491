@@ -20,14 +20,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 public class ScoreSampleCommand extends SequentialCommandGroup {
 
     public ScoreSampleCommand(SlideSubsystem slides, WristSubsystem wrist, IntakeSubsystem intake){
-        addRequirements(slides, wrist, intake);
+//        addRequirements(slides, wrist, intake);
         addCommands(
-//                new SequentialCommandGroup(
 
-//                new ParallelCommandGroup(
-//                        new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-                        new MoveWristAutoCommand(wrist, Constants.WRIST_SCORE_BUCKET),
-//                ),
+                new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
+                new MoveWristAutoCommand(wrist, Constants.WRIST_SCORE_BUCKET),
                 new MoveExtensionCommand(slides, 200),
                 new WaitCommand(500),
                 new IntakeSpinAutoCommand(intake,-Constants.SPINNING),
@@ -38,9 +35,10 @@ public class ScoreSampleCommand extends SequentialCommandGroup {
                         new IntakeSpinAutoCommand(intake, 0)
                 ),
         new MoveExtensionCommand(slides, 200)
-//                )
+
         );
 
     }
 
 }
+//250 704 9418

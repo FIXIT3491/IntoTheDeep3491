@@ -17,15 +17,12 @@ public abstract class AutoContainer extends Robot {
         Pose2d startPose = new Pose2d(36,61,0);
         initialize(startPose);
 
-
-
-
         wrist.wristMove(Constants.WRIST_RETRACTED);
 
         waitForStart();
         slides.encoderReset();
 
-        cs.schedule(false,
+        cs.schedule(true,
                 new SequentialCommandGroup(
                         new ScoreSampleCommand(slides, wrist, intake),
                         new AutoCycleSamplesCommand(intake, wrist, drive, slides,1, startPose),

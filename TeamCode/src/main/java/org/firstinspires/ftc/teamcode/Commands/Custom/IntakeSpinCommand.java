@@ -21,8 +21,4 @@ public class IntakeSpinCommand extends CommandBase {
     public void execute() {
         intake.spinIntake(-power);
     }
-    @Override
-    public boolean isFinished(){
-        return false;
-    }
 }

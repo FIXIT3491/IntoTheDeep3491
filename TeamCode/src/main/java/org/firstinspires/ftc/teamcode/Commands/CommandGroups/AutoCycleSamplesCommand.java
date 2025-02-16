@@ -35,7 +35,7 @@ public class AutoCycleSamplesCommand extends SequentialCommandGroup {
                 new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
                 new ScoreSampleCommand(slides, wrist, intake)
         );
-        addRequirements(slides, wrist, intake, drive);
+
 
 
     }
