@@ -18,7 +18,8 @@ public class IntakeSpinCommand extends InstantCommand {
 
     @Override
     public void initialize() {
-        intake.spinIntake(power);
+
+        intake.spinIntake(-power);
     }
 
 }

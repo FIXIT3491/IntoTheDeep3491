@@ -5,27 +5,28 @@ import com.acmerobotics.roadrunner.Vector2d;
 public class Constants {
     public static final int EXTENSION_MIN = -1;
     public static final int EXTENSION_SPIKE = -1;
-    public static final int EXTENSION_SCORE_SPECIMEN = -1;
+    public static final int EXTENSION_SCORE_SPECIMEN = 500;
     public static final int EXTENSION_MAX = -1;
 
 
-    public static final int LIFT_BUCKET_1 = -1;
-    public static final int LIFT_BUCKET_2 = -1;
-    public static final int LIFT_CHAMBER_1 = -1;
-    public static final int LIFT_CHAMBER_2 = -1;
+    public static final int LIFT_PICKUP_SPECIMEN = 400;
+    public static final int LIFT_BUCKET_2 = 2700;
+    public static final int LIFT_CHAMBER_2 = 1100;
 
 
     public static final double BUCKET_X = 9.5;   //  Position of the bucket forward value for the OTOS auto relative to the robot (adjust for your robot)
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
-    public static final double SPINNING = -1;
-    public static final double STOPPED = -1;
+    public static final double SPINNING = 0.7;
+    public static final double OUTTAKE = 0.1;
 
-    public static final double WRIST_DOWN = -1;
-    public static final double WRIST_RETRACTED = -1;
-    public static final double WRIST_OUT = -1;
-    public static final double WRIST_SCORE_BUCKET = -1;
-    public static final double WRIST_SCORE_CHAMBER = -1;
+
+    public static final double WRIST_DOWN = 0;
+    public static final double WRIST_START = 0.55;
+    public static final double WRIST_RETRACTED = 0.4;
+    public static final double WRIST_PICKUP_SPECIMEN = 0;
+    public static final double WRIST_SCORE_BUCKET = 0.2;
+    public static final double WRIST_SCORE_CHAMBER = 0.2;
 
     public static final Vector2d FIRST_SPIKE_MARK = new Vector2d(-1,-1);
     public static final Vector2d SECOND_SPIKE_MARK = new Vector2d(-1,-1);

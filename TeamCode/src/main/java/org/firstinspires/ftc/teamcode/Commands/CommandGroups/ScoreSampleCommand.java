@@ -20,7 +20,7 @@ public class ScoreSampleCommand extends SequentialCommandGroup {
         addCommands(
                 new ParallelCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-                        new MoveWristCommand(wrist, Constants.WRIST_OUT)
+                        new MoveWristCommand(wrist, Constants.WRIST_PICKUP_SPECIMEN)
                 ),
                 new WaitCommand(500),
                 new IntakeSpinCommand(intake,-Constants.SPINNING),

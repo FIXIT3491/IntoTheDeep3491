@@ -17,7 +17,7 @@ public class WristSubsystem extends SubsystemBase {
         wristServoRight = hardwareMap.get(Servo.class, "WSR");
         wristServoLeft = hardwareMap.get(Servo.class, "WSL");
 
-        wristServoRight.setDirection(Servo.Direction.REVERSE);
+        wristServoLeft.setDirection(Servo.Direction.REVERSE);
     }
 
     public void wristMove(double distance){
