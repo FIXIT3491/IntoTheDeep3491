@@ -61,7 +61,7 @@ public class TeleOpTest extends Robot {
                         drive,
                         () -> Util.halfLinearHalfCubic(driverPad.getLeftY()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
                         () -> Util.halfLinearHalfCubic(driverPad.getLeftX()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
-                        () -> driverPad.getLeftX(),
+                        () -> driverPad.getRightX(),
 //                        () -> Util.halfLinearHalfCubic(driverPad.getRightX()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
                         drive.getHeading()
                 )
@@ -82,6 +82,9 @@ public class TeleOpTest extends Robot {
 
 
         while (opModeIsActive()){
+
+            telemetry.addData("touch sensor",slides.getTouchSensor());
+            telemetry.addData("distance sensor",intake.getDistance());
             update();
         }
         CommandScheduler.getInstance().reset();
@@ -104,14 +107,9 @@ public class TeleOpTest extends Robot {
                 .whenHeld(new RaiseSpecimenCommand(slides, wrist))
                 .whenReleased(new ScoreSpecimenCommand(slides, wrist));
 
-
-
-//        //TODO learn how to use condidtional commands for this to check when sample is inside claw
-
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE));
 
-        //TODO create pickup button maybe?
         new Trigger(() -> gamepad1.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)
         );
