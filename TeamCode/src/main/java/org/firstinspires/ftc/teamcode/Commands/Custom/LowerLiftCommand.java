@@ -20,8 +20,10 @@ public class LowerLiftCommand extends InstantCommand {
         //@TODO check to make sure this while loop doesn't break the command logic
         if (!slideSubsystem.getTouchSensor()) {
             slideSubsystem.liftRetract(-0.5);
-        }else
+        }else {
             slideSubsystem.liftEncoderReset();
+            slideSubsystem.liftRetract(0);
+        }
     }
 }
 
