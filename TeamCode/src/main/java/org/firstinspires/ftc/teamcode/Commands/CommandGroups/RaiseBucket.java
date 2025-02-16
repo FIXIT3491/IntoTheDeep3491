@@ -16,7 +16,7 @@ public class RaiseBucket extends SequentialCommandGroup {
         addCommands(
 
                 new SequentialCommandGroup(
-                        new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
+                        new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
                         new MoveWristCommand(wrist, Constants.WRIST_SCORE_BUCKET)
                 )
         );

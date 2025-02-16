@@ -19,10 +19,10 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LMECControl;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.Pickup;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
-import org.firstinspires.ftc.teamcode.Commands.Custom.ResetExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.ResetLiftCommand;
 import org.firstinspires.ftc.teamcode.Lib.Util;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -49,7 +49,6 @@ public class TeleOpTest extends Robot {
                 new SequentialCommandGroup(
                         new LMECControl(lmec, false),
                         new MoveWristCommand(wrist, Constants.WRIST_START),
-                        new ResetExtensionCommand(slides),
                         new ResetLiftCommand(slides)
                         )
         );
@@ -67,14 +66,14 @@ public class TeleOpTest extends Robot {
                 )
         );
         //makes wrist return back to zero
-        CommandScheduler.getInstance()
-                .setDefaultCommand(wrist,
-                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED)
-                        );
-        CommandScheduler.getInstance()
-                .setDefaultCommand(intake,
-                        new IntakeSpinCommand(intake, 0)
-                );
+//        CommandScheduler.getInstance()
+//                .setDefaultCommand(wrist,
+//                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED)
+//                        );
+//        CommandScheduler.getInstance()
+//                .setDefaultCommand(intake,
+//                        new IntakeSpinCommand(intake, 0)
+//                );
 
         configureOperator();
 
@@ -84,7 +83,8 @@ public class TeleOpTest extends Robot {
         while (opModeIsActive()){
 
             telemetry.addData("touch sensor",slides.getTouchSensor());
-            telemetry.addData("distance sensor",intake.getDistance());
+            telemetry.addData("distance sensor", intake.getDistance());
+            telemetry.addData("extension pos", slides.getExtensionPos());
             update();
         }
         CommandScheduler.getInstance().reset();
@@ -95,7 +95,7 @@ public class TeleOpTest extends Robot {
                 new RaiseBucket(slides, wrist)
         );
         //Zero Lift
-        operatorPad.getGamepadButton(GamepadKeys.Button.A).whileActiveContinuous(
+        operatorPad.getGamepadButton(GamepadKeys.Button.A).whileActiveOnce(
                 new LowerLiftCommand(slides));
 
         //Raise to score specimen
@@ -107,23 +107,31 @@ public class TeleOpTest extends Robot {
                 .whenHeld(new RaiseSpecimenCommand(slides, wrist))
                 .whenReleased(new ScoreSpecimenCommand(slides, wrist));
 
-        operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
-                .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE));
 
+        operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
+                .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
+                .whenReleased(new IntakeSpinCommand(intake, 0));
+
+//        new Trigger(() -> gamepad2.right_trigger > 0).whileActiveContinuous(
+//                new MoveExtensionCommand(slides, (slides.getExtensionPos() + ))
+//        );
         new Trigger(() -> gamepad1.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)
         );
+//        new Trigger(() -> gamepad1.right_trigger > 0).whenInactive(
+//                new MoveWristCommand(wrist, Constants.WRIST_RETRACTED)
+//        );
+
         driverPad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).toggleWhenPressed(
                 new LMECControl(lmec, true),
                 new LMECControl(lmec, false)
         );
-
     }
 
 
 //    intake sample (g1 right trigger held) wrist down, intake spin, slides down, while held (need to check color sensor inside pickup method logic) add while active continus and then if(distance blah blag balh)
 //    lock mechanum (g1 right bumper) toggle locked or unlocked
-//    reset feild centric
+//    reset feild centric ( options)
 //    intake specimens ( hold, raises arm to value and drops down after
 //
 
@@ -135,7 +143,7 @@ public class TeleOpTest extends Robot {
 //  lift bucket (b while active)
 //  score specimen (when released x ) resets stuff
 //  outtake (when held left bumper)
-//
+//  extension (manual joystick button
 
     // DRIVER GAMEPAD
 

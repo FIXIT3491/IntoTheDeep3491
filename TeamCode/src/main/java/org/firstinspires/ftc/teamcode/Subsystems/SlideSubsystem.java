@@ -27,7 +27,6 @@ public class SlideSubsystem extends SubsystemBase {
         liftMotorLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         liftMotorLeft.setDirection(DcMotor.Direction.REVERSE);
-        extensionMotor.setDirection(DcMotor.Direction.REVERSE);
 
         extensionMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftMotorRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -66,6 +65,9 @@ public class SlideSubsystem extends SubsystemBase {
         liftMotorRight.setPower(speed);
         liftMotorLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         liftMotorLeft.setPower(speed);
+    }
+    public int getExtensionPos(){
+        return extensionMotor.getCurrentPosition();
     }
 
     public void raiseLift(int pos){

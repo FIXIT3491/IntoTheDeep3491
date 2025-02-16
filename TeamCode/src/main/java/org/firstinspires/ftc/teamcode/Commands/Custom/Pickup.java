@@ -22,11 +22,13 @@ public class Pickup extends InstantCommand {
     public void initialize() {
         //todo check while loops work
         wrist.wristMove(Constants.WRIST_DOWN);
-//        while (intake.getDistance() < Constants.DISTANCE_WHEN_IN){
-        intake.spinIntake(Constants.SPINNING);
-//        }
-//        intake.spinIntake(Constants.STOPPED);
-//        wrist.wristMove(Constants.WRIST_RETRACTED);
+        if (intake.getDistance() > Constants.DISTANCE_WHEN_IN){
+            intake.spinIntake(Constants.SPINNING);
+        } else {
+            intake.spinIntake(0);
+            wrist.wristMove(Constants.WRIST_RETRACTED);
+        }
+        ;
 
     }
 

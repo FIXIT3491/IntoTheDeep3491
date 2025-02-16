@@ -4,9 +4,11 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
@@ -16,26 +18,20 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 @Autonomous(name="TestingActions", group="02")
 public class MotorTest extends LinearOpMode {
 
-    private DcMotor liftMotorRight;
-    private DcMotor liftMotorLeft;
-
+//    public ColorRangeSensor colorSensor;
     @Override
     public void runOpMode() {
-        liftMotorRight = hardwareMap.get(DcMotor.class, "liftRight");
-        liftMotorLeft = hardwareMap.get(DcMotor.class, "liftLeft");
-
-        liftMotorLeft.setDirection(DcMotor.Direction.REVERSE);
+//        colorSensor = hardwareMap.get(ColorRangeSensor.class, "color");
+//        extension = hardwareMap.get(DcMotorEx.class, "e")
+        SlideSubsystem slides = new SlideSubsystem(hardwareMap, telemetry);
 
         waitForStart();
+
         while (opModeIsActive()) {
-            if (gamepad1.a) {
-                liftMotorLeft.setPower(1);
-                liftMotorRight.setPower(1);
-            }
-            if (gamepad1.b){
-                liftMotorLeft.setPower(-1);
-                liftMotorRight.setPower(-1);
-            }
+            telemetry.addData("color", slides.getExtensionPos());
+            telemetry.update();
+
+            slides.moveExtension(slides.getExtensionPos() + 4);
         }
     }
 
