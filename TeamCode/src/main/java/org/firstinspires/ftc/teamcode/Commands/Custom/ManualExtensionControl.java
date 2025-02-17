@@ -1,30 +1,35 @@
 package org.firstinspires.ftc.teamcode.Commands.Custom;
 
-import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
 
+import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 
-public class RaiseLiftCommand extends InstantCommand {
-    SlideSubsystem slideSubsystem;
-    int position;
 
-    public RaiseLiftCommand(SlideSubsystem slideSubsystem, int position){
+
+public class ManualExtensionControl extends InstantCommand {
+
+    SlideSubsystem slideSubsystem;
+    int gamepadPos;
+
+    public ManualExtensionControl(SlideSubsystem slideSubsystem, int gamepadPos){
         this.slideSubsystem = slideSubsystem;
-        this.position = position;
+        this.gamepadPos = gamepadPos;
+
         addRequirements(slideSubsystem);
+
     }
 
     @Override
     public void initialize() {
-        slideSubsystem.raiseLift(position);
+        // Map gamepadPos (0 to 1) to slide position (0 to 360) and convert to int
+
+
+        slideSubsystem.moveExtension(gamepadPos);
     }
 //    @Override
 //    public boolean isFinished(){
-//        return slideSubsystem.isAtTargetPos();
-//
+//        return true;
 //    }
-
-
-
 }
+

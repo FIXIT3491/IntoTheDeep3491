@@ -4,7 +4,7 @@ import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 
-public class IntakeSpinCommand extends CommandBase {
+public class IntakeSpinCommand extends InstantCommand {
 
     IntakeSubsystem intake;
     double power = 0;
@@ -18,7 +18,7 @@ public class IntakeSpinCommand extends CommandBase {
 
 
     @Override
-    public void execute() {
+    public void initialize() {
         intake.spinIntake(-power);
     }
 }

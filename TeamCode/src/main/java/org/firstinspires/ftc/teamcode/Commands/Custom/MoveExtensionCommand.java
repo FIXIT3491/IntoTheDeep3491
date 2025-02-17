@@ -12,7 +12,7 @@ public class MoveExtensionCommand extends InstantCommand {
     public MoveExtensionCommand(SlideSubsystem slideSubsystem, int position){
         this.position = position;
         this.slideSubsystem = slideSubsystem;
-        addRequirements(slideSubsystem);
+//        addRequirements(slideSubsystem);
     }
 
     @Override

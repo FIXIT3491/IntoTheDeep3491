@@ -13,6 +13,8 @@ import com.acmerobotics.roadrunner.ftc.FlightRecorder;
 import com.acmerobotics.roadrunner.ftc.SparkFunOTOSCorrected;
 import com.qualcomm.hardware.sparkfun.SparkFunOTOS;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.IMU;
+
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.RoadRunnerStuff.MecanumDrive;
@@ -36,6 +38,7 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
 
     public static SparkFunOTOSSubSystem.Params PARAMS = new SparkFunOTOSSubSystem.Params();
     public SparkFunOTOSCorrected otos;
+    public IMU imu;
     private Pose2d lastOtosPose = pose;
 
     private final DownsampledWriter estimatedPoseWriter = new DownsampledWriter("ESTIMATED_POSE", 50_000_000);
@@ -44,6 +47,7 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
         super(hardwareMap, pose);
         FlightRecorder.write("OTOS_PARAMS",PARAMS);
         otos = hardwareMap.get(SparkFunOTOSCorrected.class,"sensor_otos");
+        imu = hardwareMap.get(IMU.class, "imu");
         otos.setLinearUnit(DistanceUnit.INCH);
         otos.setAngularUnit(AngleUnit.RADIANS);
 
@@ -65,8 +69,8 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
         return new Pose2d(x, y , h);
     }
     public double getHeading(){
-        return otos.getPosition().h;
-    }
+        return imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);    }
+
 
 
     @Override
@@ -95,20 +99,24 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
 
 
 
-    public void driveFieldCentric(double x, double y, double rx, double heading) {
+    public void driveFieldCentric(double gamepadX, double gamepadY, double gamepadRX, double heading) {
 
-        double headingRads = -Math.toRadians(heading);
-
-        double rotX = y * Math.cos(headingRads) + x * Math.sin(headingRads);
-
-        double rotY = y * Math.sin(headingRads) - x * Math.cos(headingRads);
+        double headingRads = getHeading();
 
 
-        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
-        double frontLeftPower = (rotY + rotX + rx) / denominator;
-        double backLeftPower = (rotY - rotX + rx) / denominator;
-        double frontRightPower = (rotY - rotX - rx) / denominator;
-        double backRightPower = (rotY + rotX - rx) / denominator;
+
+//        double rotX = gamepadY * Math.cos(-headingRads) + gamepadX * Math.sin(-headingRads);
+//
+//        double rotY = gamepadY * Math.sin(-headingRads) - gamepadX * Math.cos(-headingRads);
+        double rotX = gamepadX * Math.cos(-headingRads) - gamepadY * Math.sin(-headingRads);
+        double rotY = gamepadX * Math.sin(-headingRads) + gamepadY * Math.cos(-headingRads);
+
+
+        double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(gamepadRX), 1);
+        double frontLeftPower = (rotY + rotX + gamepadRX) / denominator;
+        double backLeftPower = (rotY - rotX + gamepadRX) / denominator;
+        double frontRightPower = (rotY - rotX - gamepadRX) / denominator;
+        double backRightPower = (rotY + rotX - gamepadRX) / denominator;
         if (!(Double.valueOf(frontLeftPower).isNaN() ||
                 Double.valueOf(backLeftPower).isNaN() ||
                 Double.valueOf(frontRightPower).isNaN() ||
@@ -119,6 +127,18 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
             leftBack.setPower(backLeftPower);
             rightFront.setPower(frontRightPower);
             rightBack.setPower(backRightPower);
+//            double botHeading = RobotContainer.imuSubsystem.getHeading();
+//
+//            rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
+//            rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+//
+//            rotX = rotX * 1;  // Counteract imperfect strafing
+//
+//            double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+//            double frontLeftPower = (rotY + rotX + rx) / denominator;
+//            double backLeftPower = (rotY - rotX + rx) / denominator;
+//            double frontRightPower = (rotY - rotX - rx) / denominator;
+//            double backRightPower = (rotY + rotX - rx) / denominator;
         }
 
         //FtcDashboard.getInstance().getTelemetry().addData("fl", frontLeftPower);

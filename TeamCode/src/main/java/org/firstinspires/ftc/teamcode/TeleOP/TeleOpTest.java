@@ -3,12 +3,15 @@ package org.firstinspires.ftc.teamcode.TeleOP;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.arcrobotics.ftclib.command.CommandScheduler;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.PickupSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenCommand;
@@ -18,6 +21,7 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.DefaultDriveCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LMECControl;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.ManualExtensionControl;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
@@ -37,6 +41,7 @@ public class TeleOpTest extends Robot {
 
     protected GamepadEx driverPad;
     protected GamepadEx operatorPad;
+
 
     @Override
     public void runOpMode() {
@@ -58,10 +63,9 @@ public class TeleOpTest extends Robot {
         CommandScheduler.getInstance().setDefaultCommand(drive,
                 new DefaultDriveCommand(
                         drive,
-                        () -> Util.halfLinearHalfCubic(driverPad.getLeftY()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
-                        () -> Util.halfLinearHalfCubic(driverPad.getLeftX()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
+                        () -> Util.halfLinearHalfCubic(driverPad.getLeftY()),
+                        () -> Util.halfLinearHalfCubic(driverPad.getLeftX()),
                         () -> driverPad.getRightX(),
-//                        () -> Util.halfLinearHalfCubic(driverPad.getRightX()) * (getState() == FSMStates.INTAKE || getState() == FSMStates.OUTTAKE ? robotMovementMultiplier : 1),
                         drive.getHeading()
                 )
         );
@@ -85,6 +89,10 @@ public class TeleOpTest extends Robot {
             telemetry.addData("touch sensor",slides.getTouchSensor());
             telemetry.addData("distance sensor", intake.getDistance());
             telemetry.addData("extension pos", slides.getExtensionPos());
+            telemetry.addData("heading", drive.getHeading());
+            telemetry.addData("Gamepad y", gamepad2.right_stick_y);
+
+
             update();
         }
         CommandScheduler.getInstance().reset();
@@ -95,8 +103,11 @@ public class TeleOpTest extends Robot {
                 new RaiseBucket(slides, wrist)
         );
         //Zero Lift
-        operatorPad.getGamepadButton(GamepadKeys.Button.A).whileActiveOnce(
-                new LowerLiftCommand(slides));
+        operatorPad.getGamepadButton(GamepadKeys.Button.A).and(new Trigger(() ->!slides.getTouchSensor())).whenActive(
+                new ParallelCommandGroup(
+                        new LowerLiftCommand(slides),
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED))
+        );
 
         //Raise to score specimen
         driverPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
@@ -107,24 +118,46 @@ public class TeleOpTest extends Robot {
                 .whenHeld(new RaiseSpecimenCommand(slides, wrist))
                 .whenReleased(new ScoreSpecimenCommand(slides, wrist));
 
-
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
                 .whenReleased(new IntakeSpinCommand(intake, 0));
 
-//        new Trigger(() -> gamepad2.right_trigger > 0).whileActiveContinuous(
-//                new MoveExtensionCommand(slides, (slides.getExtensionPos() + ))
-//        );
+        new Trigger(() ->  (-operatorPad.getRightY() < 0.05 )).whenActive(
+                new ManualExtensionControl(slides, 0)
+        );
+        new Trigger(() ->  (-operatorPad.getRightY()  < 0.24 && -operatorPad.getRightY() >0 )).whenActive(
+                new ManualExtensionControl(slides, 100)
+        );
+        new Trigger(() ->  (-operatorPad.getRightY()  < 0.49 && -operatorPad.getRightY() > 0.25)).whenActive(
+                new ManualExtensionControl(slides, 150)
+        );
+        new Trigger(() ->  (-operatorPad.getRightY()  < 0.74 && -operatorPad.getRightY() > 0.5)).whenActive(
+                new ManualExtensionControl(slides, 250)
+        );
+        new Trigger(() ->  (-operatorPad.getRightY() > 0.75)).whenActive(
+                new ManualExtensionControl(slides, 300)
+        );
+
+
+
         new Trigger(() -> gamepad1.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)
         );
-//        new Trigger(() -> gamepad1.right_trigger > 0).whenInactive(
-//                new MoveWristCommand(wrist, Constants.WRIST_RETRACTED)
-//        );
-
+        new Trigger(() -> gamepad1.right_trigger > 0).whenInactive(
+                new SequentialCommandGroup(
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                        new IntakeSpinCommand(intake, 0)
+                )
+        );
         driverPad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).toggleWhenPressed(
                 new LMECControl(lmec, true),
                 new LMECControl(lmec, false)
+        );
+        new Trigger(() ->slides.getTouchSensor()).whenActive(
+                new SequentialCommandGroup(
+                        new ResetLiftCommand(slides),
+                        new LowerLiftCommand(slides, 0)
+                )
         );
     }
 

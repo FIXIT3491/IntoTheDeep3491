@@ -59,7 +59,6 @@ public class Util {
         return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2));
     }
 //    public static int extensionMod(double JoystickValue, int currentPos){
-//
 //        // min to max value
 //
 //

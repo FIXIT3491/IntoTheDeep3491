@@ -19,15 +19,15 @@ public class AutoSpikeIntakeCommand extends SequentialCommandGroup {
     public AutoSpikeIntakeCommand(IntakeSubsystem intake, SlideSubsystem slides, WristSubsystem wrist){
         addCommands(
                 new ParallelCommandGroup(
-                    new MoveWristAutoCommand(wrist, Constants.WRIST_DOWN),
-                    new IntakeSpinAutoCommand(intake, Constants.SPINNING)
+                    new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                    new IntakeSpinCommand(intake, Constants.SPINNING)
                 ),
                 new WaitCommand(500),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SPIKE),
                 new WaitCommand(500),
                 new ParallelCommandGroup(
-                    new MoveWristAutoCommand(wrist, Constants.WRIST_RETRACTED),
-                    new IntakeSpinAutoCommand(intake, 0)
+                    new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                    new IntakeSpinCommand(intake, 0)
                 )
         );
         addRequirements(slides, wrist, intake);

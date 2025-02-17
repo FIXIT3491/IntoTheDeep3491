@@ -22,19 +22,20 @@ public class ScoreSampleCommand extends SequentialCommandGroup {
     public ScoreSampleCommand(SlideSubsystem slides, WristSubsystem wrist, IntakeSubsystem intake){
 //        addRequirements(slides, wrist, intake);
         addCommands(
-
-                new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-                new MoveWristAutoCommand(wrist, Constants.WRIST_SCORE_BUCKET),
-                new MoveExtensionCommand(slides, 200),
-                new WaitCommand(500),
-                new IntakeSpinAutoCommand(intake,-Constants.SPINNING),
-                new WaitCommand(500),
+                new ParallelCommandGroup(
+                        new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
+                        new MoveWristCommand(wrist, Constants.WRIST_SCORE_BUCKET),
+                        new MoveExtensionCommand(slides, 200)
+                ),
+                new WaitCommand(1700),
+                new IntakeSpinCommand(intake,-Constants.SPINNING),
+                new WaitCommand(700),
                 new ParallelCommandGroup(
                         new LowerLiftCommand(slides),
-                        new MoveWristAutoCommand(wrist, Constants.WRIST_RETRACTED),
-                        new IntakeSpinAutoCommand(intake, 0)
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                        new IntakeSpinCommand(intake, 0)
                 ),
-        new MoveExtensionCommand(slides, 200)
+        new MoveExtensionCommand(slides, 0)
 
         );
 

@@ -31,7 +31,7 @@ public class MotorTest extends LinearOpMode {
             telemetry.addData("color", slides.getExtensionPos());
             telemetry.update();
 
-            slides.moveExtension(slides.getExtensionPos() + 4);
+            slides.moveExtension(300);
         }
     }
 

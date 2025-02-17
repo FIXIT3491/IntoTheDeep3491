@@ -9,21 +9,22 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 public class LowerLiftCommand extends InstantCommand {
 
     SlideSubsystem slideSubsystem;
+    double power = -0.8;
 
+    public LowerLiftCommand(SlideSubsystem slideSubsystem, double power){
+        this.slideSubsystem = slideSubsystem;
+        this.power = power;
+        addRequirements(slideSubsystem);
+    }
     public LowerLiftCommand(SlideSubsystem slideSubsystem){
         this.slideSubsystem = slideSubsystem;
+        power = -0.5;
         addRequirements(slideSubsystem);
     }
 
     @Override
     public void initialize() {
-        //@TODO check to make sure this while loop doesn't break the command logic
-        if (!slideSubsystem.getTouchSensor()) {
-            slideSubsystem.liftRetract(-0.5);
-        }else {
-            slideSubsystem.liftEncoderReset();
-            slideSubsystem.liftRetract(0);
-        }
+        slideSubsystem.liftRetract(power);
     }
 }
 

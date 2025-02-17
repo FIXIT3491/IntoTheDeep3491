@@ -21,15 +21,14 @@ public class Pickup extends InstantCommand {
     @Override
     public void initialize() {
         //todo check while loops work
-        wrist.wristMove(Constants.WRIST_DOWN);
+
         if (intake.getDistance() > Constants.DISTANCE_WHEN_IN){
             intake.spinIntake(Constants.SPINNING);
+            wrist.wristMove(Constants.WRIST_DOWN);
         } else {
             intake.spinIntake(0);
             wrist.wristMove(Constants.WRIST_RETRACTED);
         }
-        ;
-
     }
 
 }
