@@ -27,6 +27,7 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristAutoCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.Pickup;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.ResetIMUCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.ResetLiftCommand;
 import org.firstinspires.ftc.teamcode.Lib.Util;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -49,12 +50,13 @@ public class TeleOpTest extends Robot {
 
         driverPad = new GamepadEx(gamepad1);
         operatorPad = new GamepadEx(gamepad2);
-
+        drive.reset();
         cs.schedule(
                 new SequentialCommandGroup(
                         new LMECControl(lmec, false),
                         new MoveWristCommand(wrist, Constants.WRIST_START),
-                        new ResetLiftCommand(slides)
+                        new ResetLiftCommand(slides),
+                        new ResetIMUCommand(drive )
                         )
         );
 
@@ -63,8 +65,8 @@ public class TeleOpTest extends Robot {
         CommandScheduler.getInstance().setDefaultCommand(drive,
                 new DefaultDriveCommand(
                         drive,
-                        () -> Util.halfLinearHalfCubic(driverPad.getLeftY()),
-                        () -> Util.halfLinearHalfCubic(driverPad.getLeftX()),
+                        () -> driverPad.getLeftX(),
+                        () -> driverPad.getLeftY(),
                         () -> driverPad.getRightX(),
                         drive.getHeading()
                 )
@@ -121,24 +123,37 @@ public class TeleOpTest extends Robot {
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
                 .whenReleased(new IntakeSpinCommand(intake, 0));
+        new Trigger(() -> gamepad1.left_trigger > 0).whileActiveContinuous(
+                new SequentialCommandGroup(
+                        new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                        new IntakeSpinCommand(intake,   Constants.SPINNING)
+                )
+        ).whenInactive(
+                new SequentialCommandGroup(
+                    new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                    new IntakeSpinCommand(intake, 0)
+        ));
 
         new Trigger(() ->  (-operatorPad.getRightY() < 0.05 )).whenActive(
                 new ManualExtensionControl(slides, 0)
         );
         new Trigger(() ->  (-operatorPad.getRightY()  < 0.24 && -operatorPad.getRightY() >0 )).whenActive(
-                new ManualExtensionControl(slides, 100)
+                new ManualExtensionControl(slides, 500)
+
         );
         new Trigger(() ->  (-operatorPad.getRightY()  < 0.49 && -operatorPad.getRightY() > 0.25)).whenActive(
-                new ManualExtensionControl(slides, 150)
+                new ManualExtensionControl(slides, 1000)
         );
         new Trigger(() ->  (-operatorPad.getRightY()  < 0.74 && -operatorPad.getRightY() > 0.5)).whenActive(
-                new ManualExtensionControl(slides, 250)
+                new ManualExtensionControl(slides, 1500)
         );
         new Trigger(() ->  (-operatorPad.getRightY() > 0.75)).whenActive(
-                new ManualExtensionControl(slides, 300)
+                new ManualExtensionControl(slides, 2000)
         );
 
-
+        driverPad.getGamepadButton(GamepadKeys.Button.BACK).whenPressed(
+                new ResetIMUCommand(drive)
+        );
 
         new Trigger(() -> gamepad1.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)

@@ -5,47 +5,79 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.AnalogInput;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.Servo;
-@TeleOp(name="axon test", group="02")
-public class AxonTest extends LinearOpMode {
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+
+@TeleOp(name="field centric test", group="02")
+public class AxonTest extends Robot {
     Servo servoFront;
     Servo servoBack;
 
     AnalogInput analogInput;
+    public DcMotorEx leftFront, leftBack, rightBack, rightFront;
 
+    public IMU imu;
 
     @Override
     public void runOpMode() {
 
 
-        servoFront = hardwareMap.get(Servo.class, "LMECFront");
-        servoBack = hardwareMap.get(Servo.class, "LMECBack");
-        servoFront.setDirection(Servo.Direction.REVERSE);
-        analogInput = hardwareMap.get(AnalogInput.class, "axonDataFront");
+        leftFront = hardwareMap.get(DcMotorEx.class, "FLD");
+        leftBack = hardwareMap.get(DcMotorEx.class, "BLD");
+        rightBack = hardwareMap.get(DcMotorEx.class, "BRD");
+        rightFront = hardwareMap.get(DcMotorEx.class, "FRD");
+        imu = hardwareMap.get(IMU.class, "imu");
+
+
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         while (opModeIsActive()) {
-            double position = analogInput.getVoltage() / 3.3 * 360;
-
-            if (gamepad1.a)
-                servoFront.setPosition(0.7);
-            if (gamepad1.b)
-                servoFront.setPosition(0);
-            if (gamepad1.x)
-                servoBack.setPosition(0.7);
-            if (gamepad1.y)
-                servoBack.setPosition(0);
 
 
+            double headingRads = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 
-            telemetry.addData("Gamepad a ", "lock");
-            telemetry.addData("Gamepad b", "unlock");
-            telemetry.addData("Gamepad x", "lock");
-            telemetry.addData("Gamepad y", "unlock");
-            telemetry.addData("axon", position);
 
-            telemetry.update();
+            double gamepadX = gamepad1.left_stick_x;
+            double gamepadY = gamepad1.left_stick_y;
+            double  gamepadRX = gamepad1.right_stick_x;
+
+//        double rotX = gamepadY * Math.cos(-headingRads) + gamepadX * Math.sin(-headingRads);
+//
+//        double rotY = gamepadY * Math.sin(-headingRads) - gamepadX * Math.cos(-headingRads);
+            double rotX = gamepadX * Math.cos(-headingRads) - gamepadY * Math.sin(-headingRads);
+            double rotY = gamepadX * Math.sin(-headingRads) + gamepadY * Math.cos(-headingRads);
+
+
+            double denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(gamepadRX), 1);
+            double frontLeftPower = (rotY + rotX + gamepadRX) / denominator;
+            double backLeftPower = (rotY - rotX + gamepadRX) / denominator;
+            double frontRightPower = (rotY - rotX - gamepadRX) / denominator;
+            double backRightPower = (rotY + rotX - gamepadRX) / denominator;
+            if (!(Double.valueOf(frontLeftPower).isNaN() ||
+                    Double.valueOf(backLeftPower).isNaN() ||
+                    Double.valueOf(frontRightPower).isNaN() ||
+                    Double.valueOf(backRightPower).isNaN())) {
+
+
+                leftFront.setPower(frontLeftPower);
+                leftBack.setPower(backLeftPower);
+                rightFront.setPower(frontRightPower);
+                rightBack.setPower(backRightPower);
         }
 
     }
 }
+    }

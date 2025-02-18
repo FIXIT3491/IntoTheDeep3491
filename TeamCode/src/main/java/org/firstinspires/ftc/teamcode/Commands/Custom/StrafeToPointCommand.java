@@ -20,19 +20,19 @@ public class StrafeToPointCommand extends InstantCommand {
 
 
     //strafeToConstantHeading
-    public StrafeToPointCommand(SparkFunOTOSSubSystem sparkFunOTOSSubSystem, Pose2d startingPose, Vector2d endingPose){
-        this.sparkFunOTOSSubSystem = sparkFunOTOSSubSystem;
-        //TODO make sure this returns the current value and not how much it has move or something
-        this.startingPose = sparkFunOTOSSubSystem.getOTOSPose();
-        this.endingPose = endingPose;
-        Linear = false;
-
-    }
+//    public StrafeToPointCommand(SparkFunOTOSSubSystem sparkFunOTOSSubSystem, Pose2d startingPose, Vector2d endingPose){
+//        this.sparkFunOTOSSubSystem = sparkFunOTOSSubSystem;
+//        //TODO make sure this returns the current value and not how much it has move or something
+//        this.startingPose = startingPose;
+//        this.endingPose = endingPose;
+//        Linear = false;
+//
+//    }
     //StrafeToLinearHeading
     public StrafeToPointCommand(SparkFunOTOSSubSystem sparkFunOTOSSubSystem, Pose2d startingPose, Vector2d endingPose, double endingHeading){
         this.sparkFunOTOSSubSystem = sparkFunOTOSSubSystem;
         //TODO PLZ CHECK THIS ASWELL LEO IM TALKING TO YOU PROBABLLY
-        this.startingPose = sparkFunOTOSSubSystem.getOTOSPose();
+        this.startingPose = startingPose;
         this.endingPose = endingPose;
         this.endingHeading = endingHeading;
         Linear = true;
@@ -45,13 +45,13 @@ public class StrafeToPointCommand extends InstantCommand {
         Action driveToSpikeMark;
         TrajectoryActionBuilder DriveToFirstSpikeMark;//drive to spike mark for second sample
 
-        if (Linear) {
+//        if (Linear) {
             DriveToFirstSpikeMark = sparkFunOTOSSubSystem.actionBuilder(startingPose)
                     .strafeToLinearHeading(endingPose, endingHeading);
-        } else {
-            DriveToFirstSpikeMark = sparkFunOTOSSubSystem.actionBuilder(startingPose)
-                    .strafeToConstantHeading(endingPose);
-        }
+//        } else {
+//            DriveToFirstSpikeMark = sparkFunOTOSSubSystem.actionBuilder(startingPose)
+//                    .strafeToConstantHeading(endingPose);
+//        }
         driveToSpikeMark = DriveToFirstSpikeMark.build();
 
 

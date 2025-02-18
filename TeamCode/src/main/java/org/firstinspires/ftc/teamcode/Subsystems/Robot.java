@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 import com.acmerobotics.roadrunner.Pose2d;
+import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
@@ -26,7 +27,6 @@ public abstract class Robot extends LinearOpMode {
     public FSMStates robotState = FSMStates.NONE;
 
     public void initialize(Pose2d pose) {
-
 
         drive = new SparkFunOTOSSubSystem(hardwareMap, pose);
         intake = new IntakeSubsystem(hardwareMap, telemetry);
