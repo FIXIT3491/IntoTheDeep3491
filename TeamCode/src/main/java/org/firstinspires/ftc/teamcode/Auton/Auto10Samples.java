@@ -46,7 +46,6 @@ public abstract class Auto10Samples extends Robot {
         while (!isStopRequested()){
             update();
 
-
         }
         end();
 

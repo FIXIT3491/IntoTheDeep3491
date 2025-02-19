@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.teamcode.Auton;
 
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
@@ -19,7 +21,7 @@ public abstract class Auto100Spec extends Robot {
 
     @Override
     public void runOpMode() throws InterruptedException{
-        Pose2d startPose = new Pose2d(36,61,0);
+        Pose2d startPose = new Pose2d(-12,61, Math.toRadians(-90));
         initialize(startPose);
 //        end();
 
@@ -32,21 +34,28 @@ public abstract class Auto100Spec extends Robot {
         //there are two potential paths here either driving for spike mark or pushing with intake i think driving would work better
         cs.schedule(
                 new SequentialCommandGroup(
-                        //parallel {
-                            //raise spec
-                            //strafe to point (score)
-                        //}
-                        //strafe to point(midway)
-                        //strafe to point (first spike)
-                        //parallel {
-                            //strafe to point (observationZone)
-                            //pickup spec command
-                        //}
-                        //autoCycleSpecCommand
-                        //autoCycleSpecCommand
 
-                )
-        );
+                        //new ParallelCommandGroup(
+                                //raise spec
+                        new StrafeToPointCommand(drive, startPose, new Vector2d( -12,37) , Math.toRadians(-90)),
+                       // ),
+                        new WaitCommand(2000),
+
+//                        //strafe to point(midway)
+                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -22,37) , Math.toRadians(-90)),
+//                        //strafe to point (first spike)
+                        new StrafeToPointCommand(drive, new Pose2d ( -22, 37 , Math.toRadians(-90)), new Vector2d( -22, 57 ) , Math.toRadians(-90)),
+//                        //parallel {
+//                            //strafe to point (observationZone)
+//                            //pickup spec command
+                        new StrafeToPointCommand(drive, new Pose2d ( -22, 57, Math.toRadians(-90)),  new Vector2d( -28,57) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -28, 57, Math.toRadians(-90)),  new Vector2d( -6,57) , Math.toRadians(-90))
+//                        //autoCycleSpecCommand
+//                        //autoCycleSpecCommand
+
+
+        ));
+
         while (!isStopRequested()){
             update();
 
