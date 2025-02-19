@@ -42,14 +42,19 @@ public abstract class Auto100Spec extends Robot {
                         new WaitCommand(2000),
 
 //                        //strafe to point(midway)
-                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -22,37) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)),
 //                        //strafe to point (first spike)
-                        new StrafeToPointCommand(drive, new Pose2d ( -22, 37 , Math.toRadians(-90)), new Vector2d( -22, 57 ) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)),
 //                        //parallel {
 //                            //strafe to point (observationZone)
 //                            //pickup spec command
-                        new StrafeToPointCommand(drive, new Pose2d ( -22, 57, Math.toRadians(-90)),  new Vector2d( -28,57) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -28, 57, Math.toRadians(-90)),  new Vector2d( -6,57) , Math.toRadians(-90))
+                        new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,56) , Math.toRadians(-90)),
+
+                        //one more sample
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,56) , Math.toRadians(-90))
 //                        //autoCycleSpecCommand
 //                        //autoCycleSpecCommand
 
