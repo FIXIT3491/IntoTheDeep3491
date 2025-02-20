@@ -10,6 +10,7 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -35,29 +36,26 @@ public abstract class Auto100Spec extends Robot {
         cs.schedule(
                 new SequentialCommandGroup(
 
-                        //new ParallelCommandGroup(
-                                //raise spec
-                        new StrafeToPointCommand(drive, startPose, new Vector2d( -12,37) , Math.toRadians(-90)),
-                       // ),
-                        new WaitCommand(2000),
+                        new ParallelCommandGroup(
+                        new ScoreSpecimenCommand(slides, wrist),
+                        new StrafeToPointCommand(drive, startPose, new Vector2d( -12,37) , Math.toRadians(-90)) // score preload
+                        ),
 
-//                        //strafe to point(midway)
-                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)),
-//                        //strafe to point (first spike)
-                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)),
-//                        //parallel {
-//                            //strafe to point (observationZone)
-//                            //pickup spec command
-                        new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,56) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)), // strafe right
 
-                        //one more sample
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)), // go foward
+                        new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // strafe right
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,56) , Math.toRadians(-90)), // go back to obbie
+
+                        // 2nd sample
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // same logic
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,56) , Math.toRadians(-90))
-//                        //autoCycleSpecCommand
-//                        //autoCycleSpecCommand
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,56) , Math.toRadians(-90)),
 
+                        // 3rd sample
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 56, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)), // same logic
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -66, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90))
 
         ));
 
