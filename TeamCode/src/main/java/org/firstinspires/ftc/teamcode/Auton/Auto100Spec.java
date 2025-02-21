@@ -9,12 +9,16 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 public abstract class Auto100Spec extends Robot {
 
@@ -41,9 +45,12 @@ public abstract class Auto100Spec extends Robot {
                         new StrafeToPointCommand(drive, startPose, new Vector2d( -12,37) , Math.toRadians(-90)) // score preload
                         ),
 
-                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)), // strafe right
+                        new ParallelCommandGroup(
+                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)),// strafe right
+                        new RetractAllCommand(slides, wrist, intake)
+                        ),
 
-                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)), // go foward
+                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)), // go forward
                         new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // strafe right
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,56) , Math.toRadians(-90)), // go back to obbie
 
