@@ -52,17 +52,17 @@ public abstract class Auto100Spec extends Robot {
 
                         new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)), // go forward
                         new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // strafe right
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,56) , Math.toRadians(-90)), // go back to obbie
+                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,51) , Math.toRadians(-90)), // go back to obbie
 
                         // 2nd sample
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // same logic
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,56) , Math.toRadians(-90)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,51) , Math.toRadians(-90))
 
-                        // 3rd sample
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 56, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)), // same logic
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -66, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90))
+                        // 3rd sample, too much??
+//                        new StrafeToPointCommand(drive, new Pose2d ( -56, 56, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)), // same logic
+//                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90)),
+//                        new StrafeToPointCommand(drive, new Pose2d ( -66, 13, Math.toRadians(-90)),  new Vector2d( -66,51) , Math.toRadians(-90))
 
         ));
 

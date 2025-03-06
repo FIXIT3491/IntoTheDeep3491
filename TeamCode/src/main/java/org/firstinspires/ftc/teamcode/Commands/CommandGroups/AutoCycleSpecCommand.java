@@ -30,15 +30,15 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
         addCommands(
 
                 new ParallelCommandGroup(
-                //pickup spec command
-                //strafe to point (align pickup sample)
+                        new PickupSpecimenCommand(slides, wrist),
+                        new StrafeToPointCommand()    //strafe to point (align pickup sample)
                 )
-                // strafe to point (pickup spec)
-                // new parallel {
-                    // RaiseSpec
-                    // strafeToPoint (AlignToScore)
-                //}
-                //strafeToPoint (score
+                new StrafeToPointCommand(),   // strafe to point (pickup spec)
+
+                new ParallelCommandGroup(
+                        new RaiseSpecimenCommand(slides, wrist),
+                        new StrafeToPointCommand()     // score spec
+                )
 
         );
 

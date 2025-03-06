@@ -42,7 +42,7 @@ android {
         debug {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
-            storeFile rootProject.file('libs/ftc.debug.keystore')
+            //storeFile 'C:\\Users\\flcgz\\StudioProjects\\IntoTheDeep3491NEW\\TeamCode\\src\\main\\java\\org\\firstinspires\\ftc\\teamcode\\TeleOP\\SpecAuto.java'
             storePassword 'android'
         }
     }

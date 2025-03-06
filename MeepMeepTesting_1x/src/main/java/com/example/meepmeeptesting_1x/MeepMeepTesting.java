@@ -18,32 +18,36 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 20)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(0, 0, 0))
-                        .waitSeconds(4.2) //score bucket first sample
-                .strafeToConstantHeading(new Vector2d(36, 36)) //drive to spike mark for second sample                .waitSeconds(.75) // wait for wrist to come down
-                .strafeToSplineHeading(new Vector2d(53,53), Math.toRadians(45)) // drive to bucket for second sample
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-12, 61, -90))
+
+                .strafeToSplineHeading(new Vector2d(-12,37), Math.toRadians(-90)) // score preset
+
+                .strafeToSplineHeading(new Vector2d(-36,37), Math.toRadians(-90)) // strafe right
+
+                .strafeToSplineHeading(new Vector2d(-36,13), Math.toRadians(-90)) // go forward
+                .strafeToSplineHeading(new Vector2d(-48,13), Math.toRadians(-90)) // strafe right
+                .strafeToSplineHeading(new Vector2d(-48,51), Math.toRadians(-90)) // push sample to obbie
+
+                .strafeToSplineHeading(new Vector2d(-48,13), Math.toRadians(-90)) // go forward
+                .strafeToSplineHeading(new Vector2d(-56,13), Math.toRadians(-90)) // strafe right
+                .strafeToSplineHeading(new Vector2d(-56,51), Math.toRadians(-90)) // push sample to obbie
+
+                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
+                .strafeToSplineHeading(new Vector2d(-10, 37), Math.toRadians(-90)) // score spec
+
+                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
+                .strafeToSplineHeading(new Vector2d(-8, 37), Math.toRadians(-90)) // score spec
+
+                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
+                .strafeToSplineHeading(new Vector2d(-6, 37), Math.toRadians(-90)) // score spec
+
+
+
                 .build());
 
-        //                .waitSeconds(1)
-//                .turn(45)
-//                .lineToX(40) // pick up sample
-//                .waitSeconds(2) // wait for wrist to come up and also set arm high bucket
-//                .splineToConstantHeading(new Vector2d(40, 53), 0) // drive to bucket for second sample
-//                .waitSeconds(1) // wait for scoring
-//                .strafeToSplineHeading(new Vector2d(45, 36), 0) // drive to spike mark for 3rd sample
-//                .waitSeconds(.5)// wait for wrist to come down
-//                .lineToX(50) // pickup sample
-//                .waitSeconds(.5) // wait for claw to go up
-//                .setTangent(1) // set tangent for spline to bucket
-//                .splineToSplineHeading(new Pose2d(53, 53, Math.toRadians(45)), Math.toRadians(80)) // drive to bucket for third sample
-//                .waitSeconds(1) // wait for scoring
-//                .strafeToLinearHeading(new Vector2d(55, 25), Math.toRadians(0)) // drive to spike mark for forth sample
-//                .waitSeconds(.5)// wait for wrist to come down
-//                .lineToX(60) // pickup sample
-//                .waitSeconds(.5) // wait for claw to go up
-//                .setTangent(2) // set tangent for spline to bucket
-//                .splineToSplineHeading(new Pose2d(53, 53, Math.toRadians(45)), Math.toRadians(80)) // drive to bucket for third sample
-//                .waitSeconds(1); // wait for scoring
 
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
