@@ -18,32 +18,38 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 20)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-12, 61, -90))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-9, 61, -90))
 
                 .strafeToSplineHeading(new Vector2d(-12,37), Math.toRadians(-90)) // score preset
+                .waitSeconds(0.5)
 
-                .strafeToSplineHeading(new Vector2d(-36,37), Math.toRadians(-90)) // strafe right
+                .strafeToSplineHeading(new Vector2d(-32,37), Math.toRadians(-90)) // strafe right
 
-                .strafeToSplineHeading(new Vector2d(-36,13), Math.toRadians(-90)) // go forward
-                .strafeToSplineHeading(new Vector2d(-48,13), Math.toRadians(-90)) // strafe right
-                .strafeToSplineHeading(new Vector2d(-48,51), Math.toRadians(-90)) // push sample to obbie
+                .strafeToSplineHeading(new Vector2d(-41,10), Math.toRadians(-90)) // go forward
+                .strafeToSplineHeading(new Vector2d(-44,55), Math.toRadians(-90)) // push sample to obbie
 
-                .strafeToSplineHeading(new Vector2d(-48,13), Math.toRadians(-90)) // go forward
-                .strafeToSplineHeading(new Vector2d(-56,13), Math.toRadians(-90)) // strafe right
-                .strafeToSplineHeading(new Vector2d(-56,51), Math.toRadians(-90)) // push sample to obbie
-
-                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
-                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
-                .strafeToSplineHeading(new Vector2d(-10, 37), Math.toRadians(-90)) // score spec
+                .strafeToSplineHeading(new Vector2d(-49,10), Math.toRadians(-90)) // go forward
+                .strafeToSplineHeading(new Vector2d(-60,55), Math.toRadians(-90)) // push sample to obbie
 
                 .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
-                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
-                .strafeToSplineHeading(new Vector2d(-8, 37), Math.toRadians(-90)) // score spec
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(-270)) // pickup
+                .waitSeconds(0.5)
+                .strafeToSplineHeading(new Vector2d(-10, 37), Math.toRadians(-90)) // line up to score spec
+                .strafeToSplineHeading(new Vector2d(-10, 34), Math.toRadians(-90)) // score spec
+                .waitSeconds(0.5)
 
-                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
-                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(90)) // pickup
-                .strafeToSplineHeading(new Vector2d(-6, 37), Math.toRadians(-90)) // score spec
+                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(-270)) // line up to pickup
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(-270)) // pickup
+                .waitSeconds(0.5)
+                .strafeToSplineHeading(new Vector2d(-8, 37), Math.toRadians(-90)) // line up to score spec
+                .strafeToSplineHeading(new Vector2d(-8, 34), Math.toRadians(-90)) // score spec
+                .waitSeconds(0.5)
 
+                .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(-270)) // line up to pickup
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(-270)) // pickup
+                .waitSeconds(0.5)
+                .strafeToSplineHeading(new Vector2d(-6, 37), Math.toRadians(-90)) // line up to score spec
+                .strafeToSplineHeading(new Vector2d(-6, 34), Math.toRadians(-90)) // score spec
 
 
                 .build());
