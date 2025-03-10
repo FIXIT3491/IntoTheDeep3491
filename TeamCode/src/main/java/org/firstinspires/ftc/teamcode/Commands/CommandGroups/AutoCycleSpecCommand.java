@@ -23,10 +23,6 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
 
     public AutoCycleSpecCommand(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides){
 
-
-
-
-
         addCommands(
 
                 new ParallelCommandGroup(

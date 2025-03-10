@@ -18,20 +18,29 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 20)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-9, 61, -90))
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-8, 61, -90))
 
                 .strafeToSplineHeading(new Vector2d(-12,37), Math.toRadians(-90)) // score preset
                 .waitSeconds(0.5)
 
-                .strafeToSplineHeading(new Vector2d(-32,37), Math.toRadians(-90)) // strafe right
+                .strafeToSplineHeading(new Vector2d(-23,39), Math.toRadians(-135)) // line to push sample in obbie
+                .waitSeconds(1)
+                .strafeToSplineHeading(new Vector2d(-26,50), Math.toRadians(-200)) // push sample in obbie
 
-                .strafeToSplineHeading(new Vector2d(-41,10), Math.toRadians(-90)) // go forward
-                .strafeToSplineHeading(new Vector2d(-44,55), Math.toRadians(-90)) // push sample to obbie
+                .strafeToSplineHeading(new Vector2d(-32,39), Math.toRadians(-135)) // line to push sample in obbie
+                .waitSeconds(0.5)
+                .strafeToSplineHeading(new Vector2d(-35,50), Math.toRadians(-205)) // push sample in obbie
 
-                .strafeToSplineHeading(new Vector2d(-49,10), Math.toRadians(-90)) // go forward
-                .strafeToSplineHeading(new Vector2d(-60,55), Math.toRadians(-90)) // push sample to obbie
+//                .strafeToSplineHeading(new Vector2d(-32,37), Math.toRadians(-90)) // strafe right
+//
+//                .strafeToSplineHeading(new Vector2d(-41,10), Math.toRadians(-90)) // go forward
+//                .strafeToSplineHeading(new Vector2d(-44,55), Math.toRadians(-90)) // push sample to obbie
+//
+//                .strafeToSplineHeading(new Vector2d(-49,10), Math.toRadians(-90)) // go forward
+//                .strafeToSplineHeading(new Vector2d(-60,55), Math.toRadians(-90)) // push sample to obbie
 
                 .strafeToSplineHeading(new Vector2d(-37, 52), Math.toRadians(90)) // line up to pickup
+                .waitSeconds(1)
                 .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(-270)) // pickup
                 .waitSeconds(0.5)
                 .strafeToSplineHeading(new Vector2d(-10, 37), Math.toRadians(-90)) // line up to score spec
@@ -50,6 +59,9 @@ public class MeepMeepTesting {
                 .waitSeconds(0.5)
                 .strafeToSplineHeading(new Vector2d(-6, 37), Math.toRadians(-90)) // line up to score spec
                 .strafeToSplineHeading(new Vector2d(-6, 34), Math.toRadians(-90)) // score spec
+                .waitSeconds(0.5)
+
+                .strafeToSplineHeading(new Vector2d(-37,58), Math.toRadians(-90)) // park
 
 
                 .build());

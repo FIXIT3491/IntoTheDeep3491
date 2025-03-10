@@ -12,6 +12,7 @@ import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -57,13 +58,13 @@ public abstract class Auto100Spec extends Robot {
                         // 2nd sample
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // same logic
                         new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,51) , Math.toRadians(-90))
+                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,51) , Math.toRadians(-90)),
 
                         // 3rd sample, too much??
 //                        new StrafeToPointCommand(drive, new Pose2d ( -56, 56, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)), // same logic
 //                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90)),
 //                        new StrafeToPointCommand(drive, new Pose2d ( -66, 13, Math.toRadians(-90)),  new Vector2d( -66,51) , Math.toRadians(-90))
-
+                        // new MoveExtensionCommand(slides, 2000) // sweep
         ));
 
         while (!isStopRequested()){
