@@ -20,7 +20,7 @@ public class ScoreSpecimenCommand extends SequentialCommandGroup {
     public ScoreSpecimenCommand(SlideSubsystem slides, WristSubsystem wrist){
         addCommands(
                 new ParallelCommandGroup(
-                        new MoveExtensionCommand(slides, Constants.EXTENSION_MIN),
+                        new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new LowerLiftCommand(slides)
                 )

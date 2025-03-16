@@ -16,7 +16,8 @@ public class PickupSpecimenCommand extends SequentialCommandGroup {
         addCommands(
                 new SequentialCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_PICKUP_SPECIMEN),
-                        new MoveWristCommand(wrist, Constants.WRIST_PICKUP_SPECIMEN)
+                        new MoveWristCommand(wrist, Constants.WRIST_PICKUP_SPECIMEN),
+                        new MoveExtensionCommand(slides, 0)
                 )
         );
         addRequirements(slides, wrist);

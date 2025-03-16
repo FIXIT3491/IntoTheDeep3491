@@ -8,11 +8,15 @@ import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSpecCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
@@ -27,7 +31,7 @@ public abstract class Auto100Spec extends Robot {
 
     @Override
     public void runOpMode() throws InterruptedException{
-        Pose2d startPose = new Pose2d(-12,61, Math.toRadians(-90));
+        Pose2d startPose = new Pose2d(0,61, Math.toRadians(-90));
         initialize(startPose);
 //        end();
 
@@ -41,30 +45,36 @@ public abstract class Auto100Spec extends Robot {
         cs.schedule(
                 new SequentialCommandGroup(
 
-                        new ParallelCommandGroup(
-                        new ScoreSpecimenCommand(slides, wrist),
-                        new StrafeToPointCommand(drive, startPose, new Vector2d( -12,37) , Math.toRadians(-90)) // score preload
-                        ),
 
-                        new ParallelCommandGroup(
-                        new StrafeToPointCommand(drive, new Pose2d ( -12 , 37, Math.toRadians(-90)), new Vector2d( -36,37) , Math.toRadians(-90)),// strafe right
-                        new RetractAllCommand(slides, wrist, intake)
-                        ),
+                        new RaiseSpecimenCommand(slides, wrist),
+                        new StrafeToPointCommand(drive, startPose, new Vector2d( 0,33) , Math.toRadians(-90)), // score preload
+                        new RaiseLiftCommand(slides, 500),
+                        new MoveExtensionCommand(slides, 0),
+                        new WaitCommand(500),
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                        new LowerLiftCommand(slides),
 
-                        new StrafeToPointCommand(drive, new Pose2d ( -36, 37 , Math.toRadians(-90)), new Vector2d( -36, 13 ) , Math.toRadians(-90)), // go forward
-                        new StrafeToPointCommand(drive, new Pose2d ( -36, 13, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // strafe right
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -48,51) , Math.toRadians(-90)), // go back to obbie
+                        // sweep sample in obbie
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 33, Math.toRadians(-90)), new Vector2d( -21,38) , Math.toRadians(-130)),
+                        new MoveExtensionCommand(slides, 1850),
+                        new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                        new WaitCommand(750),
+                        new StrafeToPointCommand(drive, new Pose2d ( -22, 38, Math.toRadians(-130)), new Vector2d( -20,50) , Math.toRadians(-200)),
 
-                        // 2nd sample
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 56, Math.toRadians(-90)),  new Vector2d( -48,13) , Math.toRadians(-90)), // same logic
-                        new StrafeToPointCommand(drive, new Pose2d ( -48, 13, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)),
-                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -56,51) , Math.toRadians(-90)),
+                        // sweep sample in obbie
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                        new StrafeToPointCommand(drive, new Pose2d ( -20, 50, Math.toRadians(-200)), new Vector2d( -30,38) , Math.toRadians(-130)),
+                        new MoveExtensionCommand(slides, 1850),
+                        new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                        new WaitCommand(600),
+                        new StrafeToPointCommand(drive, new Pose2d ( -30, 38, Math.toRadians(-130)), new Vector2d( -29,50) , Math.toRadians(-205)),
 
-                        // 3rd sample, too much??
-//                        new StrafeToPointCommand(drive, new Pose2d ( -56, 56, Math.toRadians(-90)),  new Vector2d( -56,13) , Math.toRadians(-90)), // same logic
-//                        new StrafeToPointCommand(drive, new Pose2d ( -56, 13, Math.toRadians(-90)),  new Vector2d( -66,13) , Math.toRadians(-90)),
-//                        new StrafeToPointCommand(drive, new Pose2d ( -66, 13, Math.toRadians(-90)),  new Vector2d( -66,51) , Math.toRadians(-90))
-                        // new MoveExtensionCommand(slides, 2000) // sweep
+                        new AutoCycleSpecCommand(intake, wrist, drive, slides)
+
+
+
+
+
         ));
 
         while (!isStopRequested()){
