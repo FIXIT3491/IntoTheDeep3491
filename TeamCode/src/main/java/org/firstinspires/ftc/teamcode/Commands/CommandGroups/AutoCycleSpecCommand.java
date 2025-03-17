@@ -6,6 +6,7 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 
+import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
@@ -28,25 +29,22 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
         addCommands(
                 // pick up
                 new PickupSpecimenCommand(slides, wrist),
-                new WaitCommand(500),
+                new WaitCommand(400),
                 new StrafeToPointCommand(drive, new Pose2d (-29, 50, Math.toRadians(-205)),new Vector2d( -33,46) , Math.toRadians(90)),
                 new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
 
                 // score
-                new RaiseLiftCommand(slides, 595),
+                new RaiseLiftCommand(slides, 600),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -3,35) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -3,36) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
-                new StrafeToPointCommand(drive, new Pose2d (-3, 35, Math.toRadians(-90)),new Vector2d( -3,30) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-3, 36, Math.toRadians(-90)),new Vector2d( -3,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
-                new WaitCommand(500),
 
                 // pick up
-
                 new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -33,46) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
-                new WaitCommand(500),
                 new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
 
                 // score
@@ -57,8 +55,24 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
                 new StrafeToPointCommand(drive, new Pose2d (-2, 35, Math.toRadians(-90)),new Vector2d( -2,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
-                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -37,58) , Math.toRadians(-90)),
-                new RetractAllCommand(slides, wrist, intake)
+
+                // pick up
+                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -33,46) , Math.toRadians(90)),
+                new PickupSpecimenCommand(slides, wrist),
+                new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
+
+                // score
+                new RaiseLiftCommand(slides, 600),
+                new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
+                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -4,35) , Math.toRadians(-90)),
+                new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new StrafeToPointCommand(drive, new Pose2d (-4, 35, Math.toRadians(-90)),new Vector2d( -4,30) , Math.toRadians(-90)),
+                new RaiseLiftCommand(slides, 500),
+                new MoveExtensionCommand(slides, 0),
+                new WaitCommand(300),
+                new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                new LowerLiftCommand(slides)
+
 
         );
 

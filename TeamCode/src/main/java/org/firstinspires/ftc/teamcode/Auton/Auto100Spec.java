@@ -50,23 +50,23 @@ public abstract class Auto100Spec extends Robot {
                         new StrafeToPointCommand(drive, startPose, new Vector2d( 0,33) , Math.toRadians(-90)), // score preload
                         new RaiseLiftCommand(slides, 500),
                         new MoveExtensionCommand(slides, 0),
-                        new WaitCommand(500),
+                        new WaitCommand(400),
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new LowerLiftCommand(slides),
 
                         // sweep sample in obbie
-                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 33, Math.toRadians(-90)), new Vector2d( -21,38) , Math.toRadians(-130)),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 33, Math.toRadians(-90)), new Vector2d( -24,36) , Math.toRadians(-130)),
                         new MoveExtensionCommand(slides, 1850),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(750),
-                        new StrafeToPointCommand(drive, new Pose2d ( -22, 38, Math.toRadians(-130)), new Vector2d( -20,50) , Math.toRadians(-200)),
+                        new WaitCommand(550),
+                        new StrafeToPointCommand(drive, new Pose2d ( -23, 37, Math.toRadians(-130)), new Vector2d( -20,50) , Math.toRadians(-200)),
 
                         // sweep sample in obbie
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new StrafeToPointCommand(drive, new Pose2d ( -20, 50, Math.toRadians(-200)), new Vector2d( -30,38) , Math.toRadians(-130)),
                         new MoveExtensionCommand(slides, 1850),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(600),
+                        new WaitCommand(200),
                         new StrafeToPointCommand(drive, new Pose2d ( -30, 38, Math.toRadians(-130)), new Vector2d( -29,50) , Math.toRadians(-205)),
 
                         new AutoCycleSpecCommand(intake, wrist, drive, slides)
