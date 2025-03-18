@@ -30,22 +30,22 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
                 // pick up
                 new PickupSpecimenCommand(slides, wrist),
                 new WaitCommand(400),
-                new StrafeToPointCommand(drive, new Pose2d (-29, 50, Math.toRadians(-205)),new Vector2d( -33,46) , Math.toRadians(90)),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-29, 50, Math.toRadians(-205)),new Vector2d( -35,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
                 new RaiseLiftCommand(slides, 600),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -3,36) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-34, 56, Math.toRadians(90)),new Vector2d( -3,36) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
                 new StrafeToPointCommand(drive, new Pose2d (-3, 36, Math.toRadians(-90)),new Vector2d( -3,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
-                new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -33,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -35,46) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
                 new RaiseLiftCommand(slides, 600),
@@ -57,21 +57,22 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
-                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -33,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -35,46) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 46, Math.toRadians(90)),new Vector2d( -33,56) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
                 new RaiseLiftCommand(slides, 600),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -4,35) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -1,35) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
-                new StrafeToPointCommand(drive, new Pose2d (-4, 35, Math.toRadians(-90)),new Vector2d( -4,30) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-1, 35, Math.toRadians(-90)),new Vector2d( -1,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
-                new WaitCommand(300),
                 new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                new LowerLiftCommand(slides)
+                new WaitCommand(300),
+                new LowerLiftCommand(slides),
+                new StrafeToPointCommand(drive, new Pose2d (-1, 30, Math.toRadians(-90)),new Vector2d( -37,58) , Math.toRadians(-90))
 
 
         );

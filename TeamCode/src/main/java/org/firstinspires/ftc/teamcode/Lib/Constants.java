@@ -9,7 +9,7 @@ public class Constants {
     public static final int EXTENSION_MAX = 360;
 
 
-    public static final int LIFT_PICKUP_SPECIMEN = 360;
+    public static final int LIFT_PICKUP_SPECIMEN = 348;
     public static final int LIFT_BUCKET_2 = 1900;
     public static final int LIFT_CHAMBER_2 = 610;
 

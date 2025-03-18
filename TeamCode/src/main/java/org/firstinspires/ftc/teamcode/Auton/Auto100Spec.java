@@ -27,8 +27,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 public abstract class Auto100Spec extends Robot {
 
-
-
     @Override
     public void runOpMode() throws InterruptedException{
         Pose2d startPose = new Pose2d(0,61, Math.toRadians(-90));
@@ -41,10 +39,9 @@ public abstract class Auto100Spec extends Robot {
 
         waitForStart();
 
-        //there are two potential paths here either driving for spike mark or pushing with intake i think driving would work better
+        //there are two potential paths here either driving for spike mark or pushing with intake i think driving would work better - kai
         cs.schedule(
                 new SequentialCommandGroup(
-
 
                         new RaiseSpecimenCommand(slides, wrist),
                         new StrafeToPointCommand(drive, startPose, new Vector2d( 0,33) , Math.toRadians(-90)), // score preload
@@ -55,24 +52,21 @@ public abstract class Auto100Spec extends Robot {
                         new LowerLiftCommand(slides),
 
                         // sweep sample in obbie
-                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 33, Math.toRadians(-90)), new Vector2d( -24,36) , Math.toRadians(-130)),
-                        new MoveExtensionCommand(slides, 1850),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 33, Math.toRadians(-90)), new Vector2d( -27,37) , Math.toRadians(-130)),
+                        new MoveExtensionCommand(slides, 1450),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(550),
-                        new StrafeToPointCommand(drive, new Pose2d ( -23, 37, Math.toRadians(-130)), new Vector2d( -20,50) , Math.toRadians(-200)),
+                        new WaitCommand(450),
+                        new StrafeToPointCommand(drive, new Pose2d ( -27, 37, Math.toRadians(-130)), new Vector2d( -19,47) , Math.toRadians(-200)),
 
                         // sweep sample in obbie
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                        new StrafeToPointCommand(drive, new Pose2d ( -20, 50, Math.toRadians(-200)), new Vector2d( -30,38) , Math.toRadians(-130)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -19, 47, Math.toRadians(-200)), new Vector2d( -33,36) , Math.toRadians(-130)),
                         new MoveExtensionCommand(slides, 1850),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(200),
-                        new StrafeToPointCommand(drive, new Pose2d ( -30, 38, Math.toRadians(-130)), new Vector2d( -29,50) , Math.toRadians(-205)),
+                        new WaitCommand(250),
+                        new StrafeToPointCommand(drive, new Pose2d ( -33, 36, Math.toRadians(-130)), new Vector2d( -26,50) , Math.toRadians(-205)),
 
                         new AutoCycleSpecCommand(intake, wrist, drive, slides)
-
-
-
 
 
         ));

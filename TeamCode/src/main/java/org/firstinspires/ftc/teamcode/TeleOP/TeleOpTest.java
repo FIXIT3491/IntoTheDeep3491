@@ -106,9 +106,7 @@ public class TeleOpTest extends Robot {
         );
         //Zero Lift
         operatorPad.getGamepadButton(GamepadKeys.Button.A).and(new Trigger(() ->!slides.getTouchSensor())).whenActive(
-                new ParallelCommandGroup(
-                        new LowerLiftCommand(slides),
-                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED))
+                new RetractAllCommand(slides, wrist, intake)
         );
 
         //Raise to score specimen
@@ -116,9 +114,14 @@ public class TeleOpTest extends Robot {
                 .whenHeld(new PickupSpecimenCommand(slides, wrist))
                 .whenReleased(new RaiseSpecimenCommand(slides, wrist));
 
+        driverPad.getGamepadButton(GamepadKeys.Button.A).whenPressed(
+                new RetractAllCommand(slides, wrist, intake)
+        );
+
+
         operatorPad.getGamepadButton(GamepadKeys.Button.X)
                 .whenHeld(new RaiseSpecimenCommand(slides, wrist))
-                .whenReleased(new ScoreSpecimenCommand(slides, wrist));
+                .whenReleased(new RetractAllCommand(slides, wrist, intake));
 
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
