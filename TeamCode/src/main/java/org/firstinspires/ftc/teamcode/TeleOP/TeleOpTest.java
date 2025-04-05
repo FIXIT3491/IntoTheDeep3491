@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.PickupSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecTele;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
@@ -81,6 +82,8 @@ public class TeleOpTest extends Robot {
 //                        new IntakeSpinCommand(intake, 0)
 //                );
 
+        new LMECControl(lmec, false);
+
         configureOperator();
 
         waitForStart();
@@ -112,7 +115,7 @@ public class TeleOpTest extends Robot {
         //Raise to score specimen
         driverPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new PickupSpecimenCommand(slides, wrist))
-                .whenReleased(new RaiseSpecimenCommand(slides, wrist));
+                .whenReleased(new RaiseSpecTele(slides, wrist));
 
         driverPad.getGamepadButton(GamepadKeys.Button.A).whenPressed(
                 new RetractAllCommand(slides, wrist, intake)

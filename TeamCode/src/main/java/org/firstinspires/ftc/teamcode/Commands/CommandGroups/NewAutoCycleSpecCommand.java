@@ -17,20 +17,19 @@ import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.SparkFunOTOSSubSystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public class AutoCycleSpecCommand extends SequentialCommandGroup {
+public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
 
     Vector2d pos;
     double heading;
     double pickupHeading;
     long delay;
 
-    public AutoCycleSpecCommand(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides){
+    public NewAutoCycleSpecCommand(IntakeSubsystem intake, WristSubsystem wrist, SparkFunOTOSSubSystem drive, SlideSubsystem slides){
 
         addCommands(
                 // pick up
                 new PickupSpecimenCommand(slides, wrist),
-                new WaitCommand(400),
-                new StrafeToPointCommand(drive, new Pose2d (-29, 50, Math.toRadians(-205)),new Vector2d( -35,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-26, 50, Math.toRadians(-205)),new Vector2d( -35,46) , Math.toRadians(90)),
                 new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
@@ -70,7 +69,7 @@ public class AutoCycleSpecCommand extends SequentialCommandGroup {
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
                 new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                new WaitCommand(300),
+                new WaitCommand(200),
                 new LowerLiftCommand(slides),
                 new StrafeToPointCommand(drive, new Pose2d (-1, 30, Math.toRadians(-90)),new Vector2d( -37,58) , Math.toRadians(-90))
 

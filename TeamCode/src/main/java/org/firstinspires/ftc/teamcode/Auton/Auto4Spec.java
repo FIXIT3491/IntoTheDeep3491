@@ -9,12 +9,13 @@ import com.arcrobotics.ftclib.command.WaitCommand;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSpecCommand;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.NewAutoCycleSpecCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSampleCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.ScoreSpecimenCommand;
-import org.firstinspires.ftc.teamcode.Commands.Custom.LMECControl;
+import org.firstinspires.ftc.teamcode.Commands.Custom.IntakeSpinCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
@@ -22,12 +23,11 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.LMECSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
-public abstract class Auto100Spec extends Robot {
+public abstract class Auto4Spec extends Robot {
 
     @Override
     public void runOpMode() throws InterruptedException{
@@ -36,7 +36,7 @@ public abstract class Auto100Spec extends Robot {
 //        end();
 
 //        wrist.wristMove(Constants.WRIST_RETRACTED);
-        new LMECControl(lmec, false);
+
         slides.encoderReset();
 
         waitForStart();
@@ -49,29 +49,41 @@ public abstract class Auto100Spec extends Robot {
                         new StrafeToPointCommand(drive, startPose, new Vector2d( 0,31) , Math.toRadians(-90)), // score preload
                         new RaiseLiftCommand(slides, 500),
                         new MoveExtensionCommand(slides, 0),
-                        new WaitCommand(400),
+                        new WaitCommand(200),
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new LowerLiftCommand(slides),
 
                         // sweep sample in obbie
-                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( -27,37) , Math.toRadians(-130)),
-                        new MoveExtensionCommand(slides, 1450),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( -27,37.5) , Math.toRadians(-150)),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(450),
-                        new StrafeToPointCommand(drive, new Pose2d ( -27, 37, Math.toRadians(-130)), new Vector2d( -19,47) , Math.toRadians(-200)),
+                        new IntakeSpinCommand(intake, -1),
+                        new WaitCommand(250),
+                        new MoveExtensionCommand(slides, 1450),
+                        new WaitCommand(800),
+                        new IntakeSpinCommand(intake, 0),
+                        new StrafeToPointCommand(drive, new Pose2d ( -27, 37.5, Math.toRadians(-150)), new Vector2d( -19,47) , Math.toRadians(-210)),
+                        new IntakeSpinCommand(intake, 1),
+                        new WaitCommand(150),
 
                         // sweep sample in obbie
-                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                        new StrafeToPointCommand(drive, new Pose2d ( -19, 47, Math.toRadians(-200)), new Vector2d( -33,36) , Math.toRadians(-130)),
-                        new MoveExtensionCommand(slides, 1850),
+                        new MoveWristCommand(wrist, 0.2),
+                        new IntakeSpinCommand(intake, -1),
+                        new MoveExtensionCommand(slides, 700),
+                        new StrafeToPointCommand(drive, new Pose2d ( -19, 47, Math.toRadians(-210)), new Vector2d( -33.5,38) , Math.toRadians(-150)),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new WaitCommand(250),
-                        new StrafeToPointCommand(drive, new Pose2d ( -33, 36, Math.toRadians(-130)), new Vector2d( -26,50) , Math.toRadians(-205)),
+                        new WaitCommand(300),
+                        new MoveExtensionCommand(slides, 1550),
+                        new WaitCommand(650),
+                        new IntakeSpinCommand(intake, 0),
+                        new StrafeToPointCommand(drive, new Pose2d ( -33.5, 38, Math.toRadians(-150)), new Vector2d( -26,50) , Math.toRadians(-205)),
+                        new IntakeSpinCommand(intake, 1),
+                        new WaitCommand(200),
+                        new IntakeSpinCommand(intake, 0),
 
-                        new AutoCycleSpecCommand(intake, wrist, drive, slides)
+                        new NewAutoCycleSpecCommand(intake, wrist, drive, slides)
 
 
-        ));
+                ));
 
         while (!isStopRequested()){
             update();

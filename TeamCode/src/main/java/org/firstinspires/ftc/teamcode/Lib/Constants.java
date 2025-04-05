@@ -5,7 +5,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 public class Constants {
     public static final int EXTENSION_MIN = 0;
     public static final int EXTENSION_SPIKE = 1375;
-    public static final int EXTENSION_SCORE_SPECIMEN = 850;
+    public static final int EXTENSION_SCORE_SPECIMEN = 700;
     public static final int EXTENSION_MAX = 360;
 
 
