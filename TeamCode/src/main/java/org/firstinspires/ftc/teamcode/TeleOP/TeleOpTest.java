@@ -82,8 +82,6 @@ public class TeleOpTest extends Robot {
 //                        new IntakeSpinCommand(intake, 0)
 //                );
 
-        new LMECControl(lmec, false);
-
         configureOperator();
 
         waitForStart();

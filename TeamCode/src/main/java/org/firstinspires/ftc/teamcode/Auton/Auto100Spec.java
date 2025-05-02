@@ -24,7 +24,6 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.ResetLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
-import org.firstinspires.ftc.teamcode.Subsystems.LMECSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.Subsystems.SlideSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
