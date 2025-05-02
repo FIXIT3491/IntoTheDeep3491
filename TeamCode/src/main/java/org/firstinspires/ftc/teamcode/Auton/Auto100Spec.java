@@ -19,6 +19,8 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.LowerLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveExtensionCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.MoveWristCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.ResetIMUCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.ResetLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
@@ -36,7 +38,14 @@ public abstract class Auto100Spec extends Robot {
 //        end();
 
 //        wrist.wristMove(Constants.WRIST_RETRACTED);
-        new LMECControl(lmec, false);
+        cs.schedule(
+                new SequentialCommandGroup(
+                        new LMECControl(lmec, true),
+                        new MoveWristCommand(wrist, Constants.WRIST_START),
+                        new ResetLiftCommand(slides),
+                        new ResetIMUCommand(drive )
+                )
+        );
         slides.encoderReset();
 
         waitForStart();

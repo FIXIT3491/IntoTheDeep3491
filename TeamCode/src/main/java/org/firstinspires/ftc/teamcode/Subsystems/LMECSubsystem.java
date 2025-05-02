@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Subsystems;
+
 
 import com.arcrobotics.ftclib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.AnalogInput;
@@ -22,18 +22,18 @@ public class LMECSubsystem extends SubsystemBase {
         axonDataFront = hardwareMap.get(AnalogInput.class, "axonDataFront");
 
 //        servoFront.setDirection(Servo.Direction.REVERSE);
-    }
+    }//////
 
     // Intake method
     public void lockMechanum() {
         servoFront.setPosition(0.7);
-        servoBack.setPosition(0.5);
+        servoBack.setPosition(0);
 
     }
 
     public void unlockMechanum() {
         servoFront.setPosition(0);
-        servoBack.setPosition(0);
+        servoBack.setPosition(0.4);
 
     }
     public double getPosFront(){

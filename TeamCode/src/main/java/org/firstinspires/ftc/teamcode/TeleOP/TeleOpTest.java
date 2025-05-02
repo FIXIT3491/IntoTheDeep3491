@@ -54,7 +54,7 @@ public class TeleOpTest extends Robot {
         drive.reset();
         cs.schedule(
                 new SequentialCommandGroup(
-                        new LMECControl(lmec, false),
+                        new LMECControl(lmec, true),
                         new MoveWristCommand(wrist, Constants.WRIST_START),
                         new ResetLiftCommand(slides),
                         new ResetIMUCommand(drive )
