@@ -18,7 +18,7 @@ public class Constants {
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
     public static final double SPINNING = 1;
-    public static final double OUTTAKE = 0.15;
+    public static final double OUTTAKE = -0.85;
 
 
     public static final double WRIST_DOWN = 0;
