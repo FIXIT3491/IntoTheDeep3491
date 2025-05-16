@@ -21,19 +21,19 @@ public class LMECSubsystem extends SubsystemBase {
         servoBack = hardwareMap.get(ServoImplEx.class, "LMECBack");
         axonDataFront = hardwareMap.get(AnalogInput.class, "axonDataFront");
 
-//        servoFront.setDirection(Servo.Direction.REVERSE);
+        servoFront.setDirection(Servo.Direction.REVERSE);
     }
 
-    // Intake method
+
     public void lockMechanum() {
-        servoFront.setPosition(0.7);
+        servoFront.setPosition(0);
         servoBack.setPosition(0);
 
     }
 
     public void unlockMechanum() {
-        servoFront.setPosition(0);
-        servoBack.setPosition(0.4);
+        servoFront.setPosition(0.45);
+        servoBack.setPosition(0.6);
 
     }
     public double getPosFront(){
