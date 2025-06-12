@@ -159,6 +159,16 @@ public class TeleOpTest extends Robot {
                 new ResetIMUCommand(drive)
         );
 
+        driverPad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
+                new DefaultDriveCommand (
+                        drive,
+                        () -> driverPad.getLeftX() / 2,
+                        () -> driverPad.getLeftY() / 2,
+                        () -> driverPad.getRightX() / 2,
+                        drive.getHeading()
+                )
+        );
+
         new Trigger(() -> gamepad1.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)
         );
