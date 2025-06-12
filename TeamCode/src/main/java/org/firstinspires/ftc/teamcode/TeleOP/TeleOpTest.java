@@ -179,8 +179,8 @@ public class TeleOpTest extends Robot {
                 )
         );
         driverPad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).toggleWhenPressed(
-                new LMECControl(lmec, true),
-                new LMECControl(lmec, false)
+                new LMECControl(lmec, false),
+                new LMECControl(lmec, true)
         );
         new Trigger(() ->slides.getTouchSensor()).whenActive(
                 new SequentialCommandGroup(
