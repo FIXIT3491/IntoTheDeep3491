@@ -37,8 +37,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 
 @Config
-@TeleOp(name="TeleOpTest", group="01")
-public class TeleOpTest extends Robot {
+@TeleOp(name="TestTeleOpTest", group="01")
+public class TestTeleOpTest extends Robot {
 
 
     protected GamepadEx driverPad;
@@ -58,7 +58,7 @@ public class TeleOpTest extends Robot {
                         new MoveWristCommand(wrist, Constants.WRIST_START),
                         new ResetLiftCommand(slides),
                         new ResetIMUCommand(drive )
-                        )
+                )
         );
 
         double robotMovementMultiplier = 0.5;
@@ -72,21 +72,6 @@ public class TeleOpTest extends Robot {
                         drive.getHeading()
                 )
         );
-
-        /*
-        Please note that if the slow button doesn't work then use this code (would still need to be tested)
-
-        CommandScheduler.getInstance().setDefaultCommand(drive,
-        new DefaultDriveCommand(
-                drive,
-                () -> driverPad.getLeftX() * (gamepad1.left_bumper ? 0.5 : 1.0),
-                () -> driverPad.getLeftY() * (gamepad1.left_bumper ? 0.5 : 1.0),
-                () -> driverPad.getRightX() * (gamepad1.left_bumper ? 0.5 : 1.0),
-                drive.getHeading()
-        )
-);
-         */
-
         //makes wrist return back to zero
 //        CommandScheduler.getInstance()
 //                .setDefaultCommand(wrist,
@@ -141,8 +126,6 @@ public class TeleOpTest extends Robot {
 
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
-                //.whenHeld(new MoveWristCommand(wrist, -0.05))
-                .whenReleased(new MoveWristCommand(wrist, 0.40))
                 .whenReleased(new IntakeSpinCommand(intake, 0));
         new Trigger(() -> gamepad2.left_trigger > 0).whileActiveContinuous(
                 new SequentialCommandGroup(
@@ -151,9 +134,9 @@ public class TeleOpTest extends Robot {
                 )
         ).whenInactive(
                 new SequentialCommandGroup(
-                    new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                    new IntakeSpinCommand(intake, 0)
-        ));
+                        new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
+                        new IntakeSpinCommand(intake, 0)
+                ));
 
         // Extend lift when joystick is pushed forward
         new Trigger(() -> (-operatorPad.getRightY() >= 0.05 && -operatorPad.getRightY() < 0.24))
@@ -199,16 +182,6 @@ public class TeleOpTest extends Robot {
                 new ResetIMUCommand(drive)
         );
 
-        driverPad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
-                new DefaultDriveCommand (
-                        drive,
-                        () -> driverPad.getLeftX() / 2,
-                        () -> driverPad.getLeftY() / 2,
-                        () -> driverPad.getRightX() / 2,
-                        drive.getHeading()
-                )
-        );
-
         new Trigger(() -> gamepad2.right_trigger > 0).whileActiveContinuous(
                 new Pickup(wrist, intake)
         );
@@ -221,7 +194,7 @@ public class TeleOpTest extends Robot {
         );
 
         driverPad.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER).toggleWhenPressed(
-                new LMECControl(lmec, false),   
+                new LMECControl(lmec, false),
                 new LMECControl(lmec, true)
         );
 
