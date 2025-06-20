@@ -20,7 +20,7 @@ public class AutoSpikeIntakeCommand extends SequentialCommandGroup {
         addCommands(
                 new ParallelCommandGroup(
                     new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                    new IntakeSpinCommand(intake,-Constants.SPINNING)
+                    new IntakeSpinCommand(intake,Constants.SPINNING)
                 ),
                 new WaitCommand(500),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SPIKE),

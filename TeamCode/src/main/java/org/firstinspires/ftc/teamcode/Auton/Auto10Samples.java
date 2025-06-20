@@ -68,7 +68,6 @@ public abstract class Auto10Samples extends Robot {
                         new IntakeSpinCommand(intake, 0)
 
 
-
         ));
         while (!isStopRequested()){
             update();
