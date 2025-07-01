@@ -18,7 +18,7 @@ public class LowerLiftCommand extends InstantCommand {
     }
     public LowerLiftCommand(SlideSubsystem slideSubsystem){
         this.slideSubsystem = slideSubsystem;
-        power = -0.5;
+        power = -0.6;
         addRequirements(slideSubsystem);
     }
 

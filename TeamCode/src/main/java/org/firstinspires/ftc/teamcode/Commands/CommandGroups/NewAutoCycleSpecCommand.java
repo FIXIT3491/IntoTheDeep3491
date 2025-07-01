@@ -37,6 +37,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
                 new StrafeToPointCommand(drive, new Pose2d (-34, 56, Math.toRadians(90)),new Vector2d( -3,36) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(75),
                 new StrafeToPointCommand(drive, new Pose2d (-3, 36, Math.toRadians(-90)),new Vector2d( -3,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
@@ -51,6 +52,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
                 new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -2,35) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(75),
                 new StrafeToPointCommand(drive, new Pose2d (-2, 35, Math.toRadians(-90)),new Vector2d( -2,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
@@ -63,16 +65,16 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 // score
                 new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -1,35) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-32, 56, Math.toRadians(90)),new Vector2d( -1,35) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(75),
                 new StrafeToPointCommand(drive, new Pose2d (-1, 35, Math.toRadians(-90)),new Vector2d( -1,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
                 new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                new WaitCommand(200),
+                new WaitCommand(150),
                 new LowerLiftCommand(slides),
                 new StrafeToPointCommand(drive, new Pose2d (-1, 30, Math.toRadians(-90)),new Vector2d( -37,58) , Math.toRadians(-90))
-
 
         );
 
