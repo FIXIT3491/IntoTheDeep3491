@@ -43,7 +43,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
-                new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -35,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -35,42) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
                 new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
@@ -58,7 +58,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
-                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -35,46) , Math.toRadians(90)),
+                new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -35,42) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
                 new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
