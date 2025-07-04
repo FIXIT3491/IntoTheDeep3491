@@ -49,23 +49,23 @@ public abstract class Auto10Samples extends Robot {
                         new AutoCycleSamplesCommand(intake, wrist, drive, slides,1),
                         new AutoCycleSamplesCommand(intake, wrist, drive, slides,2),
                         new AutoCycleSamplesCommand(intake, wrist, drive, slides,3),
-                        new StrafeToPointCommand(drive, new Pose2d(Constants.BUCKET_POS, Math.toRadians(50)), new Vector2d( 30,12) , Math.toRadians(-179)),
+                        new StrafeToPointCommand(drive, new Pose2d(Constants.BUCKET_POS, Math.toRadians(50)), new Vector2d( 30,12) , Math.toRadians(-90))
 
                         // extra cycle pick up
                         // make colour sensor work
-                        new StrafeToPointCommand(drive, new Pose2d (30, 12, Math.toRadians(-179)),new Vector2d( 27,12) , Math.toRadians(-180)),
-                        new MoveWristCommand(wrist, WRIST_DOWN),
-                        new WaitCommand(500),
-                        new ManualExtensionControl(slides, 1200),
-                        new WaitCommand(1000),
-                        new ManualExtensionControl(slides, 500),
-                        new WaitCommand(500),
-                        new IntakeSpinCommand(intake, 1),
-                        new ManualExtensionControl(slides, 1800),
-                        new WaitCommand(1000),
-                        new ManualExtensionControl(slides, 0),
-                        new MoveWristCommand(wrist, WRIST_RETRACTED),
-                        new IntakeSpinCommand(intake, 0)
+//                        new StrafeToPointCommand(drive, new Pose2d (30, 12, Math.toRadians(-179)),new Vector2d( 27,12) , Math.toRadians(-180)),
+//                        new MoveWristCommand(wrist, WRIST_DOWN),
+//                        new WaitCommand(500),
+//                        new ManualExtensionControl(slides, 1200),
+//                        new WaitCommand(1000),
+//                        new ManualExtensionControl(slides, 500),
+//                        new WaitCommand(500),
+//                        new IntakeSpinCommand(intake, 1),
+//                        new ManualExtensionControl(slides, 1800),
+//                        new WaitCommand(1000),
+//                        new ManualExtensionControl(slides, 0),
+//                        new MoveWristCommand(wrist, WRIST_RETRACTED),
+//                        new IntakeSpinCommand(intake, 0)
 
 
         ));

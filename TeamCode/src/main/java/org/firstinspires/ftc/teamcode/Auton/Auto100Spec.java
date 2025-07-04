@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSamplesCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.AutoCycleSpecCommand;

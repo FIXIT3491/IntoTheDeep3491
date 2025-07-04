@@ -5,13 +5,13 @@ import com.acmerobotics.roadrunner.Vector2d;
 public class Constants {
     public static final int EXTENSION_MIN = 0;
     public static final int EXTENSION_SPIKE = 1375;
-    public static final int EXTENSION_SCORE_SPECIMEN = 700;
+    public static final int EXTENSION_SCORE_SPECIMEN = 950;
     public static final int EXTENSION_MAX = 360;
 
 
     public static final int LIFT_PICKUP_SPECIMEN = 348;
     public static final int LIFT_BUCKET_2 = 1810;
-    public static final int LIFT_CHAMBER_2 = 610;
+    public static final int LIFT_CHAMBER_2 = 590;
 
 
     public static final double BUCKET_X = 9.5;   //  Position of the bucket forward value for the OTOS auto relative to the robot (adjust for your robot)
@@ -21,7 +21,7 @@ public class Constants {
     public static final double OUTTAKE = -0.60;
 
 
-    public static final double WRIST_DOWN = 0;
+    public static final double WRIST_DOWN = -0.1;
     public static final double WRIST_START = 0.5;
     public static final double WRIST_RETRACTED = 0.4;
     public static final double WRIST_PICKUP_SPECIMEN = 0;

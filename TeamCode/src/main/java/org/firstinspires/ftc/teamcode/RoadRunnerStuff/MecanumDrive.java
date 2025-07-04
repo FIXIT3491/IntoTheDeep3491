@@ -66,11 +66,11 @@ public class MecanumDrive  extends SubsystemBase {
         public double inPerTick = 1; // SparkFun OTOS Note: you can probably leave this at 1
         public double lateralInPerTick = 1;
 //        public double lateralInPerTick =  inPerTick;
-        public double trackWidthTicks = 11.675554013582753;
+        public double trackWidthTicks = 13.292859753978913;
 
         // feedforward parameters (in tick units)
-        public double kS = 2.4;
-        public double kV = 0.1;
+        public double kS = 2.14738566007995;
+        public double kV = 0.11507561994941848;
         public double kA = 0.04;
 
         // path profile parameters (in inches)
@@ -83,9 +83,9 @@ public class MecanumDrive  extends SubsystemBase {
         public double maxAngAccel = Math.PI;
 
         // path controller gains
-        public double axialGain = 3;
+        public double axialGain = 5;
         public double lateralGain = 8;
-        public double headingGain = 16; // shared with turn
+        public double headingGain = 7; // shared with turn
 
         public double axialVelGain = 0.0;
         public double lateralVelGain = 0.0;

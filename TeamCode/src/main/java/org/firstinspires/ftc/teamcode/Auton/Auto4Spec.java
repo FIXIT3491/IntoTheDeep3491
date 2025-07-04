@@ -64,16 +64,16 @@ public abstract class Auto4Spec extends Robot {
                         new LowerLiftCommand(slides),
 
                         // sweep sample in obbie
-                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( -27,37.5) , Math.toRadians(-150)),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( -26,38.5) , Math.toRadians(-150)),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
                         new IntakeSpinCommand(intake, 1),
-                        new WaitCommand(200),
+                        new WaitCommand(250),
                         new MoveExtensionCommand(slides, 1325),
                         new WaitCommand(750),
                         new IntakeSpinCommand(intake, 0),
-                        new StrafeToPointCommand(drive, new Pose2d ( -27, 37.5, Math.toRadians(-150)), new Vector2d( -19,47) , Math.toRadians(-210)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -26, 38.5, Math.toRadians(-150)), new Vector2d( -19,47) , Math.toRadians(-210)),
                         new IntakeSpinCommand(intake, -1),
-                        new WaitCommand(150),
+                        new WaitCommand(200),
 
                         // sweep sample in obbie
                         new MoveWristCommand(wrist, 0.2),
@@ -87,7 +87,7 @@ public abstract class Auto4Spec extends Robot {
                         new IntakeSpinCommand(intake, 0),
                         new StrafeToPointCommand(drive, new Pose2d ( -33.5, 38, Math.toRadians(-150)), new Vector2d( -26,50) , Math.toRadians(-205)),
                         new IntakeSpinCommand(intake, -1),
-                        new WaitCommand(150),
+                        new WaitCommand(200),
                         new IntakeSpinCommand(intake, 0),
 
                         new NewAutoCycleSpecCommand(intake, wrist, drive, slides)

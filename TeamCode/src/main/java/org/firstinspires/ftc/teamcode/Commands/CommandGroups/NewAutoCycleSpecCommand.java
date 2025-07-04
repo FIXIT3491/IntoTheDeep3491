@@ -35,44 +35,40 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 // score
                 new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-34, 56, Math.toRadians(90)),new Vector2d( -3,36) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-34, 56, Math.toRadians(90)),new Vector2d( -3,30) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
-                new WaitCommand(75),
-                new StrafeToPointCommand(drive, new Pose2d (-3, 36, Math.toRadians(-90)),new Vector2d( -3,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
                 new StrafeToPointCommand(drive, new Pose2d (-3, 30, Math.toRadians(-90)),new Vector2d( -35,42) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
-                new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
+                new WaitCommand(100),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 42, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
                 new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-33, 56, Math.toRadians(90)),new Vector2d( -2,35) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 56, Math.toRadians(90)),new Vector2d( -2,30) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
-                new WaitCommand(75),
-                new StrafeToPointCommand(drive, new Pose2d (-2, 35, Math.toRadians(-90)),new Vector2d( -2,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
 
                 // pick up
                 new StrafeToPointCommand(drive, new Pose2d (-2, 30, Math.toRadians(-90)),new Vector2d( -35,42) , Math.toRadians(90)),
                 new PickupSpecimenCommand(slides, wrist),
-                new StrafeToPointCommand(drive, new Pose2d (-35, 46, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
+                new WaitCommand(100),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 42, Math.toRadians(90)),new Vector2d( -35,56) , Math.toRadians(90)),
 
                 // score
                 new RaiseLiftCommand(slides, Constants.LIFT_CHAMBER_2),
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
-                new StrafeToPointCommand(drive, new Pose2d (-32, 56, Math.toRadians(90)),new Vector2d( -1,35) , Math.toRadians(-90)),
+                new StrafeToPointCommand(drive, new Pose2d (-35, 56, Math.toRadians(90)),new Vector2d( -1,30) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
-                new WaitCommand(75),
-                new StrafeToPointCommand(drive, new Pose2d (-1, 35, Math.toRadians(-90)),new Vector2d( -1,30) , Math.toRadians(-90)),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
                 new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
-                new WaitCommand(150),
+                new WaitCommand(100),
                 new LowerLiftCommand(slides),
                 new StrafeToPointCommand(drive, new Pose2d (-1, 30, Math.toRadians(-90)),new Vector2d( -37,58) , Math.toRadians(-90))
 
