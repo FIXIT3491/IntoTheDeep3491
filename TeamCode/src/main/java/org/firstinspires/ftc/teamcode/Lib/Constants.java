@@ -11,6 +11,7 @@ public class Constants {
 
     public static final int LIFT_PICKUP_SPECIMEN = 348;
     public static final int LIFT_BUCKET_2 = 1810;
+    public static final int LIFT_BUCKET_1 = 550;
     public static final int LIFT_CHAMBER_2 = 590;
 
 

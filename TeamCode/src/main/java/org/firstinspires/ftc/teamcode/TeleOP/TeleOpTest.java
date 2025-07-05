@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.PickupSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
+import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucketLow;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecTele;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RetractAllCommand;
@@ -37,7 +38,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.WristSubsystem;
 
 
 @Config
-@TeleOp(name="TeleOpTest", group="01")
+@TeleOp(name="KDaysTeleOp", group="01")
 public class TeleOpTest extends Robot {
 
 
@@ -120,6 +121,12 @@ public class TeleOpTest extends Robot {
         operatorPad.getGamepadButton(GamepadKeys.Button.B).whenPressed(
                 new RaiseBucket(slides, wrist)
         );
+
+        //Basket level 1 score
+        operatorPad.getGamepadButton(GamepadKeys.Button.Y).whenPressed(
+                new RaiseBucketLow(slides, wrist)
+        );
+
         //Zero Lift
         operatorPad.getGamepadButton(GamepadKeys.Button.A).and(new Trigger(() ->!slides.getTouchSensor())).whenActive(
                 new RetractAllCommand(slides, wrist, intake)

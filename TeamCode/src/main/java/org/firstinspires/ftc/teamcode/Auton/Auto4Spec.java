@@ -59,12 +59,13 @@ public abstract class Auto4Spec extends Robot {
                         new StrafeToPointCommand(drive, startPose, new Vector2d( 0,31) , Math.toRadians(-90)), // score preload
                         new RaiseLiftCommand(slides, 500),
                         new MoveExtensionCommand(slides, 0),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( 0,41) , Math.toRadians(-90)),
                         new WaitCommand(150),
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
                         new LowerLiftCommand(slides),
 
                         // sweep sample in obbie
-                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 31, Math.toRadians(-90)), new Vector2d( -26,38.5) , Math.toRadians(-150)),
+                        new StrafeToPointCommand(drive, new Pose2d ( 0 , 41, Math.toRadians(-90)), new Vector2d( -26,38.5) , Math.toRadians(-150)),
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
                         new IntakeSpinCommand(intake, 1),
                         new WaitCommand(250),
