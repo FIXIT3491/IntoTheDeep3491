@@ -37,6 +37,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
                 new StrafeToPointCommand(drive, new Pose2d (-34, 56, Math.toRadians(90)),new Vector2d( -3,29) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(150),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
 
@@ -51,6 +52,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
                 new StrafeToPointCommand(drive, new Pose2d (-35, 56, Math.toRadians(90)),new Vector2d( -2,29) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(150),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
 
@@ -65,6 +67,7 @@ public class NewAutoCycleSpecCommand extends SequentialCommandGroup {
                 new MoveWristCommand(wrist, Constants.WRIST_SCORE_CHAMBER),
                 new StrafeToPointCommand(drive, new Pose2d (-35, 56, Math.toRadians(90)),new Vector2d( -1,29) , Math.toRadians(-90)),
                 new MoveExtensionCommand(slides, Constants.EXTENSION_SCORE_SPECIMEN),
+                new WaitCommand(150),
                 new RaiseLiftCommand(slides, 500),
                 new MoveExtensionCommand(slides, 0),
                 new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),
