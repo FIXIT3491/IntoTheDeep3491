@@ -22,9 +22,9 @@ public class Constants {
     public static final double OUTTAKE = -0.60;
 
 
-    public static final double WRIST_DOWN = -0.1;
-    public static final double WRIST_START = 0.5;
-    public static final double WRIST_RETRACTED = 0.4;
+    public static final double WRIST_DOWN = -0.2;
+    public static final double WRIST_START = 0.6;
+    public static final double WRIST_RETRACTED = 0.5;
     public static final double WRIST_PICKUP_SPECIMEN = 0;
     public static final double WRIST_SCORE_BUCKET = 0.2;
     public static final double WRIST_SCORE_CHAMBER = 0.30;

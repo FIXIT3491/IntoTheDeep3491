@@ -154,7 +154,7 @@ public class TeleOpTest extends Robot {
         new Trigger(() -> gamepad2.left_trigger > 0).whileActiveContinuous(
                 new SequentialCommandGroup(
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
-                        new IntakeSpinCommand(intake,   Constants.SPINNING)
+                        new IntakeSpinCommand(intake, Constants.OUTTAKE)
                 )
         ).whenInactive(
                 new SequentialCommandGroup(
@@ -206,7 +206,14 @@ public class TeleOpTest extends Robot {
                 new ResetIMUCommand(drive)
         );
 
-        driverPad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed(
+        driverPad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).toggleWhenPressed(
+                new DefaultDriveCommand (
+                        drive,
+                        () -> driverPad.getLeftX(),
+                        () -> driverPad.getLeftY(),
+                        () -> driverPad.getRightX(),
+                        drive.getHeading()
+                ),
                 new DefaultDriveCommand (
                         drive,
                         () -> driverPad.getLeftX() / 2,
@@ -217,7 +224,10 @@ public class TeleOpTest extends Robot {
         );
 
         new Trigger(() -> gamepad2.right_trigger > 0).whileActiveContinuous(
-                new Pickup(wrist, intake)
+                new SequentialCommandGroup(
+                        new MoveWristCommand(wrist, Constants.WRIST_DOWN),
+                        new IntakeSpinCommand(intake, Constants.SPINNING)
+                )
         );
 
         new Trigger(() -> gamepad2.right_trigger > 0).whenInactive(
