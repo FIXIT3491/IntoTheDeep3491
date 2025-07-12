@@ -9,17 +9,17 @@ public class Constants {
     public static final int EXTENSION_MAX = 360;
 
 
-    public static final int LIFT_PICKUP_SPECIMEN = 348;
+    public static final int LIFT_PICKUP_SPECIMEN = 390;
     public static final int LIFT_BUCKET_2 = 1810;
     public static final int LIFT_BUCKET_1 = 550;
-    public static final int LIFT_CHAMBER_2 = 590;
+    public static final int LIFT_CHAMBER_2 = 625;
 
 
     public static final double BUCKET_X = 9.5;   //  Position of the bucket forward value for the OTOS auto relative to the robot (adjust for your robot)
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
     public static final double SPINNING = 1;
-    public static final double OUTTAKE = -0.60;
+    public static final double OUTTAKE = -0.50;
 
 
     public static final double WRIST_DOWN = -0.2;
