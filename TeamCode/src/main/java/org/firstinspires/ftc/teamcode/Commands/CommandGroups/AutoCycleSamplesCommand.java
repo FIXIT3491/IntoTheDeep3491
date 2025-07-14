@@ -42,17 +42,14 @@ public class AutoCycleSamplesCommand extends SequentialCommandGroup {
             delay = 600;
         }
 
-
-
         addCommands(
 
-                new StrafeToPointCommand(drive, new Pose2d(Constants.BUCKET_POS, Math.toRadians(heading )), pos, Math.toRadians(pickupHeading)),
+                new StrafeToPointCommand(drive, new Pose2d(Constants.BUCKET_POS, Math.toRadians(heading)), pos, Math.toRadians(pickupHeading)),
                 new AutoSpikeIntakeCommand(intake, slides, wrist),
                 new WaitCommand(300),
                 new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
                 new ParallelCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
-
                         new StrafeToPointCommand(drive, new Pose2d(pos, Math.toRadians(pickupHeading)), Constants.BUCKET_POS, Math.toRadians(50))
                 ),
                 new WaitCommand(delay),
