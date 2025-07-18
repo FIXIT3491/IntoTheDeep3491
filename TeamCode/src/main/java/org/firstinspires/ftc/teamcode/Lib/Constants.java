@@ -28,8 +28,8 @@ public class Constants {
     public static final double WRIST_PICKUP_SPECIMEN = 0;
     public static final double WRIST_SCORE_BUCKET = 0.2;
     public static final double WRIST_SCORE_CHAMBER = 0.30;
-
     public static final Vector2d FIRST_SPIKE_MARK_POS = new Vector2d(46,51);
+
     public static final Vector2d SECOND_SPIKE_MARK_POS = new Vector2d(59,51);
     public static final Vector2d THIRD_SPIKE_MARK_POS = new Vector2d(53,44);
 
