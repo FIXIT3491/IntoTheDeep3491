@@ -4,7 +4,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 
 public class Constants {
     public static final int EXTENSION_MIN = 0;
-    public static final int EXTENSION_SPIKE = 1375;
+    public static final int EXTENSION_SPIKE = 1410;
     public static final int EXTENSION_SCORE_SPECIMEN = 1025;
     public static final int EXTENSION_MAX = 360;
 
@@ -33,7 +33,7 @@ public class Constants {
     public static final Vector2d SECOND_SPIKE_MARK_POS = new Vector2d(59,51);
     public static final Vector2d THIRD_SPIKE_MARK_POS = new Vector2d(53,44);
 
-    public static final Vector2d BUCKET_POS = new Vector2d(48.5, 50.5 );
+    public static final Vector2d BUCKET_POS = new Vector2d(47.5, 48.5 );
 
     public static final double  FIRST_SPIKE_MARK = -90;
     public static final double  SECOND_SPIKE_MARK = -100;

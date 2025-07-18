@@ -37,7 +37,6 @@ public abstract class Auto10Samples extends Robot {
 
         waitForStart();
 
-
         cs.schedule(
                 new SequentialCommandGroup(
                         new RaiseLiftCommand(slides, Constants.LIFT_BUCKET_2),
