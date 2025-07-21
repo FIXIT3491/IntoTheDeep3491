@@ -151,5 +151,29 @@ public class SparkFunOTOSSubSystem extends MecanumDrive {
 //        driveFieldCentric(x, y, rx, lazyImu );
     }
 
+    public void setDrivePower(Pose2d drivePower) {
+        double x = drivePower.position.x;
+        double y = drivePower.position.y;
+        double heading = drivePower.heading.log(); // If you're on RR v1.0 beta (new heading type)
+
+        double denominator = Math.max(Math.abs(x) + Math.abs(y) + Math.abs(heading), 1);
+
+        double frontLeftPower  = (x + y + heading) / denominator;
+        double backLeftPower   = (x - y + heading) / denominator;
+        double frontRightPower = (x - y - heading) / denominator;
+        double backRightPower  = (x + y - heading) / denominator;
+
+        if (!(Double.isNaN(frontLeftPower) || Double.isNaN(backLeftPower) ||
+                Double.isNaN(frontRightPower) || Double.isNaN(backRightPower))) {
+            leftFront.setPower(frontLeftPower);
+            leftBack.setPower(backLeftPower);
+            rightFront.setPower(frontRightPower);
+            rightBack.setPower(backRightPower);
+        }
+    }
+
+    public void update() {
+        updatePoseEstimate();
+    }
 
 }

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.TeleOP;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
@@ -10,7 +11,10 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.gamepad.TriggerReader;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.IMU.Parameters;
 
+import org.firstinspires.ftc.ftccommon.internal.manualcontrol.commands.ImuCommands;
 import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.PickupSpecimenCommand;
 import org.firstinspires.ftc.teamcode.Commands.CommandGroups.RaiseBucket;
@@ -31,6 +35,8 @@ import org.firstinspires.ftc.teamcode.Commands.Custom.Pickup;
 import org.firstinspires.ftc.teamcode.Commands.Custom.RaiseLiftCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.ResetIMUCommand;
 import org.firstinspires.ftc.teamcode.Commands.Custom.ResetLiftCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.StrafeToPointCommand;
+import org.firstinspires.ftc.teamcode.Commands.Custom.TurnToHeadingCommand;
 import org.firstinspires.ftc.teamcode.Lib.Util;
 import org.firstinspires.ftc.teamcode.Lib.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
@@ -52,13 +58,14 @@ public class TeleOpTest extends Robot {
 
         driverPad = new GamepadEx(gamepad1);
         operatorPad = new GamepadEx(gamepad2);
+
         drive.reset();
         cs.schedule(
                 new SequentialCommandGroup(
                         new LMECControl(lmec, true),
                         new MoveWristCommand(wrist, Constants.WRIST_START),
                         new ResetLiftCommand(slides),
-                        new ResetIMUCommand(drive )
+                        new ResetIMUCommand(drive)
                         )
         );
 
@@ -71,6 +78,7 @@ public class TeleOpTest extends Robot {
                         () -> driverPad.getLeftY(),
                         () -> driverPad.getRightX(),
                         drive.getHeading()
+
                 )
         );
 
@@ -115,6 +123,8 @@ public class TeleOpTest extends Robot {
             update();
         }
         CommandScheduler.getInstance().reset();
+        drive.update();
+
     }
     public void configureOperator() {
         //Basket level 2 score
@@ -131,6 +141,8 @@ public class TeleOpTest extends Robot {
         operatorPad.getGamepadButton(GamepadKeys.Button.A).and(new Trigger(() ->!slides.getTouchSensor())).whenActive(
                 new RetractAllCommand(slides, wrist, intake)
         );
+
+
 
         //Raise to score specimen
         driverPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
@@ -223,11 +235,21 @@ public class TeleOpTest extends Robot {
                 )
         );
 
+        /* Needs to be worked on
+        driverPad.getGamepadButton(GamepadKeys.Button.X).whenPressed(
+                new TurnToHeadingCommand(drive, 180)
+        ); */
+
         new Trigger(() -> gamepad2.right_trigger > 0).whileActiveContinuous(
                 new SequentialCommandGroup(
                         new MoveWristCommand(wrist, Constants.WRIST_DOWN),
                         new IntakeSpinCommand(intake, Constants.SPINNING)
                 )
+        );
+
+        //Substitution that should work for the code above but isn't ideal
+        driverPad.getGamepadButton(GamepadKeys.Button.X).whenPressed(
+                new StrafeToPointCommand(drive, new Pose2d(0, 0, Math.toRadians(drive.getHeading())),new Vector2d( 0,0) , Math.toRadians(180))
         );
 
         new Trigger(() -> gamepad2.right_trigger > 0).whenInactive(
@@ -248,6 +270,9 @@ public class TeleOpTest extends Robot {
                         new LowerLiftCommand(slides, 0)
                 )
         );
+
+        drive.update();
+
     }
 
 
