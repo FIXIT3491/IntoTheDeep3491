@@ -247,11 +247,6 @@ public class TeleOpTest extends Robot {
                 )
         );
 
-        //Substitution that should work for the code above but isn't ideal
-        driverPad.getGamepadButton(GamepadKeys.Button.X).whenPressed(
-                new StrafeToPointCommand(drive, new Pose2d(0, 0, Math.toRadians(drive.getHeading())),new Vector2d( 0,0) , Math.toRadians(180))
-        );
-
         new Trigger(() -> gamepad2.right_trigger > 0).whenInactive(
                 new SequentialCommandGroup(
                         new MoveWristCommand(wrist, Constants.WRIST_RETRACTED),

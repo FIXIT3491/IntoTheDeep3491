@@ -19,7 +19,7 @@ public class Constants {
     public static final double BUCKET_Y = -19.5;   //  Clip the turn speed to this max value (adjust for your robot)
 
     public static final double SPINNING = 1;
-    public static final double OUTTAKE = -0.30;
+    public static final double OUTTAKE = -0.25;
 
 
     public static final double WRIST_DOWN = -0.2;
@@ -33,7 +33,7 @@ public class Constants {
     public static final Vector2d SECOND_SPIKE_MARK_POS = new Vector2d(59,51);
     public static final Vector2d THIRD_SPIKE_MARK_POS = new Vector2d(53,44);
 
-    public static final Vector2d BUCKET_POS = new Vector2d(47.5, 48.5 );
+    public static final Vector2d BUCKET_POS = new Vector2d(47, 48 );
 
     public static final double  FIRST_SPIKE_MARK = -90;
     public static final double  SECOND_SPIKE_MARK = -100;
