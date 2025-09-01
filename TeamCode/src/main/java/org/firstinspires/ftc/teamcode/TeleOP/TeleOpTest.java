@@ -160,7 +160,7 @@ public class TeleOpTest extends Robot {
 
         operatorPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new IntakeSpinCommand(intake, Constants.OUTTAKE))
-                //.whenHeld(new MoveWristCommand(wrist, -0.05))
+                .whenHeld(new MoveWristCommand(wrist, -0.05))
                 .whenReleased(new MoveWristCommand(wrist, 0.40))
                 .whenReleased(new IntakeSpinCommand(intake, 0));
         new Trigger(() -> gamepad2.left_trigger > 0).whileActiveContinuous(
