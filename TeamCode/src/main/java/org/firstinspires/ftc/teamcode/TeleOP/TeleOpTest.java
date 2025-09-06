@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
+import com.arcrobotics.ftclib.command.WaitCommand;
 import com.arcrobotics.ftclib.command.button.Trigger;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
@@ -142,8 +143,6 @@ public class TeleOpTest extends Robot {
                 new RetractAllCommand(slides, wrist, intake)
         );
 
-
-
         //Raise to score specimen
         driverPad.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER)
                 .whenHeld(new PickupSpecimenCommand(slides, wrist))
@@ -153,6 +152,12 @@ public class TeleOpTest extends Robot {
                 new RetractAllCommand(slides, wrist, intake)
         );
 
+        operatorPad.getGamepadButton(GamepadKeys.Button.DPAD_LEFT).whenPressed( // slow spam for controlled outtake without fling
+                    new SequentialCommandGroup(
+                            new IntakeSpinCommand(intake, Constants.OUTTAKE),
+                            new WaitCommand(50)
+                    )
+                );
 
         operatorPad.getGamepadButton(GamepadKeys.Button.X)
                 .whenHeld(new RaiseSpecimenCommand(slides, wrist))

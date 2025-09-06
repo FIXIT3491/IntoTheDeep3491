@@ -72,7 +72,7 @@ public abstract class Auto4Spec extends Robot {
                         new MoveExtensionCommand(slides, 1425),
                         new WaitCommand(725),
                         new IntakeSpinCommand(intake, 0),
-                        new StrafeToPointCommand(drive, new Pose2d ( -27, 39.5, Math.toRadians(-150)), new Vector2d( -19,47) , Math.toRadians(-210)),
+                        new StrafeToPointCommand(drive, new Pose2d ( -27, 39.5, Math.toRadians(-147)), new Vector2d( -19,47) , Math.toRadians(-210)),
                         new IntakeSpinCommand(intake, -1),
                         new WaitCommand(200),
 

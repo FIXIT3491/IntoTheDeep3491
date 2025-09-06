@@ -25,20 +25,20 @@ public class AutoCycleSamplesCommand extends SequentialCommandGroup {
 
         if (cycleCount == 1){
             pos = Constants.FIRST_SPIKE_MARK_POS;
-            heading = 41; // score heading
-            pickupHeading = -94;
+            heading = 37.5; // score heading
+            pickupHeading = -94.5;
             delay = 700;
 
         } else if (cycleCount == 2) {
             pos = Constants.SECOND_SPIKE_MARK_POS;
-            heading = 41;
-            pickupHeading = -100;
+            heading = 37.5;
+            pickupHeading = -102;
             delay = 800;
 
         } else if (cycleCount == 3) {
             pos = Constants.THIRD_SPIKE_MARK_POS;
-            heading = 45;
-            pickupHeading = -64;
+            heading = 40;
+            pickupHeading = -64.5;
             delay = 600;
         }
 
